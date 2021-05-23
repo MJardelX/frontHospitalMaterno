@@ -1,0 +1,22 @@
+
+
+.main{
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background: brown; */
+}
+
+
+h1{
+    color: rgb(40, 116, 238);
+    font-size: 70px;
+    margin-bottom: 30px;
+}
+
+
+div{
+    border: 1px solid black;
+}
