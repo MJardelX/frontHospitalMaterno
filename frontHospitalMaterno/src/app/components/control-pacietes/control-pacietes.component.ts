@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { PacientesInterface } from 'src/app/interfaces/pacientes-interface';
+import { FormBebesComponent } from '../form-bebes/form-bebes.component';
 import { FormPacientesComponent } from '../form-pacientes/form-pacientes.component';
 
 @Component({
@@ -25,7 +26,7 @@ export class ControlPacietesComponent implements OnInit, AfterViewInit {
       segundo_nombre:"Maria",
       primer_apellido:"Xiquita", 
       segundo_apellido:"Xajpot",
-      dpi:"12342134",
+      dpi:"0000094",
       fecha_nacimiento:"2021-02-05",
       pais:"Guatemala",
       departamento:"Chimaltenango",
@@ -211,6 +212,19 @@ export class ControlPacietesComponent implements OnInit, AfterViewInit {
 
   editar(item){
     const dialogRef = this.dialog.open(FormPacientesComponent,
+      {
+        width: '100%',
+        data: item,
+        panelClass: 'custom-modalbox',
+        autoFocus:false
+      }
+      
+      );
+
+  }
+
+  agregarB(item){
+    const dialogRef = this.dialog.open(FormBebesComponent,
       {
         width: '100%',
         data: item,

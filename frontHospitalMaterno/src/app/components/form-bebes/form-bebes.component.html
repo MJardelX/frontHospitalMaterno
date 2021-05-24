@@ -1,1 +1,82 @@
-<p>form-bebes works!</p>
+<div class="toolbar-add">
+    <p style="margin: 0 25px; color: #fff; font-weight: bold; font-size: 20px">Agregar Bebe</p>
+    <mat-icon style="color: #fff; margin-right: 15px; cursor: pointer;" (click)="cerrar()">close</mat-icon>
+</div>
+
+
+<div style="margin-left: 30px; margin-bottom: 20px;">
+    <p>Agregar hijo a {{data.primer_nombre}} {{data.primer_apellido}}</p>
+</div>
+
+
+<div class="container-form">
+
+    <form [formGroup]="form_pacientes" (ngSubmit)="enviarDatos(form_pacientes.value)" class="form">
+
+        <div class="container-grid">
+
+
+            <!-- <div class="div-0"> -->
+                <mat-form-field class="form-field">
+                    <mat-label>Peso</mat-label>
+                    <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46 " matInput [formControl]="peso">
+                </mat-form-field>
+
+
+                <mat-form-field class="form-field">
+                    <mat-label>Sexo</mat-label>
+                    <input type="text" matInput [formControl]="sexo">
+                </mat-form-field>
+
+                <!-- <mat-form-field class="form-field">
+                    <mat-label>Sexo</mat-label>
+                    <input type="text" matInput [formControl]="sexo">
+                </mat-form-field> -->
+
+
+                <mat-form-field class="form-field-date">
+                    <mat-label>Fecha de Nacimiento</mat-label>
+                    <input matInput [matDatepicker]="datepicker" [formControl]="fecha_nacimiento" autocomplete="off">
+                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                        <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+
+            <!-- </div> -->
+
+
+            <!-- <div class="div-2"> -->
+
+                <mat-form-field class="form-field">
+                    <mat-label>Pais</mat-label>
+                    <input type="text" matInput [formControl]="pais">
+                </mat-form-field>
+
+
+                <mat-form-field class="form-field">
+                    <mat-label>Departamento</mat-label>
+                    <input type="text" matInput [formControl]="departamento">
+                </mat-form-field>
+
+
+                <mat-form-field class="form-field">
+                    <mat-label>Municipio</mat-label>
+                    <input type="text" matInput [formControl]="municipio">
+                </mat-form-field>
+            <!-- </div> -->
+
+        </div>
+
+
+        <div style="width: 100%; display: flex; justify-content:flex-end; align-items: center;">
+            <button mat-raised-button class="btn" type="submit">Agregar</button>
+        </div>
+    </form>
+</div>
+
+<!-- </mat-expansion-panel>
+    </div> -->

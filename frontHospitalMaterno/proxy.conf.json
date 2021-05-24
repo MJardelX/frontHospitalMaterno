@@ -1,0 +1,8 @@
+{
+    "/api-pacientes/*": {
+        "target": "https://uatintaxlligence.ey.com",
+        "secure": false,
+        "loglevel": "debug",
+        "changeOrigin": true
+    }
+}
