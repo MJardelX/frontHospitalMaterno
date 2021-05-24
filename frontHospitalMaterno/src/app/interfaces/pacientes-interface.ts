@@ -10,5 +10,5 @@ export interface PacientesInterface {
     departamento:string
     municipio:string
     direccion:string
-    hijos:number
+    cantidad_hijos:number
 }

@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { PacientesInterface } from 'src/app/interfaces/pacientes-interface';
+import { ApiService } from 'src/app/Services/api.service';
 @Component({
   selector: 'app-form-pacientes',
   templateUrl: './form-pacientes.component.html',
@@ -19,11 +20,13 @@ export class FormPacientesComponent implements OnInit{
 
   panelOpenState = false;
   form_pacientes: FormGroup
+  title="Agregar Paciente"
   constructor(
     private _builder: FormBuilder,
     private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FormPacientesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private apiService:ApiService
   ) { 
     this.form_pacientes= _builder.group({})
 
@@ -43,6 +46,7 @@ export class FormPacientesComponent implements OnInit{
 
     if(data){
 
+      this.title="Editar Paciente"
 
       let fecha= formatDate(data.fecha_nacimiento, "medium", 'en-GB');
       this.form_pacientes.get("primer_nombre").setValue(data.primer_nombre)
@@ -76,15 +80,47 @@ export class FormPacientesComponent implements OnInit{
   //              PARA AGREGAR FECHA PREDETERMINADA TENEMOS QUE CONVERTIR A formatDate("2021-05-18", "medium", 'en-GB'))
 
   matcher = new ErrorStateMatcher();
+
+
   enviarDatos(data){
 
-    // if(this.form_pacientes.invalid){
-    //   this.openSnackBar("Complete los campos requeridos","red-snackbar")
-    // }else{
-    //   this.openSnackBar("Paciente registrado Exitosamente","green-snackbar")
-    // }
+    console.log(data)
+    if(this.form_pacientes.invalid){
+      this.openSnackBar("Complete los campos requeridos","red-snackbar")
+    }else{
+      let fecha= formatDate(data.fecha_nacimiento, "yyyy-MM-dd", 'en-GB');
+      console.log(fecha)
+      
+      /* let fecha= dateFor */
+      /* si no hay data */
+      if(this.data==undefined){
+        this.apiService.agregar_paciente(
+          data.primer_nombre,
+          data.segundo_nombre,
+          data.primer_apellido,
+          data.segundo_apellido,
+          data.dpi,
+          fecha,
+          data.departamento,
+          data.municipio,
+          data.direccion,
+          data.pais
+        ).subscribe(data=>{
+          console.log(data)
+        },err=>{
+          console.log(err)
+        })
+      /* si hay data */
+      }else{
+        console.log("definido")
 
-    this.dialogRef.close({"data":"hola"});
+      }
+
+
+      this.openSnackBar("Paciente registrado Exitosamente","green-snackbar")
+    }
+
+    /* this.dialogRef.close({"data":"hola"}); */
   }
 
 

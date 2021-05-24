@@ -1,6 +1,6 @@
 {
-    "/api-pacientes/*": {
-        "target": "https://uatintaxlligence.ey.com",
+    "/control-medico/*": {
+        "target": "http://localhost:5000",
         "secure": false,
         "loglevel": "debug",
         "changeOrigin": true
