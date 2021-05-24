@@ -1,0 +1,37 @@
+
+
+h1{
+    color: rgb(40, 116, 238);
+    font-size: 30px;
+    margin: 30px 50px;
+
+}
+
+
+
+table {
+    width: 100%;
+  }
+
+.tab-container{
+    width: 90%;
+    margin: 5px auto;
+
+}
+
+th{
+    background: rgb(220,220,220);
+    color: #4169E1;
+    font-weight: bold;
+}
+
+.btn-agregar{
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center; 
+    width: 100%; 
+    /* border: 1px solid black; */
+    color: #32CD32;
+    font-weight: bold;
+    cursor: pointer;
+}

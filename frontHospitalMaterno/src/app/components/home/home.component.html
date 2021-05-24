@@ -2,14 +2,29 @@
 
 <div class="main">
 
-    <div>
+    <div class="container-h1">
         <h1 >Bienvenido </h1>
-
     </div>
 
-    <div>
+    <div style="display: flex; justify-content: center; align-items: center;">
         <h2>Elija una Base de datos:</h2>
+        <!-- <mat-slider min="1" max="100" step="1" value="1"></mat-slider> -->
         
-
+        <mat-form-field appearance="fill" class="mat-form">
+            <mat-label>Base de Datos</mat-label>
+            <mat-select [(value)]="selectedValue">
+              <mat-option *ngFor="let data of dataBases" [value]="data.value">
+                {{data.viewValue}}
+              </mat-option>
+            </mat-select>
+            <!-- <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon> -->
+          </mat-form-field>
     </div>
+
+    <div style="margin-top: 20px;">
+        <button mat-raised-button class="btn" (click)="siguiente()">Siguiente</button>
+    </div>
+
+
+    <!-- <p>{{selectedValue}}</p> -->
 </div>

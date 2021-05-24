@@ -18,3 +18,38 @@ html, body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.red-snackbar{
+    background: #FF1368;
+    color: #fff;
+}
+
+.green-snackbar{
+    background: #3DCE65;
+    color: #fff;
+}
+
+input{
+    text-transform: capitalize;
+}
+
+
+.toolbar-add{
+    height: 50px;
+    width: 100%;
+    background: #32CD32;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+
+.custom-modalbox mat-dialog-container{
+    padding: 0;  
+}
+
+
+.title-modal{
+    margin: 0;
+}

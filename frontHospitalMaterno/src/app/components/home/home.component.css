@@ -1,7 +1,7 @@
 
 
 .main{
-    height: 60%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,7 +16,59 @@ h1{
     margin-bottom: 30px;
 }
 
-
-div{
-    border: 1px solid black;
+h2{
+    color: black;
+    font-size: 20px;
+    font-weight: lighter;
+    margin-right: 20px;
 }
+
+
+.container-h1{
+    margin-bottom: 60px;
+}
+
+
+.btn{
+    color: rgb(40, 116, 238);
+}
+
+
+
+
+
+::ng-deep  .mat-form .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: rgb(40, 116, 238) !important;
+   }
+  
+  ::ng-deep .mat-form .mat-form-field-underline {
+    /*change color of underline*/
+    display: none;
+  } 
+  
+  ::ng-deep  .mat-form .mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: black !important;;
+  }
+
+  ::ng-deep  .mat-form .mat-select-arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+    margin: 0 4px;
+    /* color: black; */
+    /* background: blue; */
+}
+
+
+/* .mat-acordion{
+    width: 100px;
+} */
+
+.expansion-panel{
+    width: 500px !important;
+}
+
