@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApiService } from 'src/app/Services/api.service';
 import { FormPacientesComponent } from '../form-pacientes/form-pacientes.component';
 
 @Component({
@@ -19,7 +20,8 @@ export class FormBebesComponent implements OnInit {
     private _builder: FormBuilder,
     private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FormBebesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private apiService:ApiService
   ) { 
     this.form_pacientes= _builder.group({})
 
@@ -29,7 +31,7 @@ export class FormBebesComponent implements OnInit {
     this.form_pacientes.addControl("peso", this.peso)
     this.form_pacientes.addControl("sexo", this.sexo)
     this.form_pacientes.addControl("fecha_nacimiento", this.fecha_nacimiento)
-    this.form_pacientes.addControl("pais", this.pais)
+    //this.form_pacientes.addControl("pais", this.pais)
     this.form_pacientes.addControl("departamento", this.departamento)
     this.form_pacientes.addControl("municipio", this.municipio)
 
@@ -75,6 +77,29 @@ export class FormBebesComponent implements OnInit {
     if(this.form_pacientes.invalid){
       this.openSnackBar("Complete los campos requeridos","red-snackbar")
     }else{
+
+      let fecha= formatDate(data.fecha_nacimiento, "yyyy-MM-dd", 'en-GB');
+      this.apiService.agregar_bebe(
+        this.dpi_mama,
+        data.peso,
+        data.sexo,
+        fecha,
+        data.departamento,
+        data.municipio,
+        data.pais
+      ).subscribe(data=>{
+        
+       
+          /* this.openSnackBar("Paciente ya registrada","red-snackbar") */
+       
+          this.openSnackBar("Bebe agregado Exitosamente","green-snackbar")
+          this.apiService.getPersonsEmmit.emit("cargar");
+          this.dialogRef.close();
+       
+
+      },err=>{
+        console.log(err)
+      })
       this.openSnackBar("Hijo agregado Exitosamente","green-snackbar")
     }
     // this.dialogRef.close({"data":"hola"});

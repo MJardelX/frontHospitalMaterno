@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PacientesInterface } from 'src/app/interfaces/pacientes-interface';
 import { ApiService } from 'src/app/Services/api.service';
 import { FormBebesComponent } from '../form-bebes/form-bebes.component';
@@ -18,21 +18,56 @@ export class ControlPacietesComponent implements OnInit{
   constructor(
     // private actroute:ActivatedRoute
     public dialog: MatDialog,
-    private apiService:ApiService
+    private apiService:ApiService,
+    private router: Router
   ) { }
   
   dataSource:any;
+  dataSourceBaby:any;
   pacientes=[]
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['id', 'nombres', 'apellidos', 'dpi',"fecha_nacimiento","pais","depto","municipio","direccion","cant_h","actions"];
+  bebes=[]
+  @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
+  displayedColumns: string[] = ['id', 'nombres', 'apellidos', 'dpi',"fecha_nacimiento","depto","municipio","direccion","cant_h","actions"];
+  displayedColumnsBaby: string[] = ['id', 'peso', 'sexo',"fecha_nacimiento","depto","municipio","madre"];
   
+
+
+
+
+
   ngOnInit(): void {
     this.apiService.obtener_pacientes().subscribe(data=>{
-      console.log(data.data)
+      
       this.pacientes=data.data
       this.dataSource= new MatTableDataSource<any>(this.pacientes);
-      this.dataSource.paginator = this.paginator;
+      
+
+      this.dataSource.paginator = this.paginator.toArray()[0];
     })  
+
+    this.apiService.obtener_bebes().subscribe(data=>{
+      console.log(data)
+      this.bebes=data.data
+      this.dataSourceBaby= new MatTableDataSource<any>(this.bebes);
+      this.dataSourceBaby.paginator = this.paginator.toArray()[1];
+    })
+
+
+    this.apiService.getPersonsEmmit.subscribe(data=>{
+      this.apiService.obtener_pacientes().subscribe(data=>{
+        
+        this.pacientes=data.data
+        this.dataSource= new MatTableDataSource<any>(this.pacientes);
+        this.dataSource.paginator = this.paginator.toArray()[0];
+      })  
+
+      this.apiService.obtener_bebes().subscribe(data=>{
+    
+        this.bebes=data.data
+        this.dataSourceBaby= new MatTableDataSource<any>(this.bebes);
+        this.dataSourceBaby.paginator = this.paginator.toArray()[1];
+      })
+    })
   }
 
   // dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
@@ -41,7 +76,8 @@ export class ControlPacietesComponent implements OnInit{
   openDialog() {
     const dialogRef = this.dialog.open(FormPacientesComponent,
       {
-        width: '100%',
+        width: '500px',
+        height:"425x",
         // data: {name: "hola", animal: "mundo"},
         panelClass: 'custom-modalbox',
         autoFocus:false
@@ -59,7 +95,8 @@ export class ControlPacietesComponent implements OnInit{
   editar(item){
     const dialogRef = this.dialog.open(FormPacientesComponent,
       {
-        width: '100%',
+        width: '500px',
+        height:"425x",
         data: item,
         panelClass: 'custom-modalbox',
         autoFocus:false
@@ -72,7 +109,8 @@ export class ControlPacietesComponent implements OnInit{
   agregarB(item){
     const dialogRef = this.dialog.open(FormBebesComponent,
       {
-        width: '100%',
+        width: '500px',
+        height:"425x",
         data: item,
         panelClass: 'custom-modalbox',
         autoFocus:false
@@ -80,6 +118,11 @@ export class ControlPacietesComponent implements OnInit{
       
       );
 
+  }
+
+
+  ir_a_graficas(){
+    this.router.navigateByUrl('graficas')
   }
 
 

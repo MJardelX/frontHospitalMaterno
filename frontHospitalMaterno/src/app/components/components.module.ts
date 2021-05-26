@@ -6,31 +6,34 @@ import { ControlPacietesComponent } from './control-pacietes/control-pacietes.co
 import { FormPacientesComponent } from './form-pacientes/form-pacientes.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBebesComponent } from './form-bebes/form-bebes.component';
+import { GraficasComponent } from './graficas/graficas.component';
 // import { MatSliderModule } from '@angular/material/slider';
 // import { MatSliderModule } from '@angular/material/slider';
-
-
 
 @NgModule({
   declarations: [
     HomeComponent,
-    ControlPacietesComponent, 
-    FormPacientesComponent, FormBebesComponent,
-    FormBebesComponent
+    ControlPacietesComponent,
+    FormPacientesComponent,
+    FormBebesComponent,
+    FormBebesComponent,
+    GraficasComponent,
+    GraficasComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     // MatSliderModule,
     // MatSliderModule,
   ],
-  exports:[
+  exports: [
     HomeComponent,
-    ControlPacietesComponent, 
+    ControlPacietesComponent,
     FormPacientesComponent,
-  FormBebesComponent]
-
+    FormBebesComponent,
+    GraficasComponent
+  ],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

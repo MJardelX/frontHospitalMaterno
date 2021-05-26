@@ -14,6 +14,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ChartsModule } from 'ng2-charts';
 // import {MatFormFieldModule} from '@angular/material/form-field';
 
 
@@ -35,7 +36,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatExpansionModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    ChartsModule
   ],
   exports: [
     MatSliderModule,
@@ -49,7 +51,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatExpansionModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    ChartsModule
 
   ]
 })
