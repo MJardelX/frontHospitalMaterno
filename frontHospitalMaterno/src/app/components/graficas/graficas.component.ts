@@ -1,6 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import 'chartjs-plugin-colorschemes/src/plugins/plugin.colorschemes';
+import { ChartDataSets, ChartOptions, ChartType, Chart, plugins } from 'chart.js';
+
+import { BaseChartDirective, Color, Label, ThemeService } from 'ng2-charts';
+import * as themes from 'chartjs-plugin-colorschemes';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+// import * as datalabels from 'c';
+import { Aspect6 } from 'chartjs-plugin-colorschemes/src/colorschemes/colorschemes.office';
+// import 'chartjs-plugin-colorschemes';
+// import 'chartjs-plugin-colorschemes/src/plugins/plugin.colorschemes';
+// import { Aspect6 } from 'chartjs-plugin-colorschemes/src/colorschemes/colorschemes.office';
+// import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-graficas',
@@ -9,70 +19,123 @@ import { Color, Label } from 'ng2-charts';
 })
 export class GraficasComponent implements OnInit {
 
-// Pie
-public pieChartOptions: ChartOptions = {
-  responsive: true,
-  legend: {
-    position: 'top',
-  },
-  plugins: {
-    datalabels: {
-      formatter: (value, ctx) => {
-        const label = ctx.chart.data.labels[ctx.dataIndex];
-        return label;
-      },
-    },
+
+  constructor() {
+    // BaseChartDirective.registerPlugin(p);
   }
-};
-public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-public pieChartData: number[] = [300, 500, 100];
-public pieChartType: ChartType = 'pie';
-public pieChartLegend = true;
-//public pieChartPlugins = [pluginDataLabels];
-public pieChartColors = [
-  {
-    backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
-  },
-];
 
-constructor() { }
+  ngOnInit(): void {
+    // var ctx = document.getElementById('myChart');
+    var myChart = new Chart("myChart", {
+      type: 'pie',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 9, 3, 12, 19, 3, 5, 9, 3, 3, 5, 9, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Pacientes por Departamento'
+        },
+        legend: {
+          display: false
+          // position:'bottom',
+          // fullWidth:true,
+        },
+        responsive: true,
+        plugins: {
+          colorschemes: {
+            // scheme: 'brewer.YlGnBu9',
+            scheme:"brewer.Paired12"
+          }
+        },
+        layout:{
+          padding:0
+        }
+      }
+    });
+    myChart.options.plugins = (themes)
 
-ngOnInit(): void {
-}
 
-// events
-public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-  console.log(event, active);
-}
+    this.customLegends(myChart, this.legendListId);
+  }
 
-public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-  console.log(event, active);
-}
+  legendListId = document.getElementById("legendList");
 
-changeLabels(): void {
-  const words = ['hen', 'variable', 'embryo', 'instal', 'pleasant', 'physical', 'bomber', 'army', 'add', 'film',
-    'conductor', 'comfortable', 'flourish', 'establish', 'circumstance', 'chimney', 'crack', 'hall', 'energy',
-    'treat', 'window', 'shareholder', 'division', 'disk', 'temptation', 'chord', 'left', 'hospital', 'beef',
-    'patrol', 'satisfied', 'academy', 'acceptance', 'ivory', 'aquarium', 'building', 'store', 'replace', 'language',
-    'redeem', 'honest', 'intention', 'silk', 'opera', 'sleep', 'innocent', 'ignore', 'suite', 'applaud', 'funny'];
-  const randomWord = () => words[Math.trunc(Math.random() * words.length)];
-  this.pieChartLabels = Array.apply(null, { length: 3 }).map(_ => randomWord());
-}
 
-addSlice(): void {
-  this.pieChartLabels.push(['Line 1', 'Line 2', 'Line 3']);
-  this.pieChartData.push(400);
-  this.pieChartColors[0].backgroundColor.push('rgba(196,79,244,0.3)');
-}
+  data_labels = []
+  customLegends(chart, legendListId) {
+    let data = chart.data.datasets[0]._meta[0].data
+    let labels = (chart.data.labels)
 
-removeSlice(): void {
-  this.pieChartLabels.pop();
-  this.pieChartData.pop();
-  this.pieChartColors[0].backgroundColor.pop();
-}
+    for (let index = 0; index < data.length; index++) {
+      const element = data[index];
+      console.log(element._model.backgroundColor + " " + labels[index])
 
-changeLegendPosition(): void {
-  this.pieChartOptions.legend.position = this.pieChartOptions.legend.position === 'left' ? 'top' : 'left';
-}
+      this.data_labels.push({ "label": labels[index], "color": element._model.backgroundColor })
+      // var li = document.createElement("li");
+      // li.style.color = element._model.backgroundColor;
+      // li.appendChild(document.createTextNode("Legend Test "+(labels[index])));
+      // legendListId.appendChild(li); 
+    }
+    console.log(this.data_labels)
+
+  }
+
+
+  // public barChartOptions: ChartOptions = {
+  //   responsive: true,
+  //   // We use these empty structures as placeholders for dynamic theming.
+  //   scales: { xAxes: [{}], yAxes: [{}] },
+  //   plugins: {
+  //     colorschemes: {
+
+  //       scheme: 'brewer.Paired12'
+
+  //     }
+  //   }
+  // };
+
+
+  // public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  // public barChartType: ChartType = 'bar';
+  // public barChartLegend = true;
+  // public barChartPlugins = [ThemeService];
+  // // public barChartPlugins = [pluginDataLabels];
+  // // 
+  // public barChartData: ChartDataSets[] = [
+  //   { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+  //   { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
+  //   { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series C' },
+  // ];
+
+
+  // // events
+  // public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+  //   console.log(event, active);
+  // }
+
+  // public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+  //   console.log(event, active);
+  // }
+
+  // public randomize(): void {
+  //   // Only Change 3 values
+  //   this.barChartData[0].data = [
+  //     Math.round(Math.random() * 100),
+  //     59,
+  //     80,
+  //     (Math.random() * 100),
+  //     56,
+  //     (Math.random() * 100),
+  //     40 ];
+  // }
+
+
+
 
 }

@@ -14,7 +14,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ChartsModule } from 'ng2-charts';
+import { BaseChartDirective, ChartsModule } from 'ng2-charts';
+// import * as p from 'chartjs-plugin-colorschemes';
 // import {MatFormFieldModule} from '@angular/material/form-field';
 
 
@@ -56,4 +57,8 @@ import { ChartsModule } from 'ng2-charts';
 
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  constructor() {
+    // BaseChartDirective.registerPlugin(p);
+  }
+ }

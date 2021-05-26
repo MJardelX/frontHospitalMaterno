@@ -1,22 +1,49 @@
+
+
+<div class="container">
+  <div class="graficas-pequeñas">
+    <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
+  </div>
+
+
+
+</div>
+
+<!-- 
 <div>
   <div>
-    <div class="chart">
-      <canvas baseChart height="50px"
-        [data]="pieChartData"
-        [labels]="pieChartLabels"
-        [chartType]="pieChartType"
-        [options]="pieChartOptions"
-        
-        [colors]="pieChartColors"
-        [legend]="pieChartLegend">
+    <div style="display: block">
+      <canvas baseChart height="100px"
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+        [plugins]="barChartPlugins">
+
       </canvas>
     </div>
   </div>
+</div> -->
+
+
+<div class="container-grafica">
+  <div style=" width: 300px;" >
+    <canvas id="myChart" height="40vh" width="50vw"></canvas>
+  </div>
+
+
+  <div class="container-labels">
+    <ng-container *ngFor="let item of data_labels">
+      <div style="display: flex; justify-content: flex-start; align-items: center;">
+        <div style="height: 10px; width: 20px;" [ngStyle]="{'background':item.color }"></div>
+        <div >{{item.label}}</div>
+      </div>
+    </ng-container>
+  <div>
+  
 </div>
-<div>
-  <button mat-button mat-raised-button color="primary" (click)="pieChartLegend=!pieChartLegend">Toggle Legend</button>
-  <button mat-button mat-raised-button color="primary" (click)="changeLabels()">Change Labels</button>
-  <button mat-button mat-raised-button color="primary" (click)="addSlice()">Add Slice</button>
-  <button mat-button mat-raised-button color="primary" (click)="removeSlice()">Remove Slice</button>
-  <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()">Change Legend Position</button>
-</div>
+
+
+
+
