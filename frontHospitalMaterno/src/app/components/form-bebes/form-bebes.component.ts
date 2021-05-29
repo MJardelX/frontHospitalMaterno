@@ -5,6 +5,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiService } from 'src/app/Services/api.service';
+import { DeptosServiceService } from 'src/app/Services/deptos-service.service';
 import { FormPacientesComponent } from '../form-pacientes/form-pacientes.component';
 
 @Component({
@@ -16,12 +17,18 @@ export class FormBebesComponent implements OnInit {
 
   panelOpenState = false;
   form_pacientes: FormGroup
+
+  departamentos = [];
+  municipios = [];
+  departamento_selected:any;
+  municipio_selected:any
   constructor(
     private _builder: FormBuilder,
     private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FormBebesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private apiService:ApiService
+    private apiService:ApiService,
+    private deptoService: DeptosServiceService
   ) { 
     this.form_pacientes= _builder.group({})
 
@@ -64,7 +71,9 @@ export class FormBebesComponent implements OnInit {
   municipio = new FormControl('',[Validators.required])
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.departamentos = this.deptoService.obtener_departamentos();
+  }
 
   
   // -----------------------------------------------------
@@ -98,9 +107,9 @@ export class FormBebesComponent implements OnInit {
        
 
       },err=>{
-        console.log(err)
+        this.openSnackBar("Error al agregar hijo","red-snackbar")
       })
-      this.openSnackBar("Hijo agregado Exitosamente","green-snackbar")
+      //this.openSnackBar("Hijo agregado Exitosamente","green-snackbar")
     }
     // this.dialogRef.close({"data":"hola"});
   }
@@ -123,4 +132,8 @@ export class FormBebesComponent implements OnInit {
   //   this.myInputField.nativeElement.blur();
   // }
 
+
+  select_depto(depto){
+    this.municipios=this.deptoService.obtener_municipios(depto)
+  }
 }

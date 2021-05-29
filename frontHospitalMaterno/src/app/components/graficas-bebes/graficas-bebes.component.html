@@ -1,0 +1,87 @@
+<div style=" display:flex; justify-content: flex-start; align-items: center; padding:0; margin-top:20px">
+
+    <!-- Grafica Departamento -->
+    <div class="container-grafica">
+        <div style=" width: 300px;">
+            <canvas id="chart-depto-ba" height="40vh" width="50vw"></canvas>
+        </div>
+
+
+
+
+
+
+        <div class="container-labels">
+            <ng-container *ngFor="let item of labels_ba_depto; let i=index">
+                <div style="display: flex; justify-content: flex-start; align-items: center; border-bottom: 1px solid gray;">
+                    <div style="height: 10px; width: 20px;" [ngStyle]="{'background':item.color }"></div>
+                    <div>{{item.label}} - <span>{{porcentajes_depto[i]}}</span> </div>
+                </div>
+            </ng-container>
+
+        </div>
+        <mat-icon [ngClass]="{'none': filtro_depto_active==false}" style="align-self: flex-end; color:pink">check_circle_outline</mat-icon>
+
+    </div>
+
+
+    <!-- Grafica Municipio -->
+    <div class="container-grafica-barras">
+        <div style=" width: 400px; height: 300px;">
+            <canvas id="chart-muni-ba" height="40vh" width="50vw"></canvas>
+        </div>
+
+        <div style="align-self: flex-end; color:pink; margin-bottom: 23px;margin-left: 10px; height: 10px;width: 10px;">
+            <mat-icon [ngClass]="{'none': filtro_municipio_active==false}">check_circle_outline</mat-icon>
+        </div>
+    </div>
+</div>
+
+
+<div style=" display:flex; justify-content: flex-start; align-items: center; padding:0; margin-top:40px">
+
+    <!-- Grafica Año -->
+    <div class="container-grafica">
+        <div style=" width: 300px;">
+            <canvas id="chart-year-ba" height="40vh" width="50vw"></canvas>
+        </div>
+
+
+
+
+
+
+        <div class="container-labels">
+            <ng-container *ngFor="let item of labels_ba_year; let i=index">
+
+
+                <div style="display: flex; justify-content: flex-start; align-items: center; border-bottom: 1px solid gray;" *ngIf="item.label!=undefined">
+                    <div style="height: 10px; width: 20px;" [ngStyle]="{'background':item.color }"></div>
+
+
+                    <div>{{item.label}} - <span>{{porcentajes_year[i]}}</span> </div>
+                </div>
+            </ng-container>
+
+        </div>
+
+        <mat-icon [ngClass]="{'none': filtro_year_active==false}" style="align-self: flex-end; color:pink">check_circle_outline</mat-icon>
+
+
+    </div>
+
+
+    <!-- Grafica Mes -->
+    <div class="container-grafica-barras">
+        <div style=" width: 400px; height: 300px;">
+            <canvas id="chart-month-ba" height="40vh" width="50vw"></canvas>
+        </div>
+
+        <!-- <div style="align-self: flex-end; color:pingk; margin-bottom: 23px;margin-left: 10px; height: 10px;width: 10px;">
+            <mat-icon [ngClass]="{'none': filtro_==false}">check_circle_outline</mat-icon>
+        </div> -->
+        <div style="align-self: flex-end; color:pink; margin-bottom: 23px;margin-left: 10px; height: 10px;width: 10px;">
+            <mat-icon [ngClass]="{'none': filtro_month_active==false}">check_circle_outline</mat-icon>
+        </div>
+    </div>
+</div>

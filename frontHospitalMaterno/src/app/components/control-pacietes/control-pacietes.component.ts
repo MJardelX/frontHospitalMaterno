@@ -27,7 +27,7 @@ export class ControlPacietesComponent implements OnInit{
   pacientes=[]
   bebes=[]
   @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
-  displayedColumns: string[] = ['id', 'nombres', 'apellidos', 'dpi',"fecha_nacimiento","depto","municipio","direccion","cant_h","actions"];
+  displayedColumns: string[] = ['id', 'nombres', 'apellidos', 'dpi',"edad","depto","municipio","direccion","cant_h","actions"];
   displayedColumnsBaby: string[] = ['id', 'peso', 'sexo',"fecha_nacimiento","depto","municipio","madre"];
   
 

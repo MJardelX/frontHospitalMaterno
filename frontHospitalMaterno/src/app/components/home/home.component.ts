@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
+import { ApiService } from 'src/app/Services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private _snackBar: MatSnackBar,
-    private route: Router
+    private route: Router,
+    private apiService:ApiService
   ) { }
 
   // interface Food {
@@ -36,8 +38,11 @@ export class HomeComponent implements OnInit {
     if(!this.selectedValue){
       this.openSnackBar()
     }else{
-      this.route.navigateByUrl("control-pacientes")
-      localStorage.setItem('db',this.selectedValue)
+      this.apiService.set_database(this.selectedValue).subscribe(data=>{
+        this.route.navigateByUrl("control-pacientes")
+      })
+      
+      
     }
   }
 

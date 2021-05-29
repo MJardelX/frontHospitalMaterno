@@ -1,79 +1,94 @@
 <div class="toolbar-add">
-    <p style="margin: 0 25px; color: #fff; font-weight: bold; font-size: 20px">{{title}}</p>
-    <mat-icon style="color: #fff; margin-right: 15px; cursor: pointer;" (click)="cerrar()">close</mat-icon>
+    <p style="margin: 0 25px; color: #fff; font-weight: bold; font-size: 20px">
+        {{ title }}
+    </p>
+    <mat-icon style="color: #fff; margin-right: 15px; cursor: pointer" (click)="cerrar()">close</mat-icon>
 </div>
 
-
-
 <div class="container-form">
-
-
     <form [formGroup]="form_pacientes" (ngSubmit)="enviarDatos(form_pacientes.value)" class="form">
-
         <div class="container-grid">
-
             <mat-form-field class="form-field">
                 <mat-label>Primer Nombre</mat-label>
-                <input type="text" matInput [formControl]="primer_nombre">
+                <input type="text" matInput [formControl]="primer_nombre" />
             </mat-form-field>
-
 
             <mat-form-field class="form-field">
                 <mat-label>Segundo Nombre</mat-label>
-                <input type="text" matInput [formControl]="segundo_nombre">
+                <input type="text" matInput [formControl]="segundo_nombre" />
             </mat-form-field>
 
             <mat-form-field class="form-field">
                 <mat-label>Primer Apellido</mat-label>
-                <input type="text" matInput [formControl]="primer_apellido">
+                <input type="text" matInput [formControl]="primer_apellido" />
             </mat-form-field>
-
 
             <mat-form-field class="form-field">
                 <mat-label>Segundo Apellido</mat-label>
-                <input type="text" matInput [formControl]="segundo_apellido">
+                <input type="text" matInput [formControl]="segundo_apellido" />
             </mat-form-field>
-
 
             <mat-form-field class="form-field">
                 <mat-label>DPI</mat-label>
-                <input type="text" matInput [formControl]="dpi">
+                <input type="text" matInput [formControl]="dpi" />
             </mat-form-field>
-
-
 
             <mat-form-field class="form-field-date">
                 <mat-label>Fecha de Nacimiento</mat-label>
-                <input matInput [matDatepicker]="datepicker" [formControl]="fecha_nacimiento" autocomplete="off">
+                <input matInput [matDatepicker]="datepicker" [formControl]="fecha_nacimiento" autocomplete="off" />
                 <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                 <mat-datepicker #datepicker>
                     <mat-datepicker-actions>
                         <button mat-button matDatepickerCancel>Cancel</button>
-                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>
+              Apply
+            </button>
                     </mat-datepicker-actions>
                 </mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field class="form-field">
+
+            <!-- <mat-form-field class="form-field">
                 <mat-label>Departamento</mat-label>
-                <input type="text" matInput [formControl]="departamento">
+                <input type="text" matInput [formControl]="departamento" />
+            </mat-form-field> -->
+
+            <mat-form-field appearance="fill">
+                <mat-label>Departamento</mat-label>
+                <mat-select class="mat-select" [(value)]="departamento_selected" (selectionChange)="select_depto(departamento_selected)" [formControl]="departamento">
+                    <mat-option *ngFor="let data of departamentos" [value]="data">
+                        {{data}}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
 
-
-            <mat-form-field class="form-field">
+            <mat-form-field appearance="fill">
                 <mat-label>Municipio</mat-label>
-                <input type="text" matInput [formControl]="municipio">
+                <mat-select class="mat-select" [(value)]="municipio_selected" [formControl]="municipio">
+                    <mat-option *ngFor="let data of municipios" [value]="data">
+                        {{data}}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="form-field-large ">
+            <!-- <mat-form-field class="form-field">
+                <mat-label>Municipio</mat-label>
+                <input type="text" matInput [formControl]="municipio" />
+            </mat-form-field> -->
+
+            <mat-form-field class="form-field-large">
                 <mat-label>Direccion</mat-label>
-                <input type="text" matInput [formControl]="direccion">
+                <input type="text" matInput [formControl]="direccion" />
             </mat-form-field>
-
         </div>
 
-
-        <div style="width: 100%; display: flex; justify-content:flex-end; align-items: center; margin-top: 30px">
+        <div style="
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 50px;
+      ">
             <button mat-raised-button class="btn" type="submit">Guardar</button>
         </div>
     </form>

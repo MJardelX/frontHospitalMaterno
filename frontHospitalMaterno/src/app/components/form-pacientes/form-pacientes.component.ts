@@ -24,6 +24,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { PacientesInterface } from 'src/app/interfaces/pacientes-interface';
 import { ApiService } from 'src/app/Services/api.service';
+import { DeptosServiceService } from 'src/app/Services/deptos-service.service';
 @Component({
   selector: 'app-form-pacientes',
   templateUrl: './form-pacientes.component.html',
@@ -38,8 +39,11 @@ export class FormPacientesComponent implements OnInit {
     private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FormPacientesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private deptoService: DeptosServiceService
   ) {
+
+    
     this.form_pacientes = _builder.group({});
 
     console.log(new Date());
@@ -58,6 +62,7 @@ export class FormPacientesComponent implements OnInit {
     if (data) {
       this.title = 'Editar Paciente';
 
+      this.municipios=deptoService.obtener_municipios(data.departamento)
       let fecha = formatDate(data.fecha_nacimiento, 'medium', 'en-GB');
       this.form_pacientes.get('primer_nombre').setValue(data.primer_nombre);
       this.form_pacientes.get('segundo_nombre').setValue(data.segundo_nombre);
@@ -76,6 +81,11 @@ export class FormPacientesComponent implements OnInit {
     }
   }
 
+  departamentos = [];
+  municipios = [];
+  departamento_selected:any;
+  municipio_selected:any
+
   primer_nombre = new FormControl('', [Validators.required]);
   segundo_nombre = new FormControl('', []);
   primer_apellido = new FormControl('', [Validators.required]);
@@ -87,7 +97,9 @@ export class FormPacientesComponent implements OnInit {
   municipio = new FormControl('', [Validators.required]);
   direccion = new FormControl('', [Validators.required]);
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.departamentos = this.deptoService.obtener_departamentos();
+  }
 
   // -----------------------------------------------------
   //              PARA AGREGAR FECHA PREDETERMINADA TENEMOS QUE CONVERTIR A formatDate("2021-05-18", "medium", 'en-GB'))
@@ -187,4 +199,8 @@ export class FormPacientesComponent implements OnInit {
   // ngAfterViewInit() {
   //   this.myInputField.nativeElement.blur();
   // }
+
+  select_depto(depto){
+    this.municipios=this.deptoService.obtener_municipios(depto)
+  }
 }

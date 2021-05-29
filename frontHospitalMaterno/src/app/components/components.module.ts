@@ -7,6 +7,7 @@ import { FormPacientesComponent } from './form-pacientes/form-pacientes.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBebesComponent } from './form-bebes/form-bebes.component';
 import { GraficasComponent } from './graficas/graficas.component';
+import { GraficasBebesComponent } from './graficas-bebes/graficas-bebes.component';
 // import { MatSliderModule } from '@angular/material/slider';
 // import { MatSliderModule } from '@angular/material/slider';
 
@@ -19,6 +20,8 @@ import { GraficasComponent } from './graficas/graficas.component';
     FormBebesComponent,
     GraficasComponent,
     GraficasComponent,
+    //GraficasBebesComponent,
+    GraficasBebesComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import { GraficasComponent } from './graficas/graficas.component';
     ControlPacietesComponent,
     FormPacientesComponent,
     FormBebesComponent,
-    GraficasComponent
+    GraficasComponent,
+    GraficasBebesComponent
   ],
 })
 export class ComponentsModule {}
