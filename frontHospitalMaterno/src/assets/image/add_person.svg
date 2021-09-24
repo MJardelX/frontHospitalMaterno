@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54" height="53" viewBox="0 0 54 53">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="user_user_plus_Background_Mask_" data-name="user / user_plus (Background/Mask)" width="54" height="53" transform="translate(-0.298 -0.036)" fill="#ffbaff"/>
+    </clipPath>
+  </defs>
+  <g id="user_user_plus" data-name="user / user_plus" transform="translate(0.298 0.036)" clip-path="url(#clip-path)">
+    <path id="coolicon" d="M4.563,33.624h0L0,33.622A13.587,13.587,0,0,1,13.692,20.173,13.587,13.587,0,0,1,27.381,33.62l-4.563,0a8.832,8.832,0,0,0-2.676-6.338A9.158,9.158,0,0,0,4.563,33.622ZM38.791,26.9H34.228V20.173H27.381V15.691h6.847V8.965h4.563v6.726h6.845v4.482H38.791V26.9Zm-25.1-8.965A9.059,9.059,0,0,1,4.563,8.965,9.058,9.058,0,0,1,13.692,0a9.057,9.057,0,0,1,9.126,8.965A9.074,9.074,0,0,1,13.692,17.932Zm0-13.449A4.544,4.544,0,0,0,9.132,8.9a4.54,4.54,0,0,0,4.428,4.545l.138,0a4.525,4.525,0,0,0,4.556-4.264V8.965A4.528,4.528,0,0,0,13.692,4.482Z" transform="translate(3.884 8.95)" fill="#ffbaff"/>
+  </g>
+</svg>

@@ -1,10 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 *{
     /* font-family: 'Abel', sans-serif; */
-    font-family: 'Raleway', sans-serif;
+    font-family: confortaa, sans-serif;
     margin: 0;
     box-sizing: border-box;
 }
+
+@font-face {
+    font-family: confortaa;
+    src: url(assets/Comfortaa/Comfortaa-VariableFont_wght.ttf);
+}
+
+
 /* 
 :root{
     padding: 0;
@@ -17,7 +24,7 @@ html, body {
     margin: 0;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* body { margin: 0; font-family: confortaa, "Helvetica Neue", sans-serif; } */
 
 .red-snackbar{
     background: #FF1368;
@@ -29,9 +36,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: #fff;
 }
 
-input{
+/* input{
     text-transform: capitalize;
-}
+} */
 
 
 .toolbar-add{
@@ -53,3 +60,236 @@ input{
 .title-modal{
     margin: 0;
 }
+
+
+
+
+/* TITULOS */
+.title{
+    font-family: confortaa, sans-serif !important;
+    font-size: 30px;
+    color: #FFBAFF;
+    /* margin: 0 !important; */
+    /* display: inline !important; */
+    /* background: chocolate; */
+    /* padding: 30px; */
+    /* height: 30px; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+}
+
+.title-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items:center;
+    /* background: chartreuse; */
+    margin-top: 20px;
+    margin-left: 60px;
+    height: 50px;
+}
+
+.title-icon{
+    height: 30px;
+    margin:0;
+    /* background: cornflowerblue; */
+    padding: 0;
+
+}
+
+
+
+.input{
+    border: none;
+    border-bottom: 1px solid #798197;
+    color: #7B7D82;
+    outline: none;
+    /* outline:1 px slid orchid; */
+    width: 100%;
+    /* margin: 3px; */
+    height: 30px;
+}
+
+
+.sub-title{
+    font-family: confortaa, sans-serif !important;
+    font-size: 20px !important;
+    color: #FFBAFF;
+    /* margin: 0 !important; */
+    /* display: inline !important; */
+    /* background: chocolate; */
+    /* padding: 30px; */
+    /* height: 30px; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* height: 30px; */
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+
+    /* width: 90%; */
+
+}
+
+.btn{
+    background: #9FDFEF;
+    color: white;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-small{
+    background: #9FDFEF;
+    color: white;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+.guardar-text{
+    font-size: 14px;
+    text-decoration: underline;
+    color: #9FDFEF;
+    cursor: pointer;
+}
+
+
+.add-icon{
+    height: 12px;
+}
+
+
+/* !VISUALIZACION DE DATOS */
+
+
+
+.container{
+    width: 100%;
+    /* background: blue; */
+    padding: 0;
+    margin-top: 10px;
+}
+
+.data-container{
+    width: 70%;
+    /* background: brown; */
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+
+.icon{
+    height: 12px;
+}
+
+.grid-data{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr;
+    border-bottom: 1px solid #798197;
+    height: 25px;
+    /* background: cadetblue; */
+}
+
+.campo{
+    font-weight: bold;
+    font-size: 13px;
+    padding-left: 5px;
+}
+
+.data{
+    font-size: 13px;
+}
+
+.campo,.data{
+    /* background: chartreuse; */
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.cont-edit{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+.text-editar{
+    color: #2C3D7F;
+    font-size: 12px;
+}
+
+
+.form{
+    width: 100%;
+    /* background: chartreuse; */
+}
+
+.form-grid{
+    width: 100%;
+    /* height: 30px; */
+}
+
+.form-grid{
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    column-gap: 20px;
+    row-gap: 15px;
+
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.grid-nombre{
+    grid-template-columns: 1fr 1fr;
+    /* grid-template-rows: 1fr 1fr 1fr; */
+}
+
+.grid-usuario{
+    width: 40%;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: 1fr 1fr 1fr; */
+}
+
+.down{
+    grid-row: 2/3;
+}
+
+.down-1{
+    grid-row: 3/4;
+}
+
+.btn-guardar{
+    width: 100px;
+}
+
+.container-btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    grid-column: 2/3;
+}
+
+/* !FIN VISUALIZACION DE DATOS */

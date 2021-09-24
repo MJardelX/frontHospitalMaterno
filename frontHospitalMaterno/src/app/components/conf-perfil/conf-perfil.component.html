@@ -1,0 +1,183 @@
+<div class="title-container">
+    <img src="assets/image/user_circle.svg" alt="" class="title-icon" style="padding: 0;">
+    <h1 class="title" style="margin: 0; padding: 0px;">Configuración de Perfil</h1>
+</div>
+
+
+<div class="container">
+
+
+    <!-- !NOMBRE -->
+
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Nombre completo</span>    
+            <p class="data"> Grisel Victoria Xiquitá Xajpot</p>
+
+            <div class="cont-edit" (click)="expandir('nombre')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.nombre">
+            <div class="form-grid grid-nombre">
+                <input type="text" name=""  placeholder="Primer nombre" class="input">
+                <input type="text" name=""  placeholder="Segundo nombre" class="input">
+                <input type="text" name=""  placeholder="Primer apellido" class="input">
+                <input type="text" name=""  placeholder="Segundo apellido" class="input">
+
+                <div class="container-btn">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- !USUARIO -->
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Usuario</span>    
+            <p class="data"> Grisel Victoria Xiquitá Xajpot</p>
+
+            <div class="cont-edit" (click)="expandir('usuario')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.usuario">
+            <div class="form-grid grid-usuario">
+                <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
+                <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
+                <div style="display: flex; justify-content: space-around; align-items: center;">
+                    <input type="text" name=""  placeholder="Usuario" class="input" style="margin-right: 5px;">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+                <!-- <div class="container-btn">
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- !CORREO -->
+
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Correo</span>    
+            <p class="data"> Grisel Victoria Xiquitá Xajpot</p>
+
+            <div class="cont-edit" (click)="expandir('correo')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+        <div class="form" *ngIf="drops.correo">
+            <div class="form-grid grid-usuario">
+                <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
+                <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
+                <div style="display: flex; justify-content: space-around; align-items: center;">
+                    <input type="text" name=""  placeholder="Correo" class="input" style="margin-right: 5px;">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+                <!-- <div class="container-btn">
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- !CONTRASEÑA -->
+
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Contraseña</span>    
+            <p class="data"> Grisel Victoria Xiquitá Xajpot</p>
+
+            <div class="cont-edit" (click)="expandir('pass')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.pass">
+            <div class="form-grid grid-nombre">
+                <input type="password" name=""  placeholder="Contraseña actual" class="input">
+                <!-- <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <input type="password" name=""  placeholder="Contraseña nueva" class="input down">
+                <input type="password" name=""  placeholder="repita contraseña" class="input down">
+
+                <div class="container-btn down-1">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- !TELEFONO -->
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Teléfono</span>    
+            <p class="data"> Grisel Victoria Xiquitá Xajpot</p>
+
+            <div class="cont-edit" (click)="expandir('telefono')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.telefono">
+            <div class="form-grid grid-usuario">
+                <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
+                <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
+                <div style="display: flex; justify-content: space-around; align-items: center;">
+                    <input type="text" name=""  placeholder="Teléfono" class="input" style="margin-right: 5px;">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+                <!-- <div class="container-btn">
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- !PUESTO -->
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Puesto</span>    
+            <p class="data"> Grisel Victoria Xiquitá Xajpot</p>
+
+            <div class="cont-edit" (click)="expandir('puesto')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.puesto">
+            <div class="form-grid grid-usuario">
+                <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
+                <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
+                <div style="display: flex; justify-content: space-around; align-items: center;">
+                    <input type="text" name=""  placeholder="Puesto" class="input" style="margin-right: 5px;">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+                <!-- <div class="container-btn">
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+</div>

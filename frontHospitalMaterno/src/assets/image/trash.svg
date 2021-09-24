@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="basic_trash_full_Background_Mask_" data-name="basic / trash_full (Background/Mask)" width="22" height="22" transform="translate(0.03 0.074)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="basic_trash_full" data-name="basic / trash_full" transform="translate(-0.03 -0.074)" clip-path="url(#clip-path)">
+    <path id="coolicon" d="M13.1,18.715H3.743a1.872,1.872,0,0,1-1.872-1.872V4.679H0V2.807H3.743V1.872A1.872,1.872,0,0,1,5.615,0h5.615A1.872,1.872,0,0,1,13.1,1.872v.936h3.743V4.679H14.972V16.844A1.872,1.872,0,0,1,13.1,18.715ZM3.743,4.679V16.844H13.1V4.679ZM5.615,1.872v.936h5.615V1.872Zm5.615,13.1H9.358V6.55h1.872Zm-3.743,0H5.615V6.55H7.486Z" transform="translate(2.807 1.872)" fill="#2c3d7f"/>
+  </g>
+</svg>
