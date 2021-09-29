@@ -1,54 +1,23 @@
-import pymysql
+import cx_Oracle
 from datetime import datetime
 import time
 
-class MySql_Controller():
+class Oracle_Controller():
 
     def __init__(self):
         self.host='localhost'
         self.user='proyecto_final'
-        self.password='mjardel10'
-        self.db='hospital_materno'
+        self.password='password'
+        self.db=''
         pacientes=[]
 
 
     def obtener_conexion(self):
-        return pymysql.connect(host=self.host,user=self.user,password=self.password, db=self.db)
+       
+        return cx_Oracle.connect('proyecto_final/password@localhost:1521/xe') # if needed, place an 'r' before any 
+        #print(c.version)
 
-    def obtenerPacientes(self):
-        conexion= self.obtener_conexion()
-        cursor=conexion.cursor()
-        #with conexion.cursor() as cursor:
-        detail=""
-        finalData={}
-        status=""
-        code=409
-        try:
-            cursor.execute("""Select pacientes.id, pacientes.primer_nombre, pacientes.segundo_nombre,
-                              pacientes.primer_apellido, pacientes.segundo_apellido, pacientes.dpi,
-                              CONVERT(pacientes.fecha_nacimiento, CHAR) as fecha_nacimiento,
-                              YEAR(CURDATE())-YEAR(pacientes.fecha_nacimiento) + 
-                              IF(DATE_FORMAT(CURDATE(),'%m-%d') > DATE_FORMAT(pacientes.fecha_nacimiento,'%m-%d'), 0 , -1 ) AS edad_actual,
-                              pacientes.pais, pacientes.departamento, pacientes.municipio, pacientes.direccion, count(bebes_nacidos.dpi_mama) as cantidad_hijos
-                              from pacientes left Join bebes_nacidos 
-                              on pacientes.dpi= bebes_nacidos.dpi_mama 
-                              group by pacientes.id
-                              ORDER BY pacientes.id ASC
-                              """)
-            pacientes= cursor.fetchall()
-            headers=[i[0] for i in cursor.description]
-            conexion.close()
-            data=self.createQueryDict(pacientes,headers)
-            status="Success"
-            code=200
-        except Exception as e:
-            data=[]
-            detail= str(e)
-            status="Error"
-        finalData['detail']=detail
-        finalData['status']=status
-        finalData['data']=data
-        return finalData, code
+    
 
     def agregarPaciente(self,primer_nombre,primer_apellido,dpi,fecha_nacimiento,pais,departamento,municipio,direccion,segundo_nombre="",       segundo_apellido=""):
         conexion= self.obtener_conexion()
@@ -59,12 +28,13 @@ class MySql_Controller():
         status=""
         code=409
         try:
-            cursor.execute("""INSERT INTO pacientes
-            VALUES (null,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
-            (primer_nombre,segundo_nombre, primer_apellido,segundo_apellido,dpi,fecha_nacimiento,pais,departamento,municipio,    direccion))
+            query=""" Insert into PROYECTO_FINAL.PACIENTES (PRIMER_NOMBRE,SEGUNDO_NOMBRE,PRIMER_APELLIDO,SEGUNDO_APELLIDO,DPI,FECHA_NACIMIENTO,PAIS,DEPARTAMENTO,MUNICIPIO,DIRECCION) values ('{0}','{1}','{2}','{3}','{4}',to_date('{5}','yyyy/mm/dd'),'{6}','{7}','{8}','{9}')""".format(primer_nombre,segundo_nombre, primer_apellido,segundo_apellido,dpi,fecha_nacimiento,pais,departamento,municipio,    direccion)
+
+            
+            cursor.execute(query)
             #print()
             conexion.commit()
-            conexion.close()
+            #conexion.close()
             data= {
                 "id":cursor.lastrowid,
                 "dpi":dpi,
@@ -77,6 +47,7 @@ class MySql_Controller():
             code=200
 
         except Exception as e:
+            print("Error:"+ str(e))
             if self.personaExists(dpi):
                 detail="Paciente ya registrada"  
                 code="200"
@@ -100,7 +71,7 @@ class MySql_Controller():
         code=409
         
         try:
-            query="""UPDATE pacientes set primer_nombre='{0}', segundo_nombre='{1}', primer_apellido='{2}', segundo_apellido='{3}', fecha_nacimiento='{4}', pais='{5}',
+            query="""UPDATE pacientes set primer_nombre='{0}', segundo_nombre='{1}', primer_apellido='{2}', segundo_apellido='{3}', fecha_nacimiento=to_date('{4}','yyyy/mm/dd'), pais='{5}',
             departamento='{6}', municipio='{7}', direccion='{8}' where id='{9}' """.format(primer_nombre,segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, pais, departamento, municipio,direccion, id)
             direccion='{8}'
             print(query)
@@ -162,12 +133,14 @@ class MySql_Controller():
         code=409
         try:
             if self.personaExists(dpi_mama):
-                cursor.execute("""INSERT INTO bebes_nacidos
-                VALUES (null,%s,%s,%s,%s,%s,%s,%s)""",
-                (dpi_mama, peso, sexo, fecha_nacimiento, pais_nacimiento, departamento_nacimiento, municipio_nacimiento))
+
+                query="""Insert into PROYECTO_FINAL.bebes_nacidos (dpi_mama,peso,sexo,FECHA_NACIMIENTO,PAIS_NACIMIENTO,DEPARTAMENTO_NACIMIENTO,MUNICIPIO_NACIMIENTO) 
+                values ('{0}','{1}','{2}',to_date('{3}','yyyy/mm/dd'),'{4}','{5}','{6}')""".format(dpi_mama, peso, sexo, fecha_nacimiento, pais_nacimiento, departamento_nacimiento, municipio_nacimiento)
+
+                cursor.execute(query)
                 #print()
                 conexion.commit()
-                conexion.close()
+                #conexion.close()
                 data= {
                     "id":cursor.lastrowid,
                     "dpi_mama": dpi_mama ,
@@ -202,14 +175,14 @@ class MySql_Controller():
         code=409
         try:
             cursor.execute("""Select bebes_nacidos.id, bebes_nacidos.dpi_mama, bebes_nacidos.peso, bebes_nacidos.sexo,
-                              CONVERT(bebes_nacidos.fecha_nacimiento, CHAR) as fecha_nacimiento,
+                              TO_CHAR(bebes_nacidos.fecha_nacimiento , 'yyyy-MM-dd') as fecha_nacimiento,
                               bebes_nacidos.pais_nacimiento, bebes_nacidos.departamento_nacimiento, bebes_nacidos.municipio_nacimiento,
                               pacientes.primer_nombre, pacientes.primer_apellido
                               from bebes_nacidos, pacientes
-                              where bebes_nacidos.dpi_mama= pacientes.dpi
+                              where bebes_nacidos.dpi_mama = pacientes.dpi
                               ORDER BY bebes_nacidos.id ASC""")
             pacientes= cursor.fetchall()
-            headers=[i[0] for i in cursor.description]
+            headers=[i[0].lower() for i in cursor.description]
             conexion.close()
             data=self.createQueryDict(pacientes,headers)
             status="Success"
@@ -347,23 +320,24 @@ class MySql_Controller():
 
 
         data_total=[]
+        total=0
         try:
 
             for rango in rangos:
-                query="""Select count(*) as cantidad, 
-                        YEAR(CURDATE())-YEAR(pacientes.fecha_nacimiento) + 
-                        IF(DATE_FORMAT(CURDATE(),'%m-%d') > DATE_FORMAT(pacientes.fecha_nacimiento,'%m-%d'), 0 , -1 ) AS edad_actual 
-                        from pacientes group by fecha_nacimiento having edad_actual between {0} and {1}""".format(rango['inicio'], rango['final'])
+                query="""Select count(*) as cantidad
+                         
+                        from pacientes group by fecha_nacimiento having TRUNC( ( TO_NUMBER(TO_CHAR(SYSDATE,'YYYYMMDD')) -  TO_NUMBER(TO_CHAR(pacientes.fecha_nacimiento,'YYYYMMDD') ) ) / 10000) between {0} and {1}""".format(rango['inicio'], rango['final'])
 
 
-                print(query)
+                #print(query)
 
                 cursor.execute( query)  
                 pacientes= cursor.fetchall()
+                #print(pacientes)
                 
-                headers=[i[0] for i in cursor.description]
+                headers=[i[0].lower() for i in cursor.description]
                 data=self.createQueryDict(pacientes,headers)
-
+                #print(data)
                 suma=0
                 for item in data:
                     suma=suma + item["cantidad"]
@@ -383,6 +357,7 @@ class MySql_Controller():
             status="Success"
             code=200
         except Exception as e:
+            print("errorrrrrrrrrrrrrr " + str(e))
             data_total=[]
             detail= str(e)
             status="Error"
@@ -408,12 +383,10 @@ class MySql_Controller():
         try:
 
             for rango in rangos:
-                query="""Select count(*) as cantidad, 
-                        YEAR(CURDATE())-YEAR(pacientes.fecha_nacimiento) + 
-                        IF(DATE_FORMAT(CURDATE(),'%m-%d') > DATE_FORMAT(pacientes.fecha_nacimiento,'%m-%d'), 0 , -1 ) AS edad_actual 
+                query="""Select count(*) as cantidad
                         from pacientes 
                             where {0}='{1}'
-                        group by fecha_nacimiento having edad_actual between {2} and {3}""".format(tipo,lugar,rango['inicio'], rango['final'])
+                        group by fecha_nacimiento having TRUNC( ( TO_NUMBER(TO_CHAR(SYSDATE,'YYYYMMDD')) -  TO_NUMBER(TO_CHAR(pacientes.fecha_nacimiento,'YYYYMMDD') ) ) / 10000) between {2} and {3}""".format(tipo,lugar,rango['inicio'], rango['final'])
 
 
                 print(query)
@@ -421,7 +394,7 @@ class MySql_Controller():
                 cursor.execute( query)  
                 pacientes= cursor.fetchall()
                 
-                headers=[i[0] for i in cursor.description]
+                headers=[i[0].lower() for i in cursor.description]
                 data=self.createQueryDict(pacientes,headers)
 
                 suma=0
@@ -574,9 +547,9 @@ class MySql_Controller():
         code=409
         total=0
         try:
-            query="""Select count(*) as total, YEAR(fecha_nacimiento)
+            query="""Select count(*) as total, EXTRACT(YEAR FROM fecha_nacimiento)
                         from bebes_nacidos 
-                        where YEAR(fecha_nacimiento)=YEAR(fecha_nacimiento) group by YEAR(fecha_nacimiento)"""
+                        where EXTRACT(YEAR FROM fecha_nacimiento)=EXTRACT(YEAR FROM fecha_nacimiento) group by EXTRACT(YEAR FROM fecha_nacimiento)"""
             
             #print(query)
 
@@ -611,7 +584,7 @@ class MySql_Controller():
         try:
             query="""Select count(*) as cantidad, municipio_nacimiento
                               from bebes_nacidos
-                              where YEAR(fecha_nacimiento)='{0}' and municipio_nacimiento=municipio_nacimiento 
+                              where EXTRACT(YEAR FROM fecha_nacimiento)='{0}' and municipio_nacimiento=municipio_nacimiento 
                               group by municipio_nacimiento""".format(año)
             
             #print(query)
@@ -648,7 +621,7 @@ class MySql_Controller():
         try:
             query="""Select count(*) as cantidad, municipio_nacimiento
                               from bebes_nacidos
-                              where MONTH(fecha_nacimiento)='{0}' and municipio_nacimiento=municipio_nacimiento 
+                              where EXTRACT(MONTH FROM fecha_nacimiento)='{0}' and municipio_nacimiento=municipio_nacimiento 
                               group by municipio_nacimiento""".format(mes)
             
             #print(query)
@@ -684,8 +657,8 @@ class MySql_Controller():
         try:
             query="""Select count(*) as cantidad, municipio_nacimiento
                               from bebes_nacidos
-                              where MONTH(fecha_nacimiento)='{0}' and 
-                              YEAR(fecha_nacimiento)='{1}' and 
+                              where EXTRACT(MONTH FROM fecha_nacimiento)='{0}' and 
+                              EXTRACT(YEAR FROM fecha_nacimiento)='{1}' and 
                               
                               municipio_nacimiento=municipio_nacimiento 
                               group by municipio_nacimiento""".format(mes,año)
@@ -723,7 +696,7 @@ class MySql_Controller():
         try:
             query="""Select count(*) as cantidad, municipio_nacimiento
                               from bebes_nacidos
-                              where YEAR(fecha_nacimiento)='{0}' 
+                              where EXTRACT(YEAR FROM fecha_nacimiento)='{0}' 
                               and departamento_nacimiento='{1}'
                               and municipio_nacimiento=municipio_nacimiento 
                               group by municipio_nacimiento""".format(año,depto)
@@ -761,7 +734,7 @@ class MySql_Controller():
         try:
             query="""Select count(*) as cantidad, municipio_nacimiento
                               from bebes_nacidos
-                              where MONTH(fecha_nacimiento)='{0}' 
+                              where EXTRACT(MONTH FROM fecha_nacimiento)='{0}' 
                               and departamento_nacimiento='{1}'
                               and municipio_nacimiento=municipio_nacimiento 
                               group by municipio_nacimiento""".format(mes,depto)
@@ -799,8 +772,8 @@ class MySql_Controller():
         try:
             query="""Select count(*) as cantidad, municipio_nacimiento
                               from bebes_nacidos
-                              where MONTH(fecha_nacimiento)='{0}' 
-                              and YEAR(fecha_nacimiento)='{1}'
+                              where EXTRACT(MONTH FROM fecha_nacimiento)='{0}' 
+                              and EXTRACT(YEAR FROM fecha_nacimiento)='{1}'
                               and departamento_nacimiento='{2}'
                               and municipio_nacimiento=municipio_nacimiento 
                               group by municipio_nacimiento""".format(mes,año,depto)
@@ -836,9 +809,9 @@ class MySql_Controller():
         code=409
         total=0
         try:
-            query="""Select count(*) as total, {0}(fecha_nacimiento)
+            query="""Select count(*) as total, EXTRACT({0} FROM fecha_nacimiento)
                         from bebes_nacidos 
-                        where {0}(fecha_nacimiento)={0}(fecha_nacimiento) group by {0}(fecha_nacimiento)""".format(tipo)
+                        where EXTRACT({0} FROM fecha_nacimiento)=EXTRACT({0} FROM fecha_nacimiento) group by EXTRACT({0} FROM fecha_nacimiento)""".format(tipo)
             
             #print(query)
 
@@ -872,9 +845,9 @@ class MySql_Controller():
         code=409
         total=0
         try:
-            query="""Select count(*) as total, YEAR(fecha_nacimiento)
+            query="""Select count(*) as total, EXTRACT(YEAR FROM fecha_nacimiento)
                         from bebes_nacidos 
-                        where YEAR(fecha_nacimiento)=YEAR(fecha_nacimiento) and {0}='{1}' group by YEAR(fecha_nacimiento)""".format(tipo,lugar)
+                        where EXTRACT(YEAR FROM fecha_nacimiento)=EXTRACT(YEAR FROM fecha_nacimiento) and {0}='{1}' group by EXTRACT(YEAR FROM fecha_nacimiento)""".format(tipo,lugar)
             
             print(query)
 
@@ -907,9 +880,9 @@ class MySql_Controller():
         code=409
         total=0
         try:
-            query="""Select count(*) as total, MONTH(fecha_nacimiento)
+            query="""Select count(*) as total, EXTRACT(MONTH FROM fecha_nacimiento)
                         from bebes_nacidos 
-                        where  YEAR(fecha_nacimiento)='{0}' and  MONTH(fecha_nacimiento)=MONTH(fecha_nacimiento) group by MONTH(fecha_nacimiento)""".format(año)
+                        where  EXTRACT(YEAR FROM fecha_nacimiento)='{0}' and  EXTRACT(MONTH FROM fecha_nacimiento)=EXTRACT(MONTH FROM fecha_nacimiento) group by EXTRACT(MONTH FROM fecha_nacimiento)""".format(año)
             
             #print(query)
 
@@ -942,9 +915,9 @@ class MySql_Controller():
         code=409
         total=0
         try:
-            query="""Select count(*) as total, MONTH(fecha_nacimiento)
+            query="""Select count(*) as total, EXTRACT(MONTH FROM fecha_nacimiento)
                         from bebes_nacidos 
-                        where  YEAR(fecha_nacimiento)='{0}' and  MONTH(fecha_nacimiento)=MONTH(fecha_nacimiento) and {1}='{2}' group by MONTH(fecha_nacimiento)""".format(año,tipo,lugar)
+                        where  EXTRACT(YEAR FROM fecha_nacimiento)='{0}' and  EXTRACT(MONTH FROM fecha_nacimiento)=EXTRACT(MONTH FROM fecha_nacimiento) and {1}='{2}' group by EXTRACT(MONTH FROM fecha_nacimiento)""".format(año,tipo,lugar)
             
             #print(query)
 
@@ -977,9 +950,9 @@ class MySql_Controller():
         code=409
         total=0
         try:
-            query="""Select count(*) as total, MONTH(fecha_nacimiento)
+            query="""Select count(*) as total, EXTRACT(MONTH FROM fecha_nacimiento)
                         from bebes_nacidos 
-                        where  MONTH(fecha_nacimiento)=MONTH(fecha_nacimiento) and {0}='{1}' group by MONTH(fecha_nacimiento)""".format(tipo,lugar)
+                        where  EXTRACT(MONTH FROM fecha_nacimiento)=EXTRACT(MONTH FROM fecha_nacimiento) and {0}='{1}' group by EXTRACT(MONTH FROM fecha_nacimiento)""".format(tipo,lugar)
             
             #print(query)
 
@@ -1021,6 +994,44 @@ class MySql_Controller():
             cursor.execute( query)  
             pacientes= cursor.fetchall()
             headers=[i[0] for i in cursor.description]
+            conexion.close()
+            data=self.createQueryDict(pacientes,headers)
+            status="Success"
+            code=200
+        except Exception as e:
+            data=[]
+            detail= str(e)
+            status="Error"
+        finalData['detail']=detail
+        finalData['status']=status
+        finalData['data']=data
+        return finalData, code
+
+
+    def obtenerPacientes(self):
+        conexion= self.obtener_conexion()
+        cursor=conexion.cursor()
+        #with conexion.cursor() as cursor:
+        detail=""
+        finalData={}
+        status=""
+        code=409
+        try:
+            cursor.execute("""Select count(bebes_nacidos.dpi_mama) as cantidad_hijos, pacientes.id, pacientes.primer_nombre, pacientes.segundo_nombre,
+                                pacientes.primer_apellido, pacientes.segundo_apellido, pacientes.dpi,
+                                TO_CHAR(pacientes.fecha_nacimiento , 'yyyy-MM-dd') as fecha_nacimiento ,
+                                TRUNC( ( TO_NUMBER(TO_CHAR(SYSDATE,'YYYYMMDD')) -  TO_NUMBER(TO_CHAR(pacientes.fecha_nacimiento,'YYYYMMDD') ) ) / 10000) as edad_actual,
+                                pacientes.pais, pacientes.departamento, pacientes.municipio, pacientes.direccion
+                                
+                                from pacientes left Join bebes_nacidos 
+                                on pacientes.dpi= bebes_nacidos.dpi_mama
+                                group by pacientes.id, pacientes.primer_nombre, pacientes.segundo_nombre, pacientes.primer_apellido, pacientes.segundo_apellido, 
+pacientes.dpi, TO_CHAR(pacientes.fecha_nacimiento , 'yyyy-MM-dd'), TRUNC( ( TO_NUMBER(TO_CHAR(SYSDATE,'YYYYMMDD')) - TO_NUMBER(TO_CHAR(pacientes.fecha_nacimiento,'YYYYMMDD') ) ) / 10000), pacientes.pais, pacientes.departamento, 
+pacientes.municipio, pacientes.direccion
+                                ORDER BY pacientes.id ASC
+                              """)
+            pacientes= cursor.fetchall()
+            headers=[i[0].lower() for i in cursor.description]
             conexion.close()
             data=self.createQueryDict(pacientes,headers)
             status="Success"
