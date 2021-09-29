@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="22" viewBox="0 0 23 22">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="edit_edit_Background_Mask_" data-name="edit / edit (Background/Mask)" width="23" height="22" transform="translate(-0.089 0.074)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="edit_edit" data-name="edit / edit" transform="translate(0.089 -0.074)" clip-path="url(#clip-path)">
+    <path id="coolicon" d="M.936,17.05a.936.936,0,0,1-.69-.306A.924.924,0,0,1,0,16.03l.23-2.522L10.824,2.921,14.13,6.229,3.545,16.816l-2.516.229a.741.741,0,0,1-.094,0ZM14.794,5.568,11.485,2.26,13.47.274a.933.933,0,0,1,1.321,0l1.984,1.985a.935.935,0,0,1,0,1.323L14.8,5.567Z" transform="translate(3.197 2.208)" fill="#2c3d7f"/>
+  </g>
+</svg>

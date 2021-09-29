@@ -1,6 +1,12 @@
-<div class="toolbar" role="banner">
-    <span>Control de Pacientes y Nacimientos</span>
-    <img src="assets/image/recien-nacido.png" alt="" class="toolbar-image">
+<div class="toolbar" role="banner" *ngIf="mostrarSide">
+
+    <div class="logo">
+        <img src="assets/image/cam_icon.svg" alt="" class="toolbar-image">
+        <p style="margin: 0;">CAM</p>
+    </div>
+
+
+    <img src="assets/image/settings.svg" alt="" class="settings-icon">
 </div>
 
 <router-outlet></router-outlet>

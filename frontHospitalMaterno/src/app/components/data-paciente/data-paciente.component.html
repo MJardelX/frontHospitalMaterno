@@ -1,0 +1,402 @@
+<div class="title-container">
+    <!-- <img src="assets/image/user_circle.svg" alt="" class="title-icon" style="padding: 0;"> -->
+    <h1 class="title" style="margin: 0; padding: 0px;">Paciente</h1>
+</div>
+
+
+<div class="container">
+
+
+    <!-- !NOMBRE -->
+
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Nombre completo</span>    
+            <p class="data"> Grisel Victoria Xiquitá Xajpot</p>
+
+            <div class="cont-edit" (click)="expandir('nombre')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.nombre">
+            <div class="form-grid grid-nombre">
+                <input type="text" name=""  placeholder="Primer nombre" class="input">
+                <input type="text" name=""  placeholder="Segundo nombre" class="input">
+                <input type="text" name=""  placeholder="Primer apellido" class="input">
+                <input type="text" name=""  placeholder="Segundo apellido" class="input">
+
+                <div class="container-btn">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- !DPI -->
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">DPI</span>    
+            <p class="data"> 3111 06021 0407</p>
+
+            <div class="cont-edit" (click)="expandir('dpi')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.dpi">
+            <div class="form-grid grid-usuario">
+                <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
+                <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
+                <div style="display: flex; justify-content: space-around; align-items: center;">
+                    <input type="text" name=""  placeholder="DPI" class="input" style="margin-right: 5px;">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+                <!-- <div class="container-btn">
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- !NACIMIENTO -->
+
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Fecha de nacimiento</span>    
+            <p class="data"> 29/10/2003 (22 años) </p>
+
+            <div class="cont-edit" (click)="expandir('nacimiento')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+        <div class="form" *ngIf="drops.nacimiento">
+            <div class="form-grid grid-usuario">
+                <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
+                <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
+                <div style="display: flex; justify-content: space-around; align-items: center;">
+                    <input type="date" name=""  placeholder="DPI" class="input" style="margin-right: 5px;">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+                <!-- <div class="container-btn">
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- !DIRECCION -->
+
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Dirección</span>    
+            <p class="data"> 2da av. 2-18 zona 1, Patzún, Chimaltenango</p>
+
+            <div class="cont-edit" (click)="expandir('direccion')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.direccion">
+            <div class="form-grid grid-nombre">
+                <input type="password" name=""  placeholder="Departamento" class="input">
+                <!-- <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <input type="password" name=""  placeholder="Municipio" class="input ">
+                <input type="password" name=""  placeholder="Calle / Avenida" class="input ">
+
+                <div class="container-btn down-1">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- !TELEFONO -->
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Teléfono</span>    
+            <p class="data"> 19840128</p>
+
+            <div class="cont-edit" (click)="expandir('telefono')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.telefono">
+            <div class="form-grid grid-usuario">
+                <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
+                <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
+                <div style="display: flex; justify-content: space-around; align-items: center;">
+                    <input type="text" name=""  placeholder="Teléfono" class="input" style="margin-right: 5px;">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+                <!-- <div class="container-btn">
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- !OCUPACION -->
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Ocupación</span>    
+            <p class="data"> Vendedora</p>
+
+            <div class="cont-edit" (click)="expandir('ocupacion')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.ocupacion">
+            <div class="form-grid grid-usuario">
+                <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
+                <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
+                <div style="display: flex; justify-content: space-around; align-items: center;">
+                    <input type="text" name=""  placeholder="Ocupacion" class="input" style="margin-right: 5px;">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+                <!-- <div class="container-btn">
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- !MIGRANTE -->
+    <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Migrante</span>    
+            <p class="data"> No</p>
+
+            <div class="cont-edit" (click)="expandir('migrante')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.migrante">
+            <div class="form-grid grid-usuario">
+                <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
+                <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <span class="text-form">Migrante:</span>
+        
+                    <div style="display: flex; justify-content: flex-start; align-items: center;">
+                        <label for="si" class="radio-label">Si</label>
+                        <input type="radio" name="fav_language" id="si" value="Si">
+                    </div>
+        
+                    <div style="display: flex; justify-content: flex-start; align-items: center; margin-right: 20px;">
+                        <label for="no" class="radio-label">No</label>
+                        <input type="radio" name="fav_language" id="no" value="No">
+                    </div>
+                    
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+
+                <!-- <div class="container-btn">
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+
+    
+     <!-- !RESPONSABLE -->
+
+     <div class="data-container">
+        <div class="grid-data">
+            <span class="campo">Responsable</span>    
+            <p class="data"> Marvin Xiquitá - 48728037</p>
+
+            <div class="cont-edit" (click)="expandir('responsable')">
+                <img src="assets/image/edit.svg" class="icon">
+                <span class="text-editar">Editar</span>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="drops.responsable">
+            <div class="form-grid grid-nombre">
+                <input type="password" name=""  placeholder="Nombre" class="input ">
+                <!-- <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
+                <input type="password" name=""  placeholder="Teléfono" class="input ">
+                <!-- <input type="password" name=""  placeholder="Calle / Avenida" class="input "> -->
+
+                <div class="container-btn down-1">
+                    <span class="guardar-text">Guardar</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- !Expediente -->
+
+<div class="title-container" style="margin-top: 20px;">
+    <!-- <img src="assets/image/pacientes.svg" alt="" class="title-icon" style="padding: 0;"> -->
+    <h1 class="title" style="margin: 0; padding: 0px;">Expediente</h1>
+</div>
+
+
+<div style="width: 70%; display: flex; justify-content: flex-end; margin: 0 auto; " >
+    <div class="add-pacient" (click)="toAgregarPaciente()">
+        <img src="assets/image/add.svg" alt="" class="add-icon" style="padding: 0;">
+        <span>Agregar Paciente</span>
+    </div>
+</div>
+
+<div class="container-table">
+    
+    <div class="table">
+        
+        <div class="table-header">
+            <span >No.</span>
+        </div>
+
+        <div class="table-header">
+            <span >Tipo</span>
+
+        </div>
+
+        <div class="table-header">
+            <span >Consultas</span>
+            
+        </div>
+        
+        <div class="table-header">
+            <span>Fecha creación</span>
+
+        </div>
+
+        <div class="table-header">
+            <span>Última modificacion</span>
+
+        </div>
+
+        <div class="table-header">
+            <span>Encargado</span>
+
+        </div>
+
+        <!-- <div class="table-header">
+            <span>Expediente</span>    
+        </div> -->
+        <!-- <div class="table-header">
+            <span class="">
+                No
+            </span>
+            <span class="">
+                Expediente
+            </span>
+            
+        </div> -->
+
+    </div>
+
+    
+    <div class="row">
+        <span class="data">1</span>
+        <span class="data">Control Prenatal</span>
+        <span class="data">2</span>
+        <span class="data">08/04/2021</span>
+        <span class="data">12/09/2021</span>
+        <span class="data">Marvin Xiquitá</span>
+        <!-- <span class="data">331</span>
+        <div class="data">
+            <img src="assets/image/edit.svg" class="icon">
+            <img src="assets/image/trash.svg" class="icon">
+        </div> -->
+    </div>
+
+    <div class="row">
+        <span class="data">2</span>
+        <span class="data">Control Prenatal</span>
+        <span class="data">2</span>
+        <span class="data">08/04/2021</span>
+        <span class="data">12/09/2021</span>
+        <span class="data">Marvin Xiquitá</span>
+        <!-- <span class="data">331</span>
+        <div class="data">
+            <img src="assets/image/edit.svg" class="icon">
+            <img src="assets/image/trash.svg" class="icon">
+        </div> -->
+    </div>
+
+    <div class="row">
+        <span class="data">3</span>
+        <span class="data">Control Prenatal</span>
+        <span class="data">2</span>
+        <span class="data">08/04/2021</span>
+        <span class="data">12/09/2021</span>
+        <span class="data">Marvin Xiquitá</span>
+        <!-- <span class="data">331</span>
+        <div class="data">
+            <img src="assets/image/edit.svg" class="icon">
+            <img src="assets/image/trash.svg" class="icon">
+        </div> -->
+    </div>
+
+
+    <div class="row">
+        <span class="data">4</span>
+        <span class="data">Control Prenatal</span>
+        <span class="data">2</span>
+        <span class="data">08/04/2021</span>
+        <span class="data">12/09/2021</span>
+        <span class="data">Marvin Xiquitá</span>
+        <!-- <span class="data">331</span>
+        <div class="data">
+            <img src="assets/image/edit.svg" class="icon">
+            <img src="assets/image/trash.svg" class="icon">
+        </div> -->
+    </div>
+   
+
+    
+    
+    <!-- <div class="row">
+        <span class="data">2</span>
+        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
+        <span class="data">3111 06021 0407</span>
+        <span class="data">22 años</span>
+        <span class="data">40110840</span>
+        <span class="data">Patzún Chimaltenango</span>
+        <span class="data">331</span>
+        <div class="data">
+            <img src="assets/image/edit.svg" class="icon">
+            <img src="assets/image/trash.svg" class="icon">
+        </div>
+    </div> -->
+
+</div>
+<div style="height: 20px;">
+
+</div>

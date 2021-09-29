@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="file_folder_Background_Mask_" data-name="file / folder (Background/Mask)" width="48" height="48" transform="translate(0 0)" fill="#ffbaff"/>
+    </clipPath>
+  </defs>
+  <g id="file_folder" data-name="file / folder" transform="translate(253 48)">
+    <rect id="file_folder_Background_Mask_2" data-name="file / folder (Background/Mask)" width="48" height="48" transform="translate(-253 -48)" fill="none"/>
+    <g id="file_folder-2" data-name="file / folder" transform="translate(-253 -48)" clip-path="url(#clip-path)">
+      <path id="coolicon" d="M36,36H4a4,4,0,0,1-4-4V4A4,4,0,0,1,4,0H16a1.98,1.98,0,0,1,1.413.587L20.828,4H36a4,4,0,0,1,4,4V32A4,4,0,0,1,36,36ZM4,8V32H36V8Z" transform="translate(4 6)" fill="#ffbaff"/>
+    </g>
+  </g>
+</svg>

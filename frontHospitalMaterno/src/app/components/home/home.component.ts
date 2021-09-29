@@ -1,7 +1,9 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
 import { ApiService } from 'src/app/Services/api.service';
+import { PathService } from 'src/app/Services/path.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,9 @@ export class HomeComponent implements OnInit {
   constructor(
     private _snackBar: MatSnackBar,
     private route: Router,
-    private apiService:ApiService
+    private apiService:ApiService,
+    private path_service: PathService,
+    private _loc: Location,
   ) { }
 
   // interface Food {
@@ -30,7 +34,10 @@ export class HomeComponent implements OnInit {
     {value: 'oracle', viewValue: 'Oracle'}
   ];
   
+  Location:any;
   ngOnInit(): void {
+    this.Location=this._loc.path();
+    this.path_service.setPath(this.Location);
   }
 
 

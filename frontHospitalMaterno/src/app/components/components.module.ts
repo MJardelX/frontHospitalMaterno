@@ -8,6 +8,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBebesComponent } from './form-bebes/form-bebes.component';
 import { GraficasComponent } from './graficas/graficas.component';
 import { GraficasBebesComponent } from './graficas-bebes/graficas-bebes.component';
+import { LoginComponent } from './login/login.component';
+import { VisualizacionPacientesComponent } from './visualizacion-pacientes/visualizacion-pacientes.component';
+import { FormPacienteComponent } from './form-paciente/form-paciente.component';
+import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.component';
+import { ConfPerfilComponent } from './conf-perfil/conf-perfil.component';
+import { DataPacienteComponent } from './data-paciente/data-paciente.component';
 // import { MatSliderModule } from '@angular/material/slider';
 // import { MatSliderModule } from '@angular/material/slider';
 
@@ -21,7 +27,13 @@ import { GraficasBebesComponent } from './graficas-bebes/graficas-bebes.componen
     GraficasComponent,
     GraficasComponent,
     //GraficasBebesComponent,
-    GraficasBebesComponent
+    GraficasBebesComponent,
+    LoginComponent,
+    VisualizacionPacientesComponent,
+    FormPacienteComponent,
+    AgregarUsuarioComponent,
+    ConfPerfilComponent,
+    DataPacienteComponent
   ],
   imports: [
     CommonModule,
