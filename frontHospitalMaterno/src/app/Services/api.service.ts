@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {
   map,
@@ -21,10 +21,15 @@ export class ApiService {
   };
   getPersonsEmmit = new EventEmitter<any>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
+
+  // ! subjects
+  // selectPacienteExp= new Subject<any>();
+
+  
   url_base = '/control-medico/';
-  obtener_pacientes_url = 'obtener-pacientes';
+  // obtener_pacientes_url = 'obtener-pacientes';
   agregar_paciente_url = 'agregar-paciente';
   agregar_bebe_url = 'agregar-bebe';
   obtener_bebes_url = 'obtener-bebes';
@@ -35,39 +40,495 @@ export class ApiService {
   pacientes_por_lugar_url = 'pacientes-por-lugar';
   pacientes_por_edad_url = 'pacientes-por-edad';
   pacientes_por_lugar_edad_url = 'pacientes-por-lugar-edad';
-  bebes_por_depto_url="nacimientos-por-departamento";
-  nacimientos_por_lugar_url="nacimientos-por-lugar";
-  bebes_por_municipio_url="nacimientos-por-municipio"
-  nacimientos_por_año_url="nacimientos-por-año"
-  nacimientos_por_año_lugar_url="nacimientos-por-año-lugar"
-  nacimientos_por_fecha_url="nacimientos-por-fecha"
-  nacimientos_por_mes_año_url="nacimientos-por-mes"
-  nacimientos_por_mes_lugar_año_url="nacimientos-por-mes-lugar-año"
-  nacimientos_por_mes_lugar_url="nacimientos-por-mes-lugar"
+  bebes_por_depto_url = "nacimientos-por-departamento";
+  nacimientos_por_lugar_url = "nacimientos-por-lugar";
+  bebes_por_municipio_url = "nacimientos-por-municipio"
+  nacimientos_por_año_url = "nacimientos-por-año"
+  nacimientos_por_año_lugar_url = "nacimientos-por-año-lugar"
+  nacimientos_por_fecha_url = "nacimientos-por-fecha"
+  nacimientos_por_mes_año_url = "nacimientos-por-mes"
+  nacimientos_por_mes_lugar_año_url = "nacimientos-por-mes-lugar-año"
+  nacimientos_por_mes_lugar_url = "nacimientos-por-mes-lugar"
 
-  nacimientos_por_municipi_año_url="nacimientos-por-municipio-año"
-  nacimientos_por_municipio_mes_url="nacimientos-por-municipio-mes"
-  nacimientos_por_municipio_depto_año_url="nacimientos-por-municipio-depto-año"
-  nacimientos_por_municipio_depto_mes_url="nacimientos-por-municipio-depto-mes"
-  nacimientos_por_municipio_depto_año_mes_url="nacimientos-por-municipio-depto-año-mes"
-  nacimientos_por_municipio_mes_año_url="nacimientos-por-municipio-mes-año"
+  nacimientos_por_municipi_año_url = "nacimientos-por-municipio-año"
+  nacimientos_por_municipio_mes_url = "nacimientos-por-municipio-mes"
+  nacimientos_por_municipio_depto_año_url = "nacimientos-por-municipio-depto-año"
+  nacimientos_por_municipio_depto_mes_url = "nacimientos-por-municipio-depto-mes"
+  nacimientos_por_municipio_depto_año_mes_url = "nacimientos-por-municipio-depto-año-mes"
+  nacimientos_por_municipio_mes_año_url = "nacimientos-por-municipio-mes-año"
 
-  set_database_url="set-database"
-  obtener_pacientes(): Observable<any> {
+  set_database_url = "set-database"
+
+
+
+
+  obtener_pacientes_url = "obtener-pacientes"
+  obtener_paciente_url = "obtener-paciente"
+  actualizar_dato_paciente_url = "actualizar-dato-paciente"
+  actualizar_dato_usuario_url = "actualizar-dato-usuario"
+  actualizar_nombre_paciente_url = "actualizar-nombre-paciente"
+  actualizar_nombre_usuario_url = "actualizar-nombre-usuario"
+  actualizar_direccion_paciente_url = "actualizar-direccion-paciente"
+  agregarPaciente_url = "agregar-paciente"
+  agregarExpediente_url = "crear-expediente"
+  obtener_usuarios_url = "obtener-usuarios"
+  obtener_usuario_url = "obtener-usuario"
+  actualizar_contraseña_usuario_url = "actualizar-password-usuario"
+  obtener_roles_url = "obtener-roles"
+  agregar_usuario_url = "agregar-usuario"
+  actualizar_roles_usuario_url="actualizar-roles-usuario"
+  agregarControl_url="agregar-control"
+
+  login_url = "login"
+
+
+  token = ""
+
+
+
+
+  obtener_pacientes(token): Observable<any> {
     // let apikey = environment.apikey;
 
-    return this.http.get(this.url_base + this.obtener_pacientes_url).pipe(
-      catchError((err) => {
-        // this.getSessionInformation_(this.token).then((data) => {
-        // })
+    this.token = atob(token);
 
-        if (err.status == 401) {
-          // this.alertExpiration();
-        }
+    return this.http.get(this.url_base + this.obtener_pacientes_url,
+      {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      }
+    ).pipe(
+      catchError((err) => {
         return throwError(err.status);
       })
     );
   }
+
+
+  obtener_usuarios(token): Observable<any> {
+    // let apikey = environment.apikey;
+
+    this.token = atob(token);
+
+    return this.http.get(this.url_base + this.obtener_usuarios_url,
+      {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      }
+    ).pipe(
+      catchError((err) => {
+        return throwError(err.error);
+      })
+    );
+  }
+
+
+  login(token, username, password): Observable<any> {
+    let body: any;
+    body = {
+      "username": username,
+      "password": password
+    };
+
+    return this.http
+      .post(this.url_base + this.login_url, body)
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+
+  }
+
+
+  actualizar_dato_paciente(token, id_paciente, atributo, valor): Observable<any> {
+    let body: any;
+    body = {
+      "id_paciente": id_paciente,
+      "atributo": atributo,
+      "valor": valor
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.actualizar_dato_paciente_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+
+
+  actualizar_nombre_paciente(token, id_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido): Observable<any> {
+    let body: any;
+    body = {
+      "id_paciente": id_paciente,
+      "primer_nombre": primer_nombre,
+      "primer_apellido": primer_apellido,
+      "segundo_apellido": segundo_apellido,
+      "segundo_nombre": segundo_nombre
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.actualizar_nombre_paciente_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  actualizar_direccion_paciente(token, id_paciente, departamento, municipio, calle_avenida): Observable<any> {
+    let body: any;
+    body = {
+      "id_paciente": id_paciente,
+      "departamento": departamento,
+      "municipio": municipio,
+      "calle_avenida": calle_avenida
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.actualizar_direccion_paciente_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  agregarPaciente(token, dataForm: any): Observable<any> {
+    let body: any;
+    body = dataForm
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.agregarPaciente_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  agregarExpediente(token, id_usuario, id_paciente): Observable<any> {
+    let body: any;
+    body = {
+      "id_usuario": id_usuario,
+      "id_paciente": id_paciente
+    }
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.agregarExpediente_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+
+
+
+
+  obtener_paciente(token, id_paciente): Observable<any> {
+    let body: any;
+    body = {
+      "id_paciente": id_paciente
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.obtener_paciente_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+  obtener_usuario(token, id_usuario): Observable<any> {
+    let body: any;
+    body = {
+      "id_usuario": id_usuario
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.obtener_usuario_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+
+
+
+
+  actualizar_dato_usuario(token, id_usuario, atributo, valor): Observable<any> {
+    let body: any;
+    body = {
+      "id_usuario": id_usuario,
+      "atributo": atributo,
+      "valor": valor
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.actualizar_dato_usuario_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  actualizar_nombre_usuario(token, id_usuario, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido): Observable<any> {
+    let body: any;
+    body = {
+      "id_usuario": id_usuario,
+      "primer_nombre": primer_nombre,
+      "primer_apellido": primer_apellido,
+      "segundo_apellido": segundo_apellido,
+      "segundo_nombre": segundo_nombre
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.actualizar_nombre_usuario_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+  actualizarContraseñaUsuario(token, id_usuario, pass_actual, pass_nueva): Observable<any> {
+    let body: any;
+    body = {
+      "id_usuario": id_usuario,
+      "contraseña_actual": pass_actual,
+      "contraseña_nueva": pass_nueva
+    }
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.actualizar_contraseña_usuario_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  obtener_roles(token): Observable<any> {
+    // let apikey = environment.apikey;
+
+    this.token = atob(token);
+
+    return this.http.get(this.url_base + this.obtener_roles_url,
+      {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      }
+    ).pipe(
+      catchError((err) => {
+        return throwError(err.error);
+      })
+    );
+  }
+
+
+
+
+  agregarUsuario(token, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido,correo,
+                      telefono,puesto,usuario,dpi,roles): Observable<any> {
+    let body: any;
+    body = {
+      "primer_nombre": primer_nombre,
+      "primer_apellido": primer_apellido,
+      "segundo_nombre": segundo_nombre,
+      "segundo_apellido": segundo_apellido,
+      "correo": correo,
+      "telefono": telefono,
+      "puesto": puesto,
+      "usuario": usuario,
+      "dpi": dpi,
+      "roles": roles
+    }
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.agregar_usuario_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+
+  actualizar_roles_usuario(token, id_usuario, roles): Observable<any> {
+    let body: any;
+    body = {
+      "id_usuario": id_usuario,
+      "roles": roles
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.actualizar_roles_usuario_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+
+
+  agregarControl(token, dataForm: any): Observable<any> {
+    let body: any;
+    body = dataForm
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.agregarControl_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // -------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   obtener_bebes(): Observable<any> {
     // let apikey = environment.apikey;
@@ -302,7 +763,7 @@ export class ApiService {
   }
 
 
-  pacientes_por_lugar_edad(tipo,lugar): Observable<any> {
+  pacientes_por_lugar_edad(tipo, lugar): Observable<any> {
     let body: any;
     body = {
       rangos: [
@@ -312,8 +773,8 @@ export class ApiService {
         { inicio: 33, final: 45 },
         { inicio: 46, final: 1000 },
       ],
-      tipo:tipo,
-      lugar:lugar
+      tipo: tipo,
+      lugar: lugar
     };
 
     return this.http
@@ -421,11 +882,11 @@ export class ApiService {
   }
 
 
-  nacimientos_por_año_lugar(tipo,lugar): Observable<any> {
+  nacimientos_por_año_lugar(tipo, lugar): Observable<any> {
     let body: any;
     body = {
       tipo: tipo,
-      lugar:lugar
+      lugar: lugar
     };
 
     return this.http
@@ -495,12 +956,12 @@ export class ApiService {
   }
 
 
-  nacimiento_por_mes_lugar_año(año,tipo,lugar): Observable<any> {
+  nacimiento_por_mes_lugar_año(año, tipo, lugar): Observable<any> {
     let body: any;
     body = {
       "año": año,
-      "tipo":tipo,
-      "lugar":lugar
+      "tipo": tipo,
+      "lugar": lugar
     };
 
     return this.http
@@ -521,11 +982,11 @@ export class ApiService {
   }
 
 
-  nacimiento_por_mes_lugar(tipo,lugar): Observable<any> {
+  nacimiento_por_mes_lugar(tipo, lugar): Observable<any> {
     let body: any;
     body = {
-      "tipo":tipo,
-      "lugar":lugar
+      "tipo": tipo,
+      "lugar": lugar
     };
 
     return this.http
@@ -591,10 +1052,10 @@ export class ApiService {
       );
   }
 
-  bebes_por_municipio_depto_año(depto,año): Observable<any> {
+  bebes_por_municipio_depto_año(depto, año): Observable<any> {
     let body: any;
     body = {
-      "departamento":depto,
+      "departamento": depto,
       "año": año,
     };
 
@@ -616,10 +1077,10 @@ export class ApiService {
   }
 
 
-  bebes_por_municipio_depto_mes(depto,mes): Observable<any> {
+  bebes_por_municipio_depto_mes(depto, mes): Observable<any> {
     let body: any;
     body = {
-      "departamento":depto,
+      "departamento": depto,
       "mes": mes,
     };
 
@@ -641,12 +1102,12 @@ export class ApiService {
   }
 
 
-  bebes_por_municipio_depto_año_mes(depto,año,mes): Observable<any> {
+  bebes_por_municipio_depto_año_mes(depto, año, mes): Observable<any> {
     let body: any;
     body = {
-      "departamento":depto,
+      "departamento": depto,
       "mes": mes,
-      "año":año
+      "año": año
     };
 
     return this.http
@@ -667,11 +1128,11 @@ export class ApiService {
   }
 
 
-  bebes_por_municipio_año_mes(año,mes): Observable<any> {
+  bebes_por_municipio_año_mes(año, mes): Observable<any> {
     let body: any;
     body = {
       "mes": mes,
-      "año":año
+      "año": año
     };
 
     return this.http

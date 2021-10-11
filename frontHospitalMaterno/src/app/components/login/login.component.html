@@ -10,15 +10,18 @@
         <p class="title">Iniciar Sesión</p>
 
 
-        <div class="input-container">
-            <img src="assets/image/usuario.svg" class="icon">
-            <input type="text" placeholder="Usuario" class="input">
-        </div>
+        <form [formGroup]="form_login">
+            <div class="input-container">
+                <img src="assets/image/usuario.svg" class="icon">
+                <input type="text" placeholder="Usuario" class="input" formControlName="username">
+            </div>
+    
+            <div class="input-container">
+                <img src="assets/image/candado.svg" class="icon">
+                <input type="password" placeholder="Contraseña" class="input" formControlName="password"> 
+            </div>
 
-        <div class="input-container">
-            <img src="assets/image/candado.svg" class="icon">
-            <input type="password" placeholder="Contraseña" class="input"> 
-        </div>
+        </form>
 
 
         <!-- <input type="submit" class="btn" value="Ingresar" > -->

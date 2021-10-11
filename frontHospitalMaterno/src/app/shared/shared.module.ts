@@ -15,6 +15,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BaseChartDirective, ChartsModule } from 'ng2-charts';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 // import * as p from 'chartjs-plugin-colorschemes';
 // import {MatFormFieldModule} from '@angular/material/form-field';
 
@@ -38,7 +40,10 @@ import { BaseChartDirective, ChartsModule } from 'ng2-charts';
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    ChartsModule
+    ChartsModule,
+    MatDatepickerModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   exports: [
     MatSliderModule,
@@ -53,7 +58,10 @@ import { BaseChartDirective, ChartsModule } from 'ng2-charts';
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    ChartsModule
+    ChartsModule,
+    MatDatepickerModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
 
   ]
 })

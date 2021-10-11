@@ -30,6 +30,10 @@
 }
 
 
+.container-roles{
+    grid-column: 1/3;
+}
+
 
 
 
@@ -42,3 +46,5 @@
     align-items: center;
     /* margin-top: 100px; */
 }
+
+

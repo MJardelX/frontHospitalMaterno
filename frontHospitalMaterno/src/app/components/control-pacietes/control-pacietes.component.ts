@@ -36,7 +36,7 @@ export class ControlPacietesComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.apiService.obtener_pacientes().subscribe(data=>{
+    this.apiService.obtener_pacientes("").subscribe(data=>{
       
       this.pacientes=data.data
       this.dataSource= new MatTableDataSource<any>(this.pacientes);
@@ -54,7 +54,7 @@ export class ControlPacietesComponent implements OnInit{
 
 
     this.apiService.getPersonsEmmit.subscribe(data=>{
-      this.apiService.obtener_pacientes().subscribe(data=>{
+      this.apiService.obtener_pacientes("").subscribe(data=>{
         
         this.pacientes=data.data
         this.dataSource= new MatTableDataSource<any>(this.pacientes);

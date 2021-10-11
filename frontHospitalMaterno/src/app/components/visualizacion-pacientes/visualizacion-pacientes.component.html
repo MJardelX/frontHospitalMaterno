@@ -20,7 +20,7 @@
     <div class="table">
         
         <div class="table-header">
-            <span >No.</span>
+            <span>Expediente</span>    
         </div>
 
         <div class="table-header">
@@ -48,9 +48,7 @@
 
         </div>
 
-        <div class="table-header">
-            <span>Expediente</span>    
-        </div>
+        
         <!-- <div class="table-header">
             <span class="">
                 No
@@ -63,6 +61,26 @@
 
     </div>
 
+
+    <ng-container *ngFor="let paciente of data_pacientes; let i = index">
+        <div class="row" (click)="toPaciente(paciente.id_paciente)">
+            <span class="data">{{paciente.id_expediente}}</span>
+            <span class="data-start">{{paciente.primer_nombre}} {{paciente.segundo_nombre}} {{paciente.primer_apellido}} {{paciente.segundo_apellido}}</span>
+            <span class="data">{{paciente.dpi}}</span>
+            <span class="data">{{paciente.edad_actual}} años</span>
+            <span class="data">{{paciente.telefono}}</span>
+            <span class="data-start">{{paciente.calle_avenida}}  {{paciente.municipio}} {{paciente.departamento}}</span>
+            
+            <div class="data">
+                <img src="assets/image/edit.svg" class="icon">
+                <img src="assets/image/trash.svg" class="icon">
+            </div>
+        </div>
+
+    </ng-container>
+
+    
+<!-- 
     <div class="row" (click)="toPaciente()">
         <span class="data">1</span>
         <span class="data">Grisel Victoria Xiquitá Xajpot</span>
@@ -70,216 +88,58 @@
         <span class="data">22 años</span>
         <span class="data">40110840</span>
         <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
+        
         <div class="data">
             <img src="assets/image/edit.svg" class="icon">
             <img src="assets/image/trash.svg" class="icon">
         </div>
     </div>
     
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div>
 
-    <div class="row">
-        <span class="data">2</span>
+    <div class="row" (click)="toPaciente()">
+        <span class="data">1</span>
         <span class="data">Grisel Victoria Xiquitá Xajpot</span>
         <span class="data">3111 06021 0407</span>
         <span class="data">22 años</span>
         <span class="data">40110840</span>
         <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
+        
         <div class="data">
             <img src="assets/image/edit.svg" class="icon">
             <img src="assets/image/trash.svg" class="icon">
         </div>
     </div>
+    
 
-    <div class="row">
-        <span class="data">2</span>
+    <div class="row" (click)="toPaciente()">
+        <span class="data">1</span>
         <span class="data">Grisel Victoria Xiquitá Xajpot</span>
         <span class="data">3111 06021 0407</span>
         <span class="data">22 años</span>
         <span class="data">40110840</span>
         <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
+        
         <div class="data">
             <img src="assets/image/edit.svg" class="icon">
             <img src="assets/image/trash.svg" class="icon">
         </div>
     </div>
+    
 
-    <div class="row">
-        <span class="data">2</span>
+    <div class="row" (click)="toPaciente()">
+        <span class="data">1</span>
         <span class="data">Grisel Victoria Xiquitá Xajpot</span>
         <span class="data">3111 06021 0407</span>
         <span class="data">22 años</span>
         <span class="data">40110840</span>
         <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
+        
         <div class="data">
             <img src="assets/image/edit.svg" class="icon">
             <img src="assets/image/trash.svg" class="icon">
         </div>
     </div>
-
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div>
-
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div>
-
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div>
-
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div>
-
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div>
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div>
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div>
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div>
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div>
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div>
-    <!-- <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div> -->
+     -->
 
 </div>
 

@@ -5,96 +5,106 @@
 </div>
 
 
-<div class="grid">
-
-
-    <div class="col">
-        <input type="text" name=""  placeholder="Primer nombre" class="input">
-        <input type="text" name=""  placeholder="Segundo nombre" class="input">
-        <input type="text" name=""  placeholder="Primer apellido" class="input">
-        <input type="text" name=""  placeholder="Segundo apellido" class="input">
-        <!-- <input type="text" name=""  placeholder="lugar de nacimiento" class="input"> -->
-        <input type="date" name=""  placeholder="Fecha de nacimiento" class="input">
-        <!-- <input type="text" name=""  placeholder="Nacionalidad" class="input"> -->
-        <input type="text" name=""  placeholder="DPI" class="input">
-    </div>
-
-    <div class="col">
-        <!-- <input type="text" name=""  placeholder="Estado civil" class="input"> -->
-        <input type="text" name=""  placeholder="Ocupación" class="input">
-        <input type="text" name=""  placeholder="Teléfono" class="input">
-
-        <div style="display: flex; justify-content: flex-start; align-items: center;">
-            <span class="text-form">Migrante:</span>
-
-            <div style="display: flex; justify-content: flex-start; align-items: center;">
-                <label for="si" class="radio-label">Si</label>
-                <input type="radio" name="fav_language" id="si" value="Si">
-            </div>
-
-            <div style="display: flex; justify-content: flex-start; align-items: center;">
-                <label for="no" class="radio-label">No</label>
-                <input type="radio" name="fav_language" id="no" value="No">
-            </div>
-
-        </div>
-        <!-- <input type="text" name=""  placeholder="Segundo apellido" class="input"> -->
-        <!-- <input type="text" name=""  placeholder="lugar de nacimiento" class="input">
-        <input type="text" name=""  placeholder="Fecha de nacimiento" class="input"> -->
-        <!-- <input type="text" name=""  placeholder="Nacionalidad" class="input">
-        <input type="text" name=""  placeholder="DPI" class="input"> -->
-    </div>
-
-
-    <!-- <label for="primer_nombre" class="label">primer nombre</label> -->
-
-    <!-- <label for="segundo_nombre" class="label">Segundo nombre</label> -->
-
-</div>
-
-
-<div class="grid">
-
+<form [formGroup]="form_data_paciente">
+    <div class="grid">
     
-    <div class="col-2">
-        <h2 class="sub-title">
-            Dirección
-        </h2>
-        <input type="text" name=""  placeholder="Departamento" class="input">
-        <input type="text" name=""  placeholder="Municipio" class="input">
-        <input type="text" name=""  placeholder="Calle / Avenida" class="input">
-        <!-- <input type="text" name=""  placeholder="Segundo apellido" class="input">
-        <input type="text" name=""  placeholder="lugar de nacimiento" class="input">
-        <input type="date" name=""  placeholder="Fecha de nacimiento" class="input">
-        <input type="text" name=""  placeholder="Nacionalidad" class="input">
-        <input type="text" name=""  placeholder="DPI" class="input"> -->
+    
+        <div class="col">
+            <input type="text" name=""  placeholder="Primer nombre" class="input" formControlName="primer_nombre">
+            <input type="text" name=""  placeholder="Segundo nombre" class="input" formControlName="segundo_nombre">
+            <input type="text" name=""  placeholder="Primer apellido" class="input" formControlName="primer_apellido">
+            <input type="text" name=""  placeholder="Segundo apellido" class="input" formControlName="segundo_apellido">
+            <!-- <input type="text" name=""  placeholder="lugar de nacimiento" class="input"> -->
+            <input type="date" name=""  placeholder="Fecha de nacimiento" class="input" formControlName="fecha_nacimiento">
+            <!-- <input type="text" name=""  placeholder="Nacionalidad" class="input"> -->
+            <input type="text" name=""  placeholder="DPI" class="input" formControlName="dpi">
+        </div>
+    
+        <div class="col">
+            <!-- <input type="text" name=""  placeholder="Estado civil" class="input"> -->
+            <input type="text" name=""  placeholder="Ocupación" class="input"  formControlName="ocupacion">
+            <input type="text" name=""  placeholder="Teléfono" class="input" formControlName="telefono">
+    
+            <div style="display: flex; justify-content: flex-start; align-items: center;">
+                <span class="text-form">Migrante:</span>
+    
+                <div class="container-check" style="margin-left: 10px;">
+                    <span class="data-text">SI</span>
+                    <div class="radio" (click)="seleccionar_migrante('SI')">
+                        <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="migrante.SI">
+                    </div>
+                    <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                </div>
+    
+                <div class="container-check" style="margin-left: 10px;">
+                    <span class="data-text">NO</span>
+                    <div class="radio" (click)="seleccionar_migrante('NO')">
+                        <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="migrante.NO">
+                    </div>
+                    <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                </div>
+    
+            </div>
+
+            <input type="text" name=""  placeholder="No. Expediente" class="input" formControlName="id_expediente">
+            <!-- <input type="text" name=""  placeholder="Segundo apellido" class="input"> -->
+            <!-- <input type="text" name=""  placeholder="lugar de nacimiento" class="input">
+            <input type="text" name=""  placeholder="Fecha de nacimiento" class="input"> -->
+            <!-- <input type="text" name=""  placeholder="Nacionalidad" class="input">
+            <input type="text" name=""  placeholder="DPI" class="input"> -->
+        </div>
+    
+    
+        <!-- <label for="primer_nombre" class="label">primer nombre</label> -->
+    
+        <!-- <label for="segundo_nombre" class="label">Segundo nombre</label> -->
+    
     </div>
-
-    <div class="col-2">
-        <h2 class="sub-title">
-            Responsable
-        </h2>
-        <input type="text" name=""  placeholder="Nombre" class="input nombre-encargado">
-        <input type="text" name=""  placeholder="Teléfono" class="input">
-        <!-- <input type="text" name=""  placeholder="Estado civil" class="input">
-        <input type="text" name=""  placeholder="Ocupación" class="input">
-        <input type="text" name=""  placeholder="Teléfono" class="input"> -->
-        <!-- <input type="text" name=""  placeholder="Segundo apellido" class="input"> -->
-        <!-- <input type="text" name=""  placeholder="lugar de nacimiento" class="input">
-        <input type="text" name=""  placeholder="Fecha de nacimiento" class="input"> -->
-        <!-- <input type="text" name=""  placeholder="Nacionalidad" class="input">
-        <input type="text" name=""  placeholder="DPI" class="input"> -->
+    
+    
+    <div class="grid">
+    
+        
+        <div class="col-2">
+            <h2 class="sub-title">
+                Dirección
+            </h2>
+            <input type="text" name=""  placeholder="Departamento" class="input" formControlName="departamento">
+            <input type="text" name=""  placeholder="Municipio" class="input" formControlName="municipio">
+            <input type="text" name=""  placeholder="Calle / Avenida" class="input" formControlName="calle_avenida">
+            <!-- <input type="text" name=""  placeholder="Segundo apellido" class="input">
+            <input type="text" name=""  placeholder="lugar de nacimiento" class="input">
+            <input type="date" name=""  placeholder="Fecha de nacimiento" class="input">
+            <input type="text" name=""  placeholder="Nacionalidad" class="input">
+            <input type="text" name=""  placeholder="DPI" class="input"> -->
+        </div>
+    
+        <div class="col-2">
+            <h2 class="sub-title">
+                Responsable
+            </h2>
+            <input type="text" name=""  placeholder="Nombre" class="input nombre-encargado" formControlName="nombre_responsable">
+            <input type="text" name=""  placeholder="Teléfono" class="input" formControlName="telefono_responsable">
+            <!-- <input type="text" name=""  placeholder="Estado civil" class="input">
+            <input type="text" name=""  placeholder="Ocupación" class="input">
+            <input type="text" name=""  placeholder="Teléfono" class="input"> -->
+            <!-- <input type="text" name=""  placeholder="Segundo apellido" class="input"> -->
+            <!-- <input type="text" name=""  placeholder="lugar de nacimiento" class="input">
+            <input type="text" name=""  placeholder="Fecha de nacimiento" class="input"> -->
+            <!-- <input type="text" name=""  placeholder="Nacionalidad" class="input">
+            <input type="text" name=""  placeholder="DPI" class="input"> -->
+        </div>
+    
+    
+        <!-- <label for="primer_nombre" class="label">primer nombre</label> -->
+    
+        <!-- <label for="segundo_nombre" class="label">Segundo nombre</label> -->
+    
     </div>
-
-
-    <!-- <label for="primer_nombre" class="label">primer nombre</label> -->
-
-    <!-- <label for="segundo_nombre" class="label">Segundo nombre</label> -->
-
-</div>
+</form>
 
 
 <div class="btn-container">
 
-    <input type="button" value="Guardar" class="btn">
+    <input type="button" value="Guardar" class="btn" (click)="guardar()">
 </div>

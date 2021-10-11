@@ -26,7 +26,7 @@
     /* background: chartreuse; */
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    /* margin-bottom: 100px !important */
 }
 
 .table, .row{
@@ -77,6 +77,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .icon{

@@ -14,6 +14,9 @@ import { FormPacienteComponent } from './form-paciente/form-paciente.component';
 import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.component';
 import { ConfPerfilComponent } from './conf-perfil/conf-perfil.component';
 import { DataPacienteComponent } from './data-paciente/data-paciente.component';
+import { VisualizacionUsuariosComponent } from './visualizacion-usuarios/visualizacion-usuarios.component';
+import { ControlPrenatalComponent } from './control-prenatal/control-prenatal.component';
+import { ControlPrenatalFormComponent } from './control-prenatal-form/control-prenatal-form.component';
 // import { MatSliderModule } from '@angular/material/slider';
 // import { MatSliderModule } from '@angular/material/slider';
 
@@ -33,7 +36,10 @@ import { DataPacienteComponent } from './data-paciente/data-paciente.component';
     FormPacienteComponent,
     AgregarUsuarioComponent,
     ConfPerfilComponent,
-    DataPacienteComponent
+    DataPacienteComponent,
+    VisualizacionUsuariosComponent,
+    ControlPrenatalComponent,
+    ControlPrenatalFormComponent
   ],
   imports: [
     CommonModule,

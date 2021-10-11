@@ -1,0 +1,104 @@
+
+
+
+
+<div class="title-container">
+    <img src="assets/image/pacientes.svg" alt="" class="title-icon" style="padding: 0;">
+    <h1 class="title" style="margin: 0; padding: 0px;">Usuarios</h1>
+</div>
+
+
+<div style="width: 80%; display: flex; justify-content: flex-end; margin: 0 auto; " >
+    <div class="add-pacient" >
+        <img src="assets/image/add.svg" alt="" class="add-icon" style="padding: 0;">
+        <span>Agregar Usuario</span>
+    </div>
+</div>
+
+<div class="container-table">
+    
+    <div class="table">
+        
+        <div class="table-header">
+            <span>Nombre</span>    
+        </div>
+
+        <div class="table-header">
+            <span >Usuario</span>
+
+        </div>
+
+        <div class="table-header">
+            <span >Correo</span>
+            
+        </div>
+        
+        <div class="table-header">
+            <span>Teléfono</span>
+
+        </div>
+
+        <div class="table-header">
+            <span>Puesto</span>
+
+        </div>
+
+        <div class="table-header">
+            <span>Rol</span>
+
+        </div>
+
+        
+        <!-- <div class="table-header">
+            <span class="">
+                No
+            </span>
+            <span class="">
+                Expediente
+            </span>
+            
+        </div> -->
+
+    </div>
+
+
+    <ng-container *ngFor="let usuario of data_usuarios">
+        <div class="row"   >
+            <span class="data-start">{{usuario?.primer_nombre}} {{usuario?.segundo_nombre}} {{usuario?.primer_apellido}} {{usuario?.segundo_apellido}}</span>
+            <span class="data">
+                <!-- {{usuario?.nombre_usuario}} -->
+                {{ (usuario?.nombre_usuario.length>20)? (usuario?.nombre_usuario | slice:0:20)+'...':(usuario?.nombre_usuario) }}
+            </span>
+            <span class="data">
+                {{ (usuario?.correo.length>20)? (usuario?.correo | slice:0:20)+'...':(usuario?.correo) }}
+            </span>
+            <span class="data">{{usuario?.telefono}}</span>
+            <span class="data">{{usuario?.puesto}}</span>
+            <span class="data">{{usuario?.roles}}</span>
+            
+            <div class="data">
+                <img src="assets/image/edit.svg" class="icon">
+                <img src="assets/image/trash.svg" class="icon">
+            </div>
+        </div>
+    </ng-container>
+    
+
+    
+    
+    <!-- <div class="row">
+        <span class="data">2</span>
+        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
+        <span class="data">3111 06021 0407</span>
+        <span class="data">22 años</span>
+        <span class="data">40110840</span>
+        <span class="data">Patzún Chimaltenango</span>
+        <span class="data">331</span>
+        <div class="data">
+            <img src="assets/image/edit.svg" class="icon">
+            <img src="assets/image/trash.svg" class="icon">
+        </div>
+    </div> -->
+
+</div>
+
