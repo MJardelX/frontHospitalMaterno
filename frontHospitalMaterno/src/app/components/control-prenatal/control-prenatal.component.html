@@ -69,7 +69,7 @@
 </div>
 
 
-<div class="consulta-drop">
+<!-- <div class="consulta-drop">
     <div class="header-consulta">
         <div class="content-consulta">
             <span class="data-text">Primera Consulta</span>
@@ -79,76 +79,354 @@
     </div>
 
 
-</div>
+</div> -->
 
 
 
 
 
 
-<mat-grid-list cols="19" class="main-grid-consultas">
+<!-- <mat-grid-list cols="19" class="main-grid-consultas"> -->
 
-
+<div class="container-consultas">
     <!-- !TITULOS DE LOS APARTADOS -->
-    <mat-grid-tile colspan="5" class="col">
-        <div class="titles-consultas flex-column-start-center">
+    <!-- <mat-grid-tile colspan="5" class="col"> -->
+    <div class="titles-consultas flex-column-start-center">
 
-            <div class="title-section flex-center">
-                <span class="title-text">Examen físico de la embarazada</span>
+        <div class="title-section flex-center">
+            <span class="title-text">Examen físico de la embarazada</span>
+        </div>
+
+        <div class="container-examen-fisico">
+
+            <div class="flex-space-around-center">
+                <div class="flex-center">
+                    <span class="description-text">FPP:</span>
+                    <input type="text" name="" id="" class="input-small">
+                </div>
+
+                <div class="flex-center">
+                    <span class="description-text">FPP:</span>
+                    <input type="text" name="" id="" class="input-small">
+                </div>
             </div>
 
-            <div class="container-examen-fisico" >
+            <div class="flex-space-around-center">
+                <div class="flex-center">
+                    <span class="description-text">Circunferencia del embarazo (cms):</span>
+                    <input type="text" name="" id="" class="input-small">
+                </div>
+                <!-- <div class="flex-center">
+                            <span class="description-text">FPP:</span>
+                            <input type="text" name="" id="" class="input-small">
+                        </div> -->
+            </div>
+            <div>
+                <span class="description-text">(Sólo si embarazo menor de 12 semanas)</span>
+            </div>
 
-                <div class="flex-space-around-center">
-                    <div class="flex-center">
-                        <span class="description-text">FPP:</span>
-                        <input type="text" name="" id="" class="input-small">
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Fecha de la visita</span>
+        </div>
+
+
+
+        <div class="title-section flex-center">
+            <span class="title-text">Signos o síntomas de peligro</span>
+        </div>
+        <div class="description-title lines-4">
+            <p class="description-text-parrafo ">
+                Presenta signos o síntomas de peligro
+                <span style="font-weight: bold;"> Si</span> presenta, estabilice y refiera
+                Anote el signo o síntomas de peligro detectado en la columna correspondiente
+            </p>
+        </div>
+
+
+
+        <div class="title-section flex-center">
+            <span class="title-text">Signos vitales</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Presión arterial</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Temperatura corporal en °C</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Peso en libras</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Altura</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> IMC</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Respiraciones por minuto</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Frecuencia cardiaca Materna</span>
+        </div>
+
+
+
+
+        <!-- !EXAMEN GENERAL -->
+        <div class="title-section flex-center">
+            <span class="title-text">Examen general</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <!-- <span class="description-text flex-start-center"> Frecuencia cardiaca Materna</span> -->
+        </div>
+        <div class="description-title lines-2">
+            <p class="description-text ">
+                Estado general, palidez palmar, conjuntivas uñas
+            </p>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Examen buco dental (describa)</span>
+        </div>
+
+
+        <!-- !EXAMEN OBSTETRICO -->
+        <div class="title-section flex-center">
+            <span class="title-text">Examen obstétrico</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Altura uterina</span>
+        </div>
+        <div class="description-title lines-2">
+            <p class="description-text ">
+                presencia de movimientos fetales (20 semanas o más)
+            </p>
+        </div>
+
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Frecuencia cardiaca fetal (si procede)</span>
+        </div>
+        <div class="description-title">
+            <p class="description-text ">
+                Presentación por leopold (> 36 semanas)
+            </p>
+        </div>
+
+
+
+        <!-- !EXAMEN GINECOLOGICO -->
+        <div class="title-section flex-center">
+            <span class="title-text">Examen ginecológico</span>
+        </div>
+        <div class="description-title lines-2">
+            <p class="description-text ">
+                Presencia de trazas de sangre o manchado (describa)
+            </p>
+        </div>
+        <div class="description-title lines-2">
+            <p class="description-text ">
+                Verrugas, herpes, papilomas, úlceras (describa)
+            </p>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Flujo vaginal</span>
+        </div>
+
+
+        <!-- !EXAMEN DE LABORATORIO -->
+        <div class="title-section flex-center">
+            <span class="title-text">Examenes de laboratorio</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Hemoglobina y Hematorito</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Grupo y RH </span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Orina (Proteína , gglucosa y cetona)</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Glicemia</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> VDRL</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> VIH (Oferte prueba con consejería) </span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Papanicolaou</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Infecciones</span>
+        </div>
+
+        <!-- !CLASIFICACION -->
+        <div class="title-section flex-center">
+            <span class="title-text">Clasificación</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Semanas embarazo por FUR y/o AU</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Problemas detectados</span>
+        </div>
+
+        <!-- !CONDUCTA -->
+        <div class="title-section flex-center">
+            <span class="title-text">Conducta</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Sulfato Ferroso / anotar número de tabletas</span>
+        </div>
+
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Ácido fólico / anotar número de tabletas</span>
+        </div>
+        <div class="description-title lines-2">
+            <p class="description-text ">
+                Vacunación madre (Td) / anotar dosis que se administra
+            </p>
+        </div>
+        <!-- <div class="description-title flex-start-center">
+                    <span class="description-text flex-start-center"> </span>
+                </div> -->
+
+        <!-- !CONSEJERIA -->
+        <div class="title-section flex-center">
+            <span class="title-text">consejería</span>
+        </div>
+
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Alimentación durante el embarazo</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Selakes de peligro embarazo</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Consejería pre/post prueba VIH</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Plan de parto</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Plan de emergencia familiar y comunitario</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Lactancia exclusiva / MELA</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Otros métodos de planificación familiar</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Importancia del control postparto</span>
+        </div>
+        <div class="description-title flex-start-center">
+            <span class="description-text flex-start-center"> Vacunacion y cuidados del recién nacido/a</span>
+        </div>
+
+
+
+    </div>
+    <!-- </mat-grid-tile> -->
+
+
+
+
+    <!-- !APARTADO PARA LAS FILAS DE LAS CONSULTAS -->
+    <!-- <mat-grid-tile colspan="14" class="col"> -->
+    <div class="contoainer-col-consultas flex-start-center">
+        <!-- !Consulta -->
+        <div class="col-consulta flex-column-start-center">
+
+
+            <!-- TODO: EXAMEN FISICO -->
+            <div class="title-section flex-center">
+                <span class="title-text"></span>
+            </div>
+
+            <div class="container-examen-fisico">
+
+                <div class="flex-column-center">
+                    <p class="tipo-consulta-text flex-center"> Control 1 Meses (semanas) de embarazo</p>
+                    <input type="text" name="" id="" class="input-med input-center">
+                </div>
+
+            </div>
+            <div class="input-container flex-start-center" style="padding: 0;">
+                <!-- <div class=""> -->
+
+                <!-- <input type="text" name="" id="" class="input-lg input-center"> -->
+
+                <input [matDatepicker]="pickerUP" class="input-lg input-center datepiker-input" placeholder="dd/mm/aaaa"
+                    >
+                <mat-datepicker-toggle class="dp-small" matSuffix [for]="pickerUP"></mat-datepicker-toggle>
+                <!-- </div> -->
+                <mat-datepicker #pickerUP></mat-datepicker>
+            </div>
+
+
+
+            <!-- TODO: SIGNOS PELIGO -->
+            <div class="title-section flex-center">
+                <span class="title-text"></span>
+            </div>
+            <div class="description-title lines-4 flex-column-center">
+
+                <div class="flex-center">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
                     </div>
-    
-                    <div class="flex-center">
-                        <span class="description-text">FPP:</span>
-                        <input type="text" name="" id="" class="input-small">
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
                     </div>
                 </div>
 
-                <div class="flex-space-around-center">
-                    <div class="flex-center">
-                        <span class="description-text">Circunferencia del embarazo (cms):</span>
-                        <input type="text" name="" id="" class="input-small">
-                    </div>
-                    <!-- <div class="flex-center">
-                        <span class="description-text">FPP:</span>
-                        <input type="text" name="" id="" class="input-small">
-                    </div> -->
-                </div>
-                <div>
-                    <span class="description-text">(Sólo si embarazo menor de 12 semanas)</span>
-                </div>
+                <input type="text" name="" id="" class="input-med input-center">
 
             </div>
 
 
-
+            <!-- TODO: SIGNOS VITALES -->
             <div class="title-section flex-center">
-                <span class="title-text">Signos o síntomas de peligro</span>
+                <span class="title-text"></span>
             </div>
-            <div class="description-title lines-4">
-                <p class="description-text-parrafo ">
-                    Presenta signos o síntomas de peligro
-                    <span style="font-weight: bold;"> Si</span> presenta, estabilice y refiera
-                    Anote el signo o síntomas de peligro detectado en la columna correspondiente
-                </p>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
 
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
+            </div>
 
-            
-            <div class="title-section flex-center">
-                <span class="title-text">Signos vitales</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Presión arterial</span>
+
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title flex-start-center">
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
+            </div>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
+            </div>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
+            </div>
+
+            <!-- <div class="description-title flex-start-center">
                 <span class="description-text flex-start-center"> Temperatura corporal en °C</span>
             </div>
             <div class="description-title flex-start-center">
@@ -162,179 +440,947 @@
             </div>
             <div class="description-title flex-start-center">
                 <span class="description-text flex-start-center"> Frecuencia cardiaca Materna</span>
-            </div>
+            </div> -->
 
 
-           
+
 
             <!-- !EXAMEN GENERAL -->
             <div class="title-section flex-center">
-                <span class="title-text">Examen general</span>
+                <!-- <span class="title-text"> ¿Normal?</span> -->
             </div>
-            <div class="description-title flex-start-center">
+            <div class="description-title flex-center">
+                <p class="tipo-consulta-text flex-center"> ¿Normal?</p>
                 <!-- <span class="description-text flex-start-center"> Frecuencia cardiaca Materna</span> -->
             </div>
-            <div class="description-title lines-2">
-                <p class="description-text ">
-                    Estado general, palidez palmar, conjuntivas uñas
-                </p>
+            <div class="description-title lines-2 flex-center">
+                <div class="flex-center">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Examen buco dental (describa)</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            
+
 
             <!-- !EXAMEN OBSTETRICO -->
             <div class="title-section flex-center">
-                <span class="title-text">Examen obstétrico</span>
+                <span class="title-text"></span>
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Altura uterina</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title lines-2">
-                <p class="description-text ">
-                    presencia de movimientos fetales (20 semanas o más)
-                </p>
+            <div class="description-title lines-2 flex-center">
+                <div class="flex-center">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
             </div>
 
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Frecuencia cardiaca fetal (si procede)</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title lines-2">
-                <p class="description-text ">
-                    Presentación por leopold (> 36 semanas)
-                </p>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            
+
 
 
             <!-- !EXAMEN GINECOLOGICO -->
             <div class="title-section flex-center">
-                <span class="title-text">Examen ginecológico</span>
+                <span class="title-text"></span>
             </div>
-            <div class="description-title lines-2">
-                <p class="description-text ">
-                    Presencia de trazas de sangre o manchado (describa)
-                </p>
+            <div class="description-title lines-2 flex-column-center">
+                <div class="flex-center">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title lines-2">
-                <p class="description-text ">
-                    Verrugas, herpes, papilomas, úlceras (describa)
-                </p>
+            <div class="description-title lines-2 flex-column-center">
+                <div class="flex-center">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Flujo vaginal</span>
+            <div class="flex-center input-container">
+                <div class="container-check">
+                    <span class="data-text">SI</span>
+                    <div class="radio">
+                        <img src="assets/image/x.svg" alt="" class="radio-check">
+                    </div>
+                    <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                </div>
+
+                <div class="container-check">
+                    <span class="data-text">NO</span>
+                    <div class="radio">
+                        <img src="assets/image/x.svg" alt="" class="radio-check">
+                    </div>
+                    <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                </div>
             </div>
 
 
             <!-- !EXAMEN DE LABORATORIO -->
             <div class="title-section flex-center">
-                <span class="title-text">Examenes de laboratorio</span>
+                <span class="title-text"></span>
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Hemoglobina y Hematorito</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Grupo y RH </span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Orina (Proteína , gglucosa y cetona)</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Glicemia</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> VDRL</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> VIH (Oferte prueba con consejería) </span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Papanicolaou</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Infecciones</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
 
             <!-- !CLASIFICACION -->
             <div class="title-section flex-center">
-                <span class="title-text">Clasificación</span>
+                <span class="title-text"></span>
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Semanas embarazo por FUR y/o AU</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Problemas detectados</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
 
             <!-- !CONDUCTA -->
             <div class="title-section flex-center">
-                <span class="title-text">Conducta</span>
+                <span class="title-text"></span>
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Sulfato Ferroso / anotar número de tabletas</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Ácido fólico / anotar número de tabletas</span>
+            <div class="input-container flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
-            <div class="description-title lines-2">
-                <p class="description-text ">
-                    Vacunación madre (Td) / anotar dosis que se administra 
-                </p>
+            <div class="input-container-2 flex-start-center">
+                <input type="text" name="" id="" class="input-lg input-center">
             </div>
             <!-- <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> </span>
-            </div> -->
-            
+                        <span class="description-text flex-start-center"> </span>
+                    </div> -->
+
             <!-- !CONSEJERIA -->
+
+
+
+            <form [formGroup]="form_consejeria" style="width: 100%;">
+                <div class="title-section flex-center">
+                    <span class="title-text"></span>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('alimentacion','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.alimentacion.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('alimentacion','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.alimentacion.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('senales_peligro','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.senales_peligro.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('senales_peligro','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.senales_peligro.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('consejeria_vih','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.consejeria_vih.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('consejeria_vih','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.consejeria_vih.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_parto','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.plan_parto.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_parto','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.plan_parto.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_emergencia','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.plan_emergencia.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_emergencia','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.plan_emergencia.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('lactancia_materna','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.lactancia_materna.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('lactancia_materna','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.lactancia_materna.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('metodos_planificacion','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.metodos_planificacion.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('metodos_planificacion','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.metodos_planificacion.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_postparto','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.importancia_postparto.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_postparto','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.importancia_postparto.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_recien_nacido','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.importancia_recien_nacido.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_recien_nacido','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.importancia_recien_nacido.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+
+
+            </form>
+
+
+
+        </div>
+
+
+        <!-- TODO: FORM CONSULTA -->
+        <div class="col-consulta flex-column-start-center">
+
+
+            <!-- TODO: EXAMEN FISICO -->
+
             <div class="title-section flex-center">
-                <span class="title-text">consejería</span>
+                <span class="title-text"></span>
             </div>
             
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Alimentación durante el embarazo</span>
+            <form [formGroup]="form_tipo_control" [ngClass]="{'error': guardo && form_tipo_control.invalid}">
+                <div class="container-examen-fisico">
+    
+                    <div class="flex-column-center">
+                        <p class="tipo-consulta-text flex-center"> Control 1 Meses (semanas) de embarazo</p>
+                        <input type="text" name="" id="" class="input-med input-center" formControlName="meses_embarazo">
+                    </div>
+    
+                </div>
+                <div class="input-container flex-start-center" style="padding: 0;">
+                    <!-- <div class=""> -->
+    
+                    <!-- <input type="text" name="" id="" class="input-lg input-center"> -->
+    
+                    <input [matDatepicker]="pickerForm" class="input-lg input-center datepiker-input" placeholder="dd/mm/aaaa"
+                        formControlName="fecha_visita">
+                    <mat-datepicker-toggle class="dp-small" matSuffix [for]="pickerForm"></mat-datepicker-toggle>
+                    <!-- </div> -->
+                    <mat-datepicker #pickerForm></mat-datepicker>
+                </div>
+            </form>
+
+
+
+            <!-- TODO: SIGNOS PELIGO -->
+
+            <div class="title-section flex-center">
+                <span class="title-text"></span>
+            </div>
+            <form [formGroup]="form_signos_peligro" [ngClass]="{'error': guardo && form_signos_peligro.invalid}">
+                <div class="description-title lines-4 flex-column-center">
+
+                    <div class="flex-center">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" (click)="seleccionarSintomasPeligro('si')">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="sintomas_peligro.si">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" (click)="seleccionarSintomasPeligro('no')">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="sintomas_peligro.no">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+
+                    <input type="text" name="" id="" class="input-med input-center" formControlName="des_sintomas">
+
+                </div>
+            </form>
+
+
+            <!-- TODO: SIGNOS VITALES -->
+            <div class="title-section flex-center">
+                <span class="title-text"></span>
+            </div>
+            <form [formGroup]="form_signos_vitales" [ngClass]="{'error': guardo && form_signos_vitales.invalid}">
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="presion">
+                </div>
+
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="temperatura">
+                </div>
+
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="peso">
+                </div>
+
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="estatura">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="imc">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="respiraciones_min">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center"
+                        formControlName="frecuencia_cardiaca_materna">
+                </div>
+            </form>
+
+            <!-- <div class="description-title flex-start-center">
+                <span class="description-text flex-start-center"> Temperatura corporal en °C</span>
             </div>
             <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Selakes de peligro embarazo</span>
+                <span class="description-text flex-start-center"> Peso en libras</span>
             </div>
             <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Consejería pre/post prueba VIH</span>
+                <span class="description-text flex-start-center"> Altura</span>
             </div>
             <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Plan de parto</span>
+                <span class="description-text flex-start-center"> Respiraciones por minuto</span>
             </div>
             <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Plan de emergencia familiar y comunitario</span>
+                <span class="description-text flex-start-center"> Frecuencia cardiaca Materna</span>
+            </div> -->
+
+
+
+
+            <!-- !EXAMEN GENERAL -->
+
+            <div class="title-section flex-center">
+                <!-- <span class="title-text"> ¿Normal?</span> -->
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Lactancia exclusiva / MELA</span>
+            <form [formGroup]="form_ex_general" [ngClass]="{'error': guardo && form_ex_general.invalid}">
+                <div class="description-title flex-center">
+                    <p class="tipo-consulta-text flex-center"> ¿Normal?</p>
+                    <!-- <span class="description-text flex-start-center"> Frecuencia cardiaca Materna</span> -->
+                </div>
+                <div class="description-title lines-2 flex-center">
+                    <div class="flex-center">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" (click)="seleccionarEstadoGeneral('si')">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="estado_general.si">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" (click)="seleccionarEstadoGeneral('no')">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="estado_general.no">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="estado_bucodental">
+                </div>
+            </form>
+
+
+            <!-- !EXAMEN OBSTETRICO -->
+
+            <div class="title-section flex-center">
+                <span class="title-text"></span>
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Otros métodos de planificación familiar</span>
+            <form [formGroup]="form_ex_obs" [ngClass]="{'error': guardo && form_ex_obs.invalid}">
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="altura_uterina">
+                </div>
+                <div class="description-title lines-2 flex-center">
+                    <div class="flex-center">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" (click)="seleccionarMovimientosFetales('si')">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="movimientos_fetales.si">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" (click)="seleccionarMovimientosFetales('no')">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="movimientos_fetales.no">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center"
+                        formControlName="frecuencia_cardiaca">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center"
+                        formControlName="presentacion_leopold">
+                </div>
+            </form>
+
+
+
+            <!-- !EXAMEN GINECOLOGICO -->
+
+            <div class="title-section flex-center">
+                <span class="title-text"></span>
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Importancia del control postparto</span>
+            <form [formGroup]="form_ex_gin" [ngClass]="{'error': guardo && form_ex_gin.invalid}">
+                <div class="description-title lines-2 flex-column-center">
+                    <div class="flex-center">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" (click)="seleccionarCheckGin('presencia_sangre','si')">
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="checkExGin.presencia_sangre.si">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" (click)="seleccionarCheckGin('presencia_sangre','no')">
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="checkExGin.presencia_sangre.no">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+
+                    <input type="text" name="" id="" class="input-lg input-center"
+                        formControlName="des_presencia_sangre">
+                </div>
+                <div class="description-title lines-2 flex-column-center">
+                    <div class="flex-center">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" (click)="seleccionarCheckGin('verrugas_herpes','si')">
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="checkExGin.verrugas_herpes.si">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" (click)="seleccionarCheckGin('verrugas_herpes','no')">
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="checkExGin.verrugas_herpes.no">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+
+                    <input type="text" name="" id="" class="input-lg input-center"
+                        formControlName="des_verrugas_herpes">
+                </div>
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckGin('flujo_vaginal','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkExGin.flujo_vaginal.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckGin('flujo_vaginal','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkExGin.flujo_vaginal.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+            </form>
+
+
+            <!-- !EXAMEN DE LABORATORIO -->
+
+            <div class="title-section flex-center">
+                <span class="title-text"></span>
             </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Vacunacion y cuidados del recién nacido/a</span>
+            <form [formGroup]="form_ex_lab" [ngClass]="{'error': guardo && form_ex_lab.invalid}">
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="hemoglobina">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="grupo_rh">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="orina">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="glicemia">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="vdrl">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="vih">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="papanicolaou">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="infecciones">
+                </div>
+            </form>
+
+            <!-- !CLASIFICACION -->
+            <div class="title-section flex-center">
+                <span class="title-text"></span>
+            </div>
+            <form [formGroup]="form_clasificacion" [ngClass]="{'error': guardo && form_clasificacion.invalid}">
+                <div class="input-container flex-start-center" >
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="sem_embarazo_fur">
+                </div>
+                <div class="input-container flex-start-center" >
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="problemas_detectados">
+                </div>
+            </form>
+
+            <!-- !CONDUCTA -->
+            <div class="title-section flex-center">
+                <span class="title-text"></span>
+            </div>
+            <form [formGroup]="form_conducta" [ngClass]="{'error': guardo && form_conducta.invalid}">
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="sulfato_ferroso">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="acido_folico">
+                </div>
+                <div class="input-container-2 flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="vacunacion_madre">
+                </div>
+            </form>
+            <!-- <div class="description-title flex-start-center">
+                        <span class="description-text flex-start-center"> </span>
+                    </div> -->
+
+            <!-- !CONSEJERIA -->
+
+
+
+            <div class="title-section flex-center" >
+                <span class="title-text"></span>
+            </div>
+            
+            <form [formGroup]="form_consejeria" style="width: 100%;" [ngClass]="{'error': guardo && form_consejeria.invalid}">
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('alimentacion','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.alimentacion.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('alimentacion','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.alimentacion.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('senales_peligro','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.senales_peligro.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('senales_peligro','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.senales_peligro.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('consejeria_vih','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.consejeria_vih.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('consejeria_vih','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.consejeria_vih.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_parto','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.plan_parto.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_parto','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.plan_parto.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_emergencia','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.plan_emergencia.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_emergencia','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.plan_emergencia.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('lactancia_materna','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.lactancia_materna.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('lactancia_materna','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.lactancia_materna.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('metodos_planificacion','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.metodos_planificacion.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('metodos_planificacion','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.metodos_planificacion.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_postparto','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.importancia_postparto.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_postparto','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.importancia_postparto.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+                <div class="flex-center input-container">
+                    <div class="container-check">
+                        <span class="data-text">SI</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_recien_nacido','si')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.importancia_recien_nacido.si">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+
+                    <div class="container-check">
+                        <span class="data-text">NO</span>
+                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_recien_nacido','no')">
+                            <img src="assets/image/x.svg" alt="" class="radio-check"
+                                *ngIf="checkConsejeria.importancia_recien_nacido.no">
+                        </div>
+                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                    </div>
+                </div>
+
+
+
+            </form>
+
+            <div class="container-btn flex-center">
+                <button mat-raised-button class="btn" type="submit" *ngIf="cargando">
+                    <mat-spinner class="mat-spiner" [diameter]="30" ></mat-spinner>
+                </button>
+    
+                <button mat-raised-button class="btn" type="submit" (click)="guardarConsulta()" *ngIf="!cargando">
+                    <!-- <mat-spinner class="mat-spiner" [diameter]="30"></mat-spinner> -->
+                    Guardar
+                </button>
             </div>
 
 
 
         </div>
-    </mat-grid-tile>
+    </div>
 
-    <!-- !APARTADO PARA LAS FILAS DE LAS CONSULTAS -->
-    <mat-grid-tile colspan="10" class="col">
-        <div>
-
-        </div>
-
-    </mat-grid-tile>
-</mat-grid-list>
+    <!-- </mat-grid-tile> -->
+</div>
 
 
+
+<!-- </mat-grid-list> -->
 
 <div style="width: 90%; display: flex; justify-content: flex-end; align-items: center; margin:15px auto;">
     <!-- <span class="data-exp">Expediente No. XXXXX</span> -->

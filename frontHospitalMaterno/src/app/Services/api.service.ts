@@ -78,6 +78,8 @@ export class ApiService {
   agregar_usuario_url = "agregar-usuario"
   actualizar_roles_usuario_url="actualizar-roles-usuario"
   agregarControl_url="agregar-control"
+  agregarConsulta_url="agregar-consulta"
+  obtener_consultas_paciente_url="obtener-consultas-paciente"
 
   login_url = "login"
 
@@ -489,7 +491,46 @@ export class ApiService {
   }
 
 
+  agregarConsulta(token, dataForm: any): Observable<any> {
+    let body: any;
+    body = dataForm
 
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.agregarConsulta_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  obtenerConsultasPaciente(token, id_control): Observable<any> {
+    let body: any;
+    body = {
+      "id_control": id_control
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.actualizar_roles_usuario_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          return throwError(err.error);
+        })
+      );
+  }
 
 
 

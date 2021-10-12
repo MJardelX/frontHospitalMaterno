@@ -26,7 +26,7 @@ const routes: Routes = [
     { path: 'configuracion-de-usuario/:id', component: ConfPerfilComponent, pathMatch:'full' },
     { path: 'paciente/:id_paciente', component: DataPacienteComponent, pathMatch:'full' },
     { path: 'usuarios', component: VisualizacionUsuariosComponent, pathMatch:'full' },
-    { path: 'control-prenatal', component: ControlPrenatalComponent, pathMatch:'full' },
+    { path: 'control-prenatal/:id_control', component: ControlPrenatalComponent, pathMatch:'full' },
     { path: 'nuevo-control-prenatal/:id_paciente', component: ControlPrenatalFormComponent, pathMatch:'full' },
   ];
 

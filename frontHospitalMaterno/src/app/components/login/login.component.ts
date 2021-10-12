@@ -80,9 +80,14 @@ export class LoginComponent implements OnInit {
 
         this.router.navigateByUrl('/pacientes')
       },err=>{
+
+        if(err.detail){
+          this.openSnackBar(err.detail,'red-snackbar');
+        }else{
+          this.openSnackBar("Error al consumir el servicio",'red-snackbar');
+        }
         // console.log(err)
         // console.log(err.detail)
-        this.openSnackBar(err.detail,'red-snackbar');
         console.log(err)
       })
 

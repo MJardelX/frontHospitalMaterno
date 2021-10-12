@@ -86,25 +86,53 @@
 
 
 
+.container-title-control{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+.container-consultas{
+    width: 90%;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    overflow: auto;
+
+}
+
+.contoainer-col-consultas{
+    width: 100%;
+    /* background: green; */
+}
+
+.col-consulta{
+    width: 190px;
+    height: 100%;
+    border: 1px solid gray;
+}
 
 
 
+.main-grid-consultas{
+    width: 90%;
+    margin: 0 auto;
+}
 
-  .main-grid-consultas{
-      width: 90%;
-      margin: 0 auto;
-  }
 
-
-  .col{
-      height: 1300px;
-      border: 1px solid #798197;
-  }
+.col{
+    height: 1500px;
+    border: 1px solid #798197;
+}
 
 .titles-consultas{
-    width: 100%;
+    width: 290px;
     height: 100%;
+    border: 1px solid gray;
+    
 }
+
 
 
 .title-section{
@@ -138,4 +166,66 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    border-bottom: 1px solid black;
+    /* background: hotpink; */
+    width: 100%;
+}
+
+
+.container-check{
+    margin: 0 5px;
+}
+
+
+.tipo-consulta-text{
+    font-size: 11px;
+    color: black;
+    /* background: green; */
+    /* margin: 5px; */
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:0
+}
+
+
+
+form{
+    width: 100%;
+}
+
+
+
+.btn{
+    font-size: 12px;
+    height: 35px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-btn{
+    height: 40px;
+}
+
+
+.datepiker-input{
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 12px;
+    padding: 0;
+    pointer-events:none; 
+}
+
+
+.error{
+    /* border: 0.5px solid red; */
+
+    background: rgba(77, 75, 75, 0.225);
 }
