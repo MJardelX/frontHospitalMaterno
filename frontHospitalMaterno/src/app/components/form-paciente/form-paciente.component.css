@@ -18,9 +18,10 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     column-gap: 20px;
-    row-gap: 25px;
+    /* row-gap: 25px; */
+    font-size: 13px;
 
     /* height: 400px; */
 }
@@ -40,6 +41,8 @@
     row-gap: 10px;
 
     margin-top: 10px;
+
+    font-size: 13px;
 }
 
 .sub-title{
@@ -57,11 +60,16 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin-bottom: 20px;
     
 }
 
 .text-form{
     color: #7B7D82;
+}
+
+.footer{
+    height: 15px;
 }
 
 .radio-label{
@@ -70,3 +78,20 @@
 }
 
 
+.btn{
+    /* font-size: 12px; */
+    /* height: 35px; */
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mat-form .mat-form-field-wrapper{
+    margin: 0 !important;
+    padding: 0;
+  }
+
+input{
+    font-size: 12px;
+}

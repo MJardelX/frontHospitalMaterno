@@ -1,12 +1,16 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/Services/api.service';
 import { PathService } from 'src/app/Services/path.service';
+import { ControlPrenatalFormComponent } from '../control-prenatal-form/control-prenatal-form.component';
+import { ControlDialogComponent } from '../dialogs/control-dialog/control-dialog.component';
+import { InformationDialogComponent } from '../dialogs/information-dialog/information-dialog.component';
 
 @Component({
   selector: 'app-control-prenatal',
@@ -20,39 +24,98 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
     private _loc: Location,
     private route: ActivatedRoute,
     private apiServices: ApiService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog,
   ) {
     this.iniciarFormularios()
   }
 
   Location: any;
 
-  id_control
+  id_control:any;
+  id_paciente:any;
 
   token: any;
+
+  data_paciente:any
   ngOnInit(): void {
     this.Location = this._loc.path();
     this.path_service.setPath(this.Location);
 
     console.log('init')
 
+    this.id_paciente= this.route.snapshot.params['id_paciente']
     this.id_control = this.route.snapshot.params['id_control']
 
     this.form_tipo_control.get('id_control').setValue(this.id_control)
+    this.form_ex_fisico.get('id_control').setValue(this.id_control)
 
 
     let fecha_creacion = (new Date)
     this.form_tipo_control.get('fecha_visita').setValue(fecha_creacion)
 
     this.token = localStorage.getItem('token')
-    // this.
+    this.obtenerConsultas()
+    this.obtenerExamenFisico()
+    this.obtenerDataPaciente()
+
+    // this.paciente= JSON.parse(localStorage.getItem('pacient'))
+    // console.log(this.paciente)
   }
 
 
+  sub_obtener_paciente:Subscription
+  obtenerDataPaciente(){
+    this.sub_obtener_paciente=this.apiServices.obtener_paciente(this.token,this.id_paciente).subscribe(data=>{
+      this.data_paciente=data.data[0]
+      
+      // console.log(this.data_paciente)
+      // localStorage.setItem('pacient', JSON.stringify(this.data_paciente))
+  
+
+      this.migrante[this.data_paciente.migrante]=true
+      // console.log(this.data_paciente)
+    },err=>{
+      this.openSnackBar('Error al obtener datos de la paciente', 'red-snackbar')
+    })
+  }
+
+
+  tipos_consulta=[
+    'Control 1','Control 2','Control 3','Control 4','Reconsulta'
+  ]
+
+
+  sub_obtener_consultas:Subscription
+  
+  
+  data_consultas;
+  obtenerConsultas(){
+    this.sub_obtener_consultas = this.apiServices.obtenerConsultasPaciente(this.token,this.id_control).subscribe(data=>{
+      this.data_consultas= data.data 
+      // console.log(this.data_consultas)
+    })
+  }
+  
+  
+  sub_obtener_examen_fisico:Subscription
+  data_ex_fisico;
+  obtenerExamenFisico(){
+    if(!this.data_ex_fisico){
+      this.sub_obtener_examen_fisico = this.apiServices.obtenerExamenFísico(this.token,this.id_control).subscribe(data=>{
+        if(data.data.length!=0){
+          this.data_ex_fisico=data.data[0]
+          // console.log(this.data_ex_fisico)
+        }
+        
+      })
+    }
+  }
+
 
   migrante = {
-    si: false,
-    no: true
+    SI: false,
+    NO: true
   }
 
 
@@ -68,11 +131,15 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
   form_clasificacion: FormGroup;
   form_conducta: FormGroup;
   form_consejeria: FormGroup;
+  // form_ex_fisico:FormGroup;
 
   iniciarFormularios() {
 
     this.form_ex_fisico = new FormGroup({
-
+      "id_control": new FormControl('', [Validators.required]),
+      "fur": new FormControl('', [Validators.required]),
+      "fpp": new FormControl('', [Validators.required]),
+      "circunferencia": new FormControl('', [Validators.required]),
     })
 
     // !2
@@ -80,6 +147,7 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
       "id_control": new FormControl('', [Validators.required]),
       "meses_embarazo": new FormControl('', [Validators.required]),
       "fecha_visita": new FormControl('', [Validators.required]),
+      "tipo_consulta": new FormControl('', [Validators.required]),
     })
 
     // !2
@@ -92,8 +160,8 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
     this.form_signos_vitales = new FormGroup({
       "presion": new FormControl('', [Validators.required]),
       "temperatura": new FormControl('', [Validators.required]),
-      "peso": new FormControl('', [Validators.required]),
-      "estatura": new FormControl('', [Validators.required]),
+      "peso": new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]),
+      "estatura": new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]),
       "imc": new FormControl('', [Validators.required]),
       "respiraciones_min": new FormControl('', [Validators.required]),
       "frecuencia_cardiaca_materna": new FormControl('', [Validators.required]),
@@ -318,7 +386,7 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
     this.guardo = true;
 
 
-    console.log()
+    // console.log(this.form_tipo_control.get('tipo_consulta').value)
 
 
     if (!moment(this.form_tipo_control.get('fecha_visita').value, 'YYYY-MM-DD', true).isValid()) {
@@ -380,106 +448,120 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
       data = Object.assign(data, this.form_consejeria.getRawValue())
 
 
-      this.cargando = true;
-      this.sub_guardar_consulta = this.apiServices.agregarConsulta(this.token, data).subscribe(d => {
 
-        if (d.status = 'Success') {
-          this.sintomas_peligro = {
-            si: false,
-            no: false
-          }
-
-          this.estado_general = {
-            si: false,
-            no: false
-          }
-
-          this.checkConsejeria = {
-            alimentacion: {
-              "si": false,
-              "no": false
-            },
-            senales_peligro: {
-              "si": false,
-              "no": false
-            },
-            consejeria_vih: {
-              "si": false,
-              "no": false
-            },
-            plan_parto: {
-              "si": false,
-              "no": false
-            },
-            plan_emergencia: {
-              "si": false,
-              "no": false
-            },
-            lactancia_materna: {
-              "si": false,
-              "no": false
-            },
-            metodos_planificacion: {
-              "si": false,
-              "no": false
-            },
-            importancia_postparto: {
-              "si": false,
-              "no": false
-            },
-            importancia_recien_nacido: {
-              "si": false,
-              "no": false
+      const dialogRef = this.dialog.open(InformationDialogComponent,
+        {
+          width: '300px',
+          height: "425x",
+          // data: { id_paciente: id_paciente },
+          panelClass: 'custom-modalbox',
+          autoFocus: false
+        });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if(result=='aceptar'){
+          this.cargando = true;
+          this.sub_guardar_consulta = this.apiServices.agregarConsulta(this.token, data).subscribe(d => {
+    
+            if (d.status = 'Success') {
+              this.sintomas_peligro = {
+                si: false,
+                no: false
+              }
+    
+              this.estado_general = {
+                si: false,
+                no: false
+              }
+    
+              this.checkConsejeria = {
+                alimentacion: {
+                  "si": false,
+                  "no": false
+                },
+                senales_peligro: {
+                  "si": false,
+                  "no": false
+                },
+                consejeria_vih: {
+                  "si": false,
+                  "no": false
+                },
+                plan_parto: {
+                  "si": false,
+                  "no": false
+                },
+                plan_emergencia: {
+                  "si": false,
+                  "no": false
+                },
+                lactancia_materna: {
+                  "si": false,
+                  "no": false
+                },
+                metodos_planificacion: {
+                  "si": false,
+                  "no": false
+                },
+                importancia_postparto: {
+                  "si": false,
+                  "no": false
+                },
+                importancia_recien_nacido: {
+                  "si": false,
+                  "no": false
+                }
+              }
+    
+              this.checkExGin = {
+                presencia_sangre: {
+                  "si": false,
+                  "no": false
+                },
+                verrugas_herpes: {
+                  "si": false,
+                  "no": false
+                },
+                flujo_vaginal: {
+                  "si": false,
+                  "no": false
+                }
+              }
+              this.movimientos_fetales = {
+                si: false,
+                no: false
+              }
+    
+    
+    
+              this.form_tipo_control.reset()
+              this.form_signos_peligro.reset()
+              this.form_signos_vitales.reset()
+              this.form_ex_general.reset()
+              this.form_ex_obs.reset()
+              this.form_ex_gin.reset()
+              this.form_ex_lab.reset()
+              this.form_clasificacion.reset()
+              this.form_conducta.reset()
+              this.form_consejeria.reset()
+    
+    
+              this.obtenerConsultas();
+              this.openSnackBar('Consulta guardada exitosamente', 'green-snackbar')
             }
-          }
-
-          this.checkExGin = {
-            presencia_sangre: {
-              "si": false,
-              "no": false
-            },
-            verrugas_herpes: {
-              "si": false,
-              "no": false
-            },
-            flujo_vaginal: {
-              "si": false,
-              "no": false
+            this.cargando = false;
+          }, err => {
+            if (err.detail) {
+              this.openSnackBar(err.detail, 'red-snackbar')
+            } else {
+              this.openSnackBar("Error al consumir el servicio", 'red-snackbar')
             }
-          }
-          this.movimientos_fetales = {
-            si: false,
-            no: false
-          }
-
-
-
-          this.form_tipo_control.reset()
-          this.form_signos_peligro.reset()
-          this.form_signos_vitales.reset()
-          this.form_ex_general.reset()
-          this.form_ex_obs.reset()
-          this.form_ex_gin.reset()
-          this.form_ex_lab.reset()
-          this.form_clasificacion.reset()
-          this.form_conducta.reset()
-          this.form_consejeria.reset()
-
-
-          this.openSnackBar('Consulta guardada exitosamente', 'green-snackbar')
-
-
+    
+            this.cargando = false
+          })
         }
-        this.cargando = false;
-      }, err => {
-        if (err.detail) {
-          this.openSnackBar(err.detail, 'red-snackbar')
-        } else {
-          this.openSnackBar("Error al consumir el servicio", 'red-snackbar')
-        }
-
-        this.cargando = false
-      })
+      });
+      
       // console.log(data)
       // var keys = Object.keys(data);
       // var len = keys.length;
@@ -509,6 +591,138 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
     if (this.sub_guardar_consulta) {
       this.sub_guardar_consulta.unsubscribe()
     }
+    if(this.sub_obtener_consultas){
+      this.sub_obtener_consultas.unsubscribe()
+    }
+
+    if(this.sub_guardar_ex_fisico){
+      this.sub_guardar_ex_fisico.unsubscribe()
+    }
+
+    if(this.sub_obtener_examen_fisico){
+      this.sub_obtener_examen_fisico.unsubscribe()
+    }
   }
+
+
+  guardo_fisico=false;
+  cargando_fisico=false;
+  sub_guardar_ex_fisico:Subscription;
+  guardarExamenFisico(){
+
+
+    this.guardo_fisico=true
+
+    if(this.form_ex_fisico.valid){
+
+      const dialogRef = this.dialog.open(InformationDialogComponent,
+        {
+          width: '300px',
+          height: "425x",
+          // data: { id_paciente: id_paciente },
+          panelClass: 'custom-modalbox',
+          autoFocus: false
+        });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if(result=='aceptar'){
+          let data=this.form_ex_fisico.getRawValue()
+          // console.log(data)
+          this.cargando_fisico=true
+          this.sub_guardar_ex_fisico = this.apiServices.agregarExamenFisico(this.token,data).subscribe(d=>{
+            if(d.status=='Success'){
+              this.obtenerExamenFisico()
+              this.openSnackBar('Examen físico guardado exitosamente', 'green-snackbar');
+            }else{
+              this.openSnackBar(d.detail, 'red-snackbar');
+            }
+    
+            this.cargando_fisico=false
+          },err=>{
+    
+            if(err.detail){
+              this.openSnackBar(err.detail, 'red-snackbar');
+            }else{
+              this.openSnackBar('Error al guardar examen físico', 'red-snackbar');
+            }
+            this.cargando_fisico=false
+    
+          })
+        }
+      });
+      
+
+    }else{
+      this.openSnackBar('Debe llenar los campos de examen físico', 'red-snackbar');
+    }
+  }
+
+
+
+
+  convertirFecha(fecha){
+    try {
+      let date= (moment(fecha, 'MM/DD/YYYY').format('DD/MM/YYYY'))
+      return date
+    } catch (error) {
+      return " "
+    }
+  }
+
+
+
+  mostrarControl() {
+
+    console.log(this.id_control)
+    const dialogRef = this.dialog.open(ControlDialogComponent,
+      {
+        width: '1000px',
+        height: "425x",
+        data: { id_control: this.id_control,
+              id_paciente: this.id_paciente
+        },
+        panelClass: 'custom-modalbox',
+        autoFocus: false
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+
+
+  // peso:any;
+  outPeso(){
+    if(this.form_signos_vitales.get('peso').hasError('pattern')){
+      this.openSnackBar('Debe ingresar un núemro valido en el campo peso','red-snackbar')
+    }
+  }
+
+  calcularIMC(){
+    if(this.form_signos_vitales.get('estatura').hasError('pattern')){
+      this.openSnackBar('Debe ingresar un núemro valido en el campo estatura','red-snackbar')
+    }
+
+    if(this.form_signos_vitales.get('peso').valid && this.form_signos_vitales.get('estatura').valid){
+
+
+      let peso_kilos= this.form_signos_vitales.get('peso').value / 2.205
+      peso_kilos= this.rountTo(peso_kilos,2)
+      let altura = this.form_signos_vitales.get('estatura').value
+
+
+      let imc= this.rountTo((peso_kilos/(altura* altura)),2)
+
+      this.form_signos_vitales.get('imc').setValue(imc)
+      // console.log('peso kilos:'+ peso_kilos)
+      // console.log(imc)
+    }
+  }
+
+
+  rountTo(num: number, places: number) {
+    const factor = 10 ** places;
+    return Math.round(num * factor) / factor;
+  };
 }
 

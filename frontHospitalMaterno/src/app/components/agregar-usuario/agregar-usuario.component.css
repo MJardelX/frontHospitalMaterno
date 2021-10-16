@@ -20,7 +20,10 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     column-gap: 20px;
-    row-gap: 25px;
+    /* row-gap: 25px; */
+    font-size: 13px;
+
+    /*  */
 
     /* height: 400px; */
 }
@@ -35,7 +38,14 @@
 }
 
 
-
+.btn{
+    /* font-size: 12px; */
+    /* height: 35px; */
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 .btn-container{

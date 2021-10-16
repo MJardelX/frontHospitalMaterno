@@ -69,12 +69,13 @@ export class LoginComponent implements OnInit {
 
     if(this.form_login.valid){
       this.apiServices.login(this.token, data_login.username, data_login.password).subscribe(data=>{
-        // console.log(data)
+        console.log(data)
   
         this.token=data.token
         localStorage.setItem('token', btoa(this.token));
 
-        localStorage.setItem('user', JSON.stringify(data.data))
+        localStorage.setItem('user', btoa(JSON.stringify(data.data)))
+        // this.apiServices.usuario=data.data;
         this.openSnackBar('Bienvenido','green-snackbar');
 
 
@@ -103,5 +104,10 @@ export class LoginComponent implements OnInit {
       duration:1500,
       panelClass: [tipo]
     });
+  }
+
+
+  toForgot(){
+    this.router.navigateByUrl('forgot-password')
   }
 }

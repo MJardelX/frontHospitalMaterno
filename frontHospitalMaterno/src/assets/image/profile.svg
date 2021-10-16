@@ -1,0 +1,11 @@
+<svg id="user_user_circle" data-name="user / user_circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="user_user_circle_Background_Mask_" data-name="user / user_circle (Background/Mask)" width="24" height="24" fill="#6f778a"/>
+    </clipPath>
+  </defs>
+  <rect id="user_user_circle_Background_Mask_2" data-name="user / user_circle (Background/Mask)" width="24" height="24" fill="none"/>
+  <g id="user_user_circle-2" data-name="user / user_circle" clip-path="url(#clip-path)">
+    <path id="coolicon" d="M9.97,20a9.955,9.955,0,0,1-4.335-1,10.121,10.121,0,0,1-1.425-.845l-.137-.1A10.143,10.143,0,0,1,1.11,14.584,10,10,0,1,1,20,10a9.927,9.927,0,0,1-1.109,4.582,9.945,9.945,0,0,1-4.441,4.37l-.08.04A9.955,9.955,0,0,1,10.018,20H9.97Zm.02-5a3.973,3.973,0,0,0-3.547,2.166,8.01,8.01,0,0,0,7.114,0v0A3.97,3.97,0,0,0,10.012,15H9.99ZM10,13a6.028,6.028,0,0,1,5.229,3.056l.006-.005,0,0,.026-.025-.012.014-.009.008.007,0,.016-.015a8,8,0,1,0-10.487.023A6.028,6.028,0,0,1,10,13Zm0-1a4,4,0,1,1,2.829-1.171A4,4,0,0,1,10,12Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,10,6Z" transform="translate(2 2)" fill="#6f778a"/>
+  </g>
+</svg>

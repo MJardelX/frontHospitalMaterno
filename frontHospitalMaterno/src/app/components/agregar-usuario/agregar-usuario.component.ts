@@ -99,6 +99,8 @@ export class AgregarUsuarioComponent implements OnInit, OnDestroy {
 
 
   sub_agregar_usuario: Subscription
+
+  cargando=false;
   guardar(){
 
     // console.log(this.form_data_user.get('correo'))
@@ -115,6 +117,7 @@ export class AgregarUsuarioComponent implements OnInit, OnDestroy {
         user_roles.push(element.id_rol)
       })
 
+      this.cargando=true;
       this.sub_agregar_usuario = this.apiServices.agregarUsuario(
         this.token,
         this.form_data_user.get('primer_nombre').value,
@@ -135,8 +138,10 @@ export class AgregarUsuarioComponent implements OnInit, OnDestroy {
         }else{
           this.openSnackBar(data.detail, "red-snackbar");
         }
+        this.cargando=false
       },err=>{
         // console.log(err)
+        this.cargando=false
         this.openSnackBar('Error al consumir el servicio', "red-snackbar");
       })
 

@@ -1,0 +1,11 @@
+<svg id="user_group" data-name="user / group" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="user_group_Background_Mask_" data-name="user / group (Background/Mask)" width="24" height="24" fill="none"/>
+    </clipPath>
+  </defs>
+  <rect id="user_group_Background_Mask_2" data-name="user / group (Background/Mask)" width="24" height="24" fill="none"/>
+  <g id="user_group-2" data-name="user / group" clip-path="url(#clip-path)">
+    <path id="coolicon" d="M2,18H0a7,7,0,0,1,14,0H12A5,5,0,1,0,2,18Zm18,0H18a4,4,0,0,0-4-4V12a5.985,5.985,0,0,1,2,.344c.1.036.2.074.3.113A6,6,0,0,1,19.544,15.7c.04.1.078.195.113.3A5.986,5.986,0,0,1,20,18Zm-6-7a4.033,4.033,0,0,1-.426-.023c-.074-.008-.146-.018-.207-.028a4.016,4.016,0,0,1-1.724-.717l1.178-1.616A2,2,0,1,0,14,5V3a4.024,4.024,0,0,1,1.816.436c.062.031.124.065.184.1A3.978,3.978,0,0,1,17.238,4.65,4,4,0,0,1,14,11ZM7,10a5,5,0,1,1,5-5A5.006,5.006,0,0,1,7,10ZM7,2a3,3,0,1,0,3,3A3,3,0,0,0,7,2Z" transform="translate(2 3)" fill="#6f778a"/>
+  </g>
+</svg>

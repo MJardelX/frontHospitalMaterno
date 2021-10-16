@@ -45,3 +45,13 @@
 .container_1 {
     background: brown;
 }
+
+
+.btn-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.img-item{
+    margin-right: 10px;
+}

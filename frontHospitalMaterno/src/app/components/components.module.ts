@@ -17,6 +17,13 @@ import { DataPacienteComponent } from './data-paciente/data-paciente.component';
 import { VisualizacionUsuariosComponent } from './visualizacion-usuarios/visualizacion-usuarios.component';
 import { ControlPrenatalComponent } from './control-prenatal/control-prenatal.component';
 import { ControlPrenatalFormComponent } from './control-prenatal-form/control-prenatal-form.component';
+import { EliminarPacienteDialogComponent } from './dialogs/eliminar-paciente-dialog/eliminar-paciente-dialog.component';
+import { TokenExpiredPageComponent } from './token-expired-page/token-expired-page.component';
+import { EliminarUsuarioDialogComponent } from './dialogs/eliminar-usuario-dialog/eliminar-usuario-dialog.component';
+import { ForgotPasswordPageComponent } from './forgot-password-page/forgot-password-page.component';
+import { ControlDialogComponent } from './dialogs/control-dialog/control-dialog.component';
+import { TokenInvalidPageComponent } from './token-invalid-page/token-invalid-page.component';
+import { InformationDialogComponent } from './dialogs/information-dialog/information-dialog.component';
 // import { MatSliderModule } from '@angular/material/slider';
 // import { MatSliderModule } from '@angular/material/slider';
 
@@ -39,7 +46,14 @@ import { ControlPrenatalFormComponent } from './control-prenatal-form/control-pr
     DataPacienteComponent,
     VisualizacionUsuariosComponent,
     ControlPrenatalComponent,
-    ControlPrenatalFormComponent
+    ControlPrenatalFormComponent,
+    EliminarPacienteDialogComponent,
+    TokenExpiredPageComponent,
+    EliminarUsuarioDialogComponent,
+    ForgotPasswordPageComponent,
+    ControlDialogComponent,
+    TokenInvalidPageComponent,
+    InformationDialogComponent
   ],
   imports: [
     CommonModule,

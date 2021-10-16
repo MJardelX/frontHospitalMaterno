@@ -10,20 +10,72 @@
     
     
         <div class="col">
-            <input type="text" name=""  placeholder="Primer nombre" class="input" formControlName="primer_nombre">
-            <input type="text" name=""  placeholder="Segundo nombre" class="input" formControlName="segundo_nombre">
-            <input type="text" name=""  placeholder="Primer apellido" class="input" formControlName="primer_apellido">
-            <input type="text" name=""  placeholder="Segundo apellido" class="input" formControlName="segundo_apellido">
-            <!-- <input type="text" name=""  placeholder="lugar de nacimiento" class="input"> -->
-            <input type="date" name=""  placeholder="Fecha de nacimiento" class="input" formControlName="fecha_nacimiento">
-            <!-- <input type="text" name=""  placeholder="Nacionalidad" class="input"> -->
-            <input type="text" name=""  placeholder="DPI" class="input" formControlName="dpi">
+            <!-- <input type="text" name=""  placeholder="Primer nombre" class="input" formControlName="primer_nombre"> -->
+
+
+            <!-- <div > -->
+                <mat-form-field  appearance="outline" style="margin-bottom: -1.25em">
+                    <mat-label>No. Expediente</mat-label>
+                    <input matInput  formControlName="id_expediente">
+                </mat-form-field>
+            <!-- </div> -->
+
+            <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
+                <mat-label>Fecha de creación</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="fecha_creacion_expediente">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+
+            <mat-form-field class="mat-form" appearance="outline" >
+                <mat-label>Primer nombre</mat-label>
+                <input matInput  formControlName="primer_nombre">
+            </mat-form-field>
+
+            <mat-form-field class="mat-form" appearance="outline" >
+                <mat-label>Segundo nombre</mat-label>
+                <input matInput  formControlName="segundo_nombre">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Primer apellido</mat-label>
+                <input matInput  formControlName="primer_apellido">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Segundo apellido</mat-label>
+                <input matInput  formControlName="segundo_apellido">
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input matInput [matDatepicker]="pickerFN" formControlName="fecha_nacimiento">
+                <mat-datepicker-toggle matSuffix [for]="pickerFN"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFN></mat-datepicker>
+              </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Dpi</mat-label>
+                <input matInput  formControlName="dpi">
+            </mat-form-field>
+
+            
         </div>
     
         <div class="col">
             <!-- <input type="text" name=""  placeholder="Estado civil" class="input"> -->
-            <input type="text" name=""  placeholder="Ocupación" class="input"  formControlName="ocupacion">
-            <input type="text" name=""  placeholder="Teléfono" class="input" formControlName="telefono">
+            <mat-form-field  appearance="outline" style="margin-bottom: -1.25em">
+                <mat-label>Ocupación</mat-label>
+                <input matInput  formControlName="ocupacion">
+            </mat-form-field>
+            <mat-form-field  appearance="outline" style="margin-bottom: -1.25em">
+                <mat-label>Teléfono</mat-label>
+                <input matInput  formControlName="telefono">
+            </mat-form-field>
+            <!-- <input type="text" name=""  placeholder="Ocupación" class="input"  formControlName="ocupacion">
+            <input type="text" name=""  placeholder="Teléfono" class="input" formControlName="telefono"> -->
     
             <div style="display: flex; justify-content: flex-start; align-items: center;">
                 <span class="text-form">Migrante:</span>
@@ -46,7 +98,8 @@
     
             </div>
 
-            <input type="text" name=""  placeholder="No. Expediente" class="input" formControlName="id_expediente">
+
+            <!-- <input type="text" name=""  placeholder="No. Expediente" class="input" formControlName="id_expediente"> -->
             <!-- <input type="text" name=""  placeholder="Segundo apellido" class="input"> -->
             <!-- <input type="text" name=""  placeholder="lugar de nacimiento" class="input">
             <input type="text" name=""  placeholder="Fecha de nacimiento" class="input"> -->
@@ -69,9 +122,25 @@
             <h2 class="sub-title">
                 Dirección
             </h2>
-            <input type="text" name=""  placeholder="Departamento" class="input" formControlName="departamento">
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Departamento</mat-label>
+                <input matInput  formControlName="departamento">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Municipio</mat-label>
+                <input matInput  formControlName="municipio">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" class="nombre-encargado">
+                <mat-label>Dirección</mat-label>
+                <input matInput  formControlName="calle_avenida">
+            </mat-form-field>
+
+            <!-- <input type="text" name=""  placeholder="Departamento" class="input" formControlName="departamento">
             <input type="text" name=""  placeholder="Municipio" class="input" formControlName="municipio">
-            <input type="text" name=""  placeholder="Calle / Avenida" class="input" formControlName="calle_avenida">
+            <input type="text" name=""  placeholder="Calle / Avenida" class="input" formControlName="calle_avenida"> -->
             <!-- <input type="text" name=""  placeholder="Segundo apellido" class="input">
             <input type="text" name=""  placeholder="lugar de nacimiento" class="input">
             <input type="date" name=""  placeholder="Fecha de nacimiento" class="input">
@@ -83,8 +152,20 @@
             <h2 class="sub-title">
                 Responsable
             </h2>
+
+            <mat-form-field  appearance="outline" class="nombre-encargado">
+                <mat-label>Nombre Responsable</mat-label>
+                <input matInput  formControlName="nombre_responsable">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Teléfono Responsable</mat-label>
+                <input matInput  formControlName="telefono_responsable">
+            </mat-form-field>
+<!-- 
             <input type="text" name=""  placeholder="Nombre" class="input nombre-encargado" formControlName="nombre_responsable">
-            <input type="text" name=""  placeholder="Teléfono" class="input" formControlName="telefono_responsable">
+            <input type="text" name=""  placeholder="Teléfono" class="input" formControlName="telefono_responsable"> -->
+
             <!-- <input type="text" name=""  placeholder="Estado civil" class="input">
             <input type="text" name=""  placeholder="Ocupación" class="input">
             <input type="text" name=""  placeholder="Teléfono" class="input"> -->
@@ -106,5 +187,16 @@
 
 <div class="btn-container">
 
-    <input type="button" value="Guardar" class="btn" (click)="guardar()">
+    <!-- <input type="button" value="Guardar" class="btn" (click)="guardar()"> -->
+
+    <button mat-raised-button class="btn" type="submit" *ngIf="cargando">
+        <mat-spinner class="mat-spiner" [diameter]="30" ></mat-spinner>
+    </button>
+
+    <button mat-raised-button class="btn" type="submit" (click)="guardar()" *ngIf="!cargando">
+        <!-- <mat-spinner class="mat-spiner" [diameter]="30"></mat-spinner> -->
+        Guardar
+    </button>
 </div>
+
+<div class="footer"></div>

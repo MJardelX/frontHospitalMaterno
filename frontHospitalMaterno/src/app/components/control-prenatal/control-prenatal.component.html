@@ -9,53 +9,65 @@
 </div>
 
 
-
 <div class="container">
     <span class="data-card-header-text">Datos generales de la paciente</span>
     <div class="data-card-content">
         <div class="data">
-            <p class="data-text">Nombre: <span class="value"> Grisel Victoria Xiquitá Xajpot</span></p>
-            <p class="data-text">Edad: <span class="value">18 años</span> </p>
-            <p class="data-text">Fecha de Nacimientos:<span class="value">DD/MM/AAAA</span></p>
+            <p class="data-text">Nombre: <span class="value"> {{data_paciente?.primer_nombre}} {{data_paciente?.segundo_nombre}} {{data_paciente?.primer_apellido}} {{data_paciente?.segundo_apellido}}</span></p>
+            <p class="data-text">Edad: <span class="value">{{data_paciente?.edad_actual}} años</span> </p>
+            <p class="data-text">Fecha de Nacimiento:<span class="value">{{data_paciente?.fecha_nacimiento}}</span></p>
         </div>
 
-
         <div class="data">
-            <p class="data-text">Nombre del otro/a responsable: <span class="value"> Grisel Victoria Xiquitá
-                    Xajpot</span></p>
-            <p class="data-text">Teléfono: <span class="value">48728047</span> </p>
+            <p class="data-text">Nombre del otro/a responsable: <span class="value"> {{data_paciente?.nombre_responsable}}</span></p>
+            <p class="data-text">Teléfono: <span class="value">{{data_paciente?.telefono_responsable}}</span> </p>
             <!-- <p class="data-text">Fecha de Nacimientos:<span class="value">DD/MM/AAAA</span></p> -->
         </div>
 
 
         <div class="data">
-            <p class="data-text">Dirección: <span class="value">2da avenida 2-18 zona 1 Patzún, Chimaltenango
+            <p class="data-text">Dirección: <span class="value">{{data_paciente?.calle_avenida}}  {{data_paciente?.municipio}} {{data_paciente?.departamento}}
                 </span></p>
-            <p class="data-text">Teléfono: <span class="value">40110840</span> </p>
+            <p class="data-text">Teléfono: <span class="value">{{data_paciente?.telefono}}</span> </p>
             <!-- <p class="data-text">Fecha de Nacimientos:<span class="value">DD/MM/AAAA</span></p> -->
         </div>
 
         <div class="data">
-            <p class="data-text" style="display: flex; justify-content: flex-start; align-items: center; height: 20px;">
-                Migrante: SI
-                <img src="assets/image/x.svg" style="margin-right: 10px; color: crimson;"> NO
-            </p>
+            <div style="display: flex; justify-content: flex-start; align-items: center;">
+                <span class="data-text">Migrante:</span>
+                <div class="container-check" style="margin-left: 10px;">
+                    <span class="data-text">SI</span>
+                    <div class="radio" >
+                        <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="data_paciente?.migrante=='SI'">
+                    </div>
+                    <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                </div>
+
+                <div class="container-check" style="margin-left: 10px;">
+                    <span class="data-text">NO</span>
+                    <div class="radio" >
+                        <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="data_paciente?.migrante=='NO'">
+                    </div>
+                    <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                </div>
+
+            </div>
 
 
-
-            <p class="data-text">Ocupación: <span class="value">Vendedora</span> </p>
+            <p class="data-text">Ocupación: <span class="value">{{data_paciente?.ocupacion}}</span> </p>
             <!-- <p class="data-text">Fecha de Nacimientos:<span class="value">DD/MM/AAAA</span></p> -->
         </div>
-
     </div>
 </div>
+
+
 
 <div style="width: 90%; display: flex; justify-content: flex-end; align-items: center; margin:0 auto;">
     <!-- <span class="data-exp">Expediente No. XXXXX</span> -->
     <div style="display: flex; justify-content: flex-end; ">
         <div class="add-pacient">
             <!-- <img src="assets/image/add.svg" alt="" class="add-icon" style="padding: 0;"> -->
-            <span style="color: #2C3D7F; text-decoration: underline;">Ver información completa</span>
+            <span style="color: #2C3D7F; text-decoration: underline; cursor: pointer;" (click)="mostrarControl()">Ver información completa</span>
         </div>
     </div>
 
@@ -91,41 +103,91 @@
 <div class="container-consultas">
     <!-- !TITULOS DE LOS APARTADOS -->
     <!-- <mat-grid-tile colspan="5" class="col"> -->
+
+    
     <div class="titles-consultas flex-column-start-center">
 
         <div class="title-section flex-center">
             <span class="title-text">Examen físico de la embarazada</span>
         </div>
 
-        <div class="container-examen-fisico">
 
+
+        <!-- !EXAMEN FISICO -->
+        <form [formGroup]="form_ex_fisico" *ngIf="!data_ex_fisico" [ngClass]="{'error': guardo_fisico && form_ex_fisico.invalid}">
+            <div class="container-examen-fisico">
+    
+                <div class="flex-space-around-center">
+                    <div class="flex-center">
+                        <span class="description-text">FUR:</span>
+                        <input type="text" name="" id="" class="input-small" formControlName="fur">
+                    </div>
+    
+                    <div class="flex-center">
+                        <span class="description-text">FPP:</span>
+                        <input type="text" name="" id="" class="input-small" formControlName="fpp">
+                    </div>
+                </div>
+    
+                <div class="flex-space-around-center">
+                    <div class="flex-center">
+                        <span class="description-text">Circunferencia del embarazo (cms):</span>
+                        <input type="text" name="" id="" class="input-small" formControlName="circunferencia">
+                    </div>
+                </div>
+                <div class="container-icon" >
+                    <span class="description-text">(Sólo si embarazo menor de 12 semanas)</span>
+
+
+                    <div class="icon-sqare flex-center" *ngIf="!cargando_fisico">
+                        <img src="assets/image/guardar_icon.svg" class="add-icon" title="Guardar examen físico" (click)="guardarExamenFisico()" >
+                    </div>
+
+
+                    <div class="icon-sqare flex-center" *ngIf="cargando_fisico">
+                        <!-- <img src="assets/image/guardar_icon.svg" class="add-icon" title="Guardar examen físico" (click)="onClick()"> -->
+                        <mat-spinner class="mat-spiner" [diameter]="15"  ></mat-spinner>
+                    </div>
+
+
+                </div>
+
+                
+    
+            </div>
+        </form>
+
+        <div class="container-examen-fisico" *ngIf="data_ex_fisico">
+    
             <div class="flex-space-around-center">
                 <div class="flex-center">
-                    <span class="description-text">FPP:</span>
-                    <input type="text" name="" id="" class="input-small">
+                    <span class="description-text">FUR:</span>
+                    <input type="text" name="" id="" class="input-small" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.frecuencia_cardiaca_materna" [value]="data_ex_fisico.fpp">
                 </div>
 
                 <div class="flex-center">
                     <span class="description-text">FPP:</span>
-                    <input type="text" name="" id="" class="input-small">
+                    <input type="text" name="" id="" class="input-small" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.frecuencia_cardiaca_materna" [value]="data_ex_fisico.fpp">
                 </div>
             </div>
 
             <div class="flex-space-around-center">
                 <div class="flex-center">
                     <span class="description-text">Circunferencia del embarazo (cms):</span>
-                    <input type="text" name="" id="" class="input-small">
+                    <input type="text" name="" id="" class="input-small" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.frecuencia_cardiaca_materna" [value]="data_ex_fisico.circunferencia_embarazo">
                 </div>
-                <!-- <div class="flex-center">
-                            <span class="description-text">FPP:</span>
-                            <input type="text" name="" id="" class="input-small">
-                        </div> -->
             </div>
             <div>
                 <span class="description-text">(Sólo si embarazo menor de 12 semanas)</span>
             </div>
 
         </div>
+
+
+
+
+
+
         <div class="description-title flex-start-center">
             <span class="description-text flex-start-center"> Fecha de la visita</span>
         </div>
@@ -158,7 +220,7 @@
             <span class="description-text flex-start-center"> Peso en libras</span>
         </div>
         <div class="description-title flex-start-center">
-            <span class="description-text flex-start-center"> Altura</span>
+            <span class="description-text flex-start-center"> Altura en metros</span>
         </div>
         <div class="description-title flex-start-center">
             <span class="description-text flex-start-center"> IMC</span>
@@ -338,499 +400,502 @@
     <!-- <mat-grid-tile colspan="14" class="col"> -->
     <div class="contoainer-col-consultas flex-start-center">
         <!-- !Consulta -->
-        <div class="col-consulta flex-column-start-center">
 
-
-            <!-- TODO: EXAMEN FISICO -->
-            <div class="title-section flex-center">
-                <span class="title-text"></span>
-            </div>
-
-            <div class="container-examen-fisico">
-
-                <div class="flex-column-center">
-                    <p class="tipo-consulta-text flex-center"> Control 1 Meses (semanas) de embarazo</p>
-                    <input type="text" name="" id="" class="input-med input-center">
-                </div>
-
-            </div>
-            <div class="input-container flex-start-center" style="padding: 0;">
-                <!-- <div class=""> -->
-
-                <!-- <input type="text" name="" id="" class="input-lg input-center"> -->
-
-                <input [matDatepicker]="pickerUP" class="input-lg input-center datepiker-input" placeholder="dd/mm/aaaa"
-                    >
-                <mat-datepicker-toggle class="dp-small" matSuffix [for]="pickerUP"></mat-datepicker-toggle>
-                <!-- </div> -->
-                <mat-datepicker #pickerUP></mat-datepicker>
-            </div>
-
-
-
-            <!-- TODO: SIGNOS PELIGO -->
-            <div class="title-section flex-center">
-                <span class="title-text"></span>
-            </div>
-            <div class="description-title lines-4 flex-column-center">
-
-                <div class="flex-center">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio">
-                            <img src="assets/image/x.svg" alt="" class="radio-check">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio">
-                            <img src="assets/image/x.svg" alt="" class="radio-check">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-                </div>
-
-                <input type="text" name="" id="" class="input-med input-center">
-
-            </div>
-
-
-            <!-- TODO: SIGNOS VITALES -->
-            <div class="title-section flex-center">
-                <span class="title-text"></span>
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-
-            <!-- <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Temperatura corporal en °C</span>
-            </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Peso en libras</span>
-            </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Altura</span>
-            </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Respiraciones por minuto</span>
-            </div>
-            <div class="description-title flex-start-center">
-                <span class="description-text flex-start-center"> Frecuencia cardiaca Materna</span>
-            </div> -->
-
-
-
-
-            <!-- !EXAMEN GENERAL -->
-            <div class="title-section flex-center">
-                <!-- <span class="title-text"> ¿Normal?</span> -->
-            </div>
-            <div class="description-title flex-center">
-                <p class="tipo-consulta-text flex-center"> ¿Normal?</p>
-                <!-- <span class="description-text flex-start-center"> Frecuencia cardiaca Materna</span> -->
-            </div>
-            <div class="description-title lines-2 flex-center">
-                <div class="flex-center">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio">
-                            <img src="assets/image/x.svg" alt="" class="radio-check">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio">
-                            <img src="assets/image/x.svg" alt="" class="radio-check">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-                </div>
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-
-
-            <!-- !EXAMEN OBSTETRICO -->
-            <div class="title-section flex-center">
-                <span class="title-text"></span>
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="description-title lines-2 flex-center">
-                <div class="flex-center">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio">
-                            <img src="assets/image/x.svg" alt="" class="radio-check">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio">
-                            <img src="assets/image/x.svg" alt="" class="radio-check">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-
-
-
-            <!-- !EXAMEN GINECOLOGICO -->
-            <div class="title-section flex-center">
-                <span class="title-text"></span>
-            </div>
-            <div class="description-title lines-2 flex-column-center">
-                <div class="flex-center">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio">
-                            <img src="assets/image/x.svg" alt="" class="radio-check">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio">
-                            <img src="assets/image/x.svg" alt="" class="radio-check">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-                </div>
-
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="description-title lines-2 flex-column-center">
-                <div class="flex-center">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio">
-                            <img src="assets/image/x.svg" alt="" class="radio-check">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio">
-                            <img src="assets/image/x.svg" alt="" class="radio-check">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-                </div>
-
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="flex-center input-container">
-                <div class="container-check">
-                    <span class="data-text">SI</span>
-                    <div class="radio">
-                        <img src="assets/image/x.svg" alt="" class="radio-check">
-                    </div>
-                    <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                </div>
-
-                <div class="container-check">
-                    <span class="data-text">NO</span>
-                    <div class="radio">
-                        <img src="assets/image/x.svg" alt="" class="radio-check">
-                    </div>
-                    <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                </div>
-            </div>
-
-
-            <!-- !EXAMEN DE LABORATORIO -->
-            <div class="title-section flex-center">
-                <span class="title-text"></span>
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-
-            <!-- !CLASIFICACION -->
-            <div class="title-section flex-center">
-                <span class="title-text"></span>
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-
-            <!-- !CONDUCTA -->
-            <div class="title-section flex-center">
-                <span class="title-text"></span>
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <div class="input-container-2 flex-start-center">
-                <input type="text" name="" id="" class="input-lg input-center">
-            </div>
-            <!-- <div class="description-title flex-start-center">
-                        <span class="description-text flex-start-center"> </span>
-                    </div> -->
-
-            <!-- !CONSEJERIA -->
-
-
-
-            <form [formGroup]="form_consejeria" style="width: 100%;">
+        <ng-container *ngFor="let consulta of data_consultas">
+            <div class="col-consulta flex-column-start-center">
+    
+    
+                <!-- TODO: EXAMEN FISICO -->
                 <div class="title-section flex-center">
                     <span class="title-text"></span>
                 </div>
-
+    
+                <div class="container-examen-fisico">
+    
+                    <div class="flex-column-center">
+                        <p class="tipo-consulta-text flex-center">{{consulta?.tipo_consulta}}</p>
+                        <p class="tipo-consulta-text flex-center">Meses (semanas) de embarazo</p>
+                        <input type="text" [value]="consulta?.meses_embarazo" class="input-med input-center" onkeypress="return event.charCode == 13 || event.charCode == 9">
+                    </div>
+    
+                </div>
+                <div class="description-title flex-center">
+                    <p class="tipo-consulta-text flex-center">{{ consulta?.fecha_visita }}</p>
+                </div>
+    
+    
+    
+                <!-- TODO: SIGNOS PELIGO -->
+                <div class="title-section flex-center">
+                    <span class="title-text"></span>
+                </div>
+                <div class="description-title lines-4 flex-column-center">
+    
+                    <div class="flex-center">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.sintomas_de_peligro=='si'"> 
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.sintomas_de_peligro=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+                    <input type="text" [value]="consulta?.des_sintomas_de_peligro" class="input-med input-center" onkeypress="return event.charCode == 13 || event.charCode == 9">
+    
+                </div>
+    
+    
+                <!-- TODO: SIGNOS VITALES -->
+                <div class="title-section flex-center">
+                    <span class="title-text"></span>
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.presion_arterial">
+                </div>
+    
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.temperatura">
+                </div>
+    
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.peso_libras">
+                </div>
+    
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.estatura">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.imc">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.respiraciones_por_minuto">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.frecuencia_cardiaca_materna">
+                </div>
+    
+                <!-- <div class="description-title flex-start-center">
+                    <span class="description-text flex-start-center"> Temperatura corporal en °C</span>
+                </div>
+                <div class="description-title flex-start-center">
+                    <span class="description-text flex-start-center"> Peso en libras</span>
+                </div>
+                <div class="description-title flex-start-center">
+                    <span class="description-text flex-start-center"> Altura</span>
+                </div>
+                <div class="description-title flex-start-center">
+                    <span class="description-text flex-start-center"> Respiraciones por minuto</span>
+                </div>
+                <div class="description-title flex-start-center">
+                    <span class="description-text flex-start-center"> Frecuencia cardiaca Materna</span>
+                </div> -->
+    
+    
+    
+    
+                <!-- !EXAMEN GENERAL -->
+                <div class="title-section flex-center">
+                    <!-- <span class="title-text"> ¿Normal?</span> -->
+                </div>
+                <div class="description-title flex-center">
+                    <p class="tipo-consulta-text flex-center"> ¿Normal?</p>
+                    <!-- <span class="description-text flex-start-center"> Frecuencia cardiaca Materna</span> -->
+                </div>
+                <div class="description-title lines-2 flex-center">
+                    <div class="flex-center">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.estado_general=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.estado_general=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" [value]="consulta?.examen_bucodental" onkeypress="return event.charCode == 13 || event.charCode == 9">
+                </div>
+    
+    
+                <!-- !EXAMEN OBSTETRICO -->
+                <div class="title-section flex-center">
+                    <span class="title-text"></span>
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.altura_uterina">
+                </div>
+                <div class="description-title lines-2 flex-center">
+                    <div class="flex-center">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.movimientos_fetales">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.movimientos_fetales">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.frecuencia_cardiaca_fetal">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.presentacion_por_leopold">
+                </div>
+    
+    
+    
+                <!-- !EXAMEN GINECOLOGICO -->
+                <div class="title-section flex-center">
+                    <span class="title-text"></span>
+                </div>
+                <div class="description-title lines-2 flex-column-center">
+                    <div class="flex-center">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.presencia_de_sangre=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.presencia_de_sangre=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.des_presencia_de_sangre">
+                </div>
+                <div class="description-title lines-2 flex-column-center">
+                    <div class="flex-center">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.verrugas_herpes=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.verrugas_herpes=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.des_verrugas_herpes">
+                </div>
                 <div class="flex-center input-container">
                     <div class="container-check">
                         <span class="data-text">SI</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('alimentacion','si')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.alimentacion.si">
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.flujo_vaginal=='si'">
                         </div>
                         <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
                     </div>
-
+    
                     <div class="container-check">
                         <span class="data-text">NO</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('alimentacion','no')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.alimentacion.no">
+                        <div class="radio">
+                            <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="consulta?.flujo_vaginal=='no'">
                         </div>
                         <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
                     </div>
                 </div>
-
-                <div class="flex-center input-container">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('senales_peligro','si')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.senales_peligro.si">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('senales_peligro','no')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.senales_peligro.no">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
+    
+    
+                <!-- !EXAMEN DE LABORATORIO -->
+                <div class="title-section flex-center">
+                    <span class="title-text"></span>
                 </div>
-
-                <div class="flex-center input-container">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('consejeria_vih','si')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.consejeria_vih.si">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('consejeria_vih','no')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.consejeria_vih.no">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.hemoglobina">
                 </div>
-
-                <div class="flex-center input-container">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_parto','si')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.plan_parto.si">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_parto','no')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.plan_parto.no">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.grupo_rh">
                 </div>
-
-                <div class="flex-center input-container">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_emergencia','si')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.plan_emergencia.si">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('plan_emergencia','no')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.plan_emergencia.no">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.orina">
                 </div>
-
-                <div class="flex-center input-container">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('lactancia_materna','si')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.lactancia_materna.si">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('lactancia_materna','no')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.lactancia_materna.no">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.glicemia">
                 </div>
-
-                <div class="flex-center input-container">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('metodos_planificacion','si')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.metodos_planificacion.si">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('metodos_planificacion','no')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.metodos_planificacion.no">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.vdrl">
                 </div>
-
-                <div class="flex-center input-container">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_postparto','si')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.importancia_postparto.si">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_postparto','no')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.importancia_postparto.no">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.vih">
                 </div>
-
-                <div class="flex-center input-container">
-                    <div class="container-check">
-                        <span class="data-text">SI</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_recien_nacido','si')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.importancia_recien_nacido.si">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
-
-                    <div class="container-check">
-                        <span class="data-text">NO</span>
-                        <div class="radio" (click)="seleccionarCheckConsejeria('importancia_recien_nacido','no')">
-                            <img src="assets/image/x.svg" alt="" class="radio-check"
-                                *ngIf="checkConsejeria.importancia_recien_nacido.no">
-                        </div>
-                        <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
-                    </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.papanicolaou">
                 </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.infecciones">
+                </div>
+    
+                <!-- !CLASIFICACION -->
+                <div class="title-section flex-center">
+                    <span class="title-text"></span>
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center"  onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.infecciones" [value]="consulta?.semanas_embarazo_fur_au">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.infecciones" [value]="consulta?.problemas_detectados">
+                </div>
+    
+                <!-- !CONDUCTA -->
+                <div class="title-section flex-center">
+                    <span class="title-text"></span>
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.infecciones" [value]="consulta?.sulfato_ferroso">
+                </div>
+                <div class="input-container flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.infecciones" [value]="consulta?.acido_folico">
+                </div>
+                <div class="input-container-2 flex-start-center">
+                    <input type="text" name="" id="" class="input-lg input-center" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.infecciones" [value]="consulta?.vacunacion_madre">
+                </div>
+                <!-- <div class="description-title flex-start-center">
+                            <span class="description-text flex-start-center"> </span>
+                        </div> -->
+    
+                <!-- !CONSEJERIA -->
+    
+    
+    
+                <form [formGroup]="form_consejeria" style="width: 100%;">
+                    <div class="title-section flex-center">
+                        <span class="title-text"></span>
+                    </div>
+    
+                    <div class="flex-center input-container">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.alimentacion=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.alimentacion=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+                    <div class="flex-center input-container">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.seniales_de_peligro=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.seniales_de_peligro=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+                    <div class="flex-center input-container">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.consejeria_pre_post_vih=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.consejeria_pre_post_vih=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+                    <div class="flex-center input-container">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.plan_de_parto=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.plan_de_parto=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+                    <div class="flex-center input-container">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.plan_de_emergencia_familiar=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.plan_de_emergencia_familiar=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+                    <div class="flex-center input-container">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.lactancia_materna_exclusiva=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.lactancia_materna_exclusiva=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+                    <div class="flex-center input-container">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.otros_metodos_de_planificacion=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.otros_metodos_de_planificacion=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+                    <div class="flex-center input-container">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.importancia_postparto=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.importancia_postparto=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+                    <div class="flex-center input-container">
+                        <div class="container-check">
+                            <span class="data-text">SI</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.vacunacion_cuidados_recien_nacido=='si'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+    
+                        <div class="container-check">
+                            <span class="data-text">NO</span>
+                            <div class="radio" >
+                                <img src="assets/image/x.svg" alt="" class="radio-check"
+                                    *ngIf="consulta?.vacunacion_cuidados_recien_nacido=='no'">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+                    </div>
+    
+    
+    
+                </form>
 
-
-
-            </form>
-
-
-
-        </div>
+                <div class="container-btn flex-center">
+                   
+                    <p class="tipo-consulta-text flex-center"> Encargado: {{consulta?.primer_nombre}} {{consulta?.primer_apellido}}</p>
+        
+                    
+                </div>
+    
+    
+    
+            </div>
+        </ng-container>
 
 
         <!-- TODO: FORM CONSULTA -->
@@ -847,7 +912,14 @@
                 <div class="container-examen-fisico">
     
                     <div class="flex-column-center">
-                        <p class="tipo-consulta-text flex-center"> Control 1 Meses (semanas) de embarazo</p>
+                        <select class="input" formControlName="tipo_consulta">
+                            <option value="" disabled selected>Tipo Consulta</option>
+                            <ng-container *ngFor="let tipo of tipos_consulta; let i=index">
+                                <option [ngValue]="tipo" >{{tipo}}</option>
+                            </ng-container>
+                        </select>
+
+                        <p class="tipo-consulta-text flex-center">Meses (semanas) de embarazo</p>
                         <input type="text" name="" id="" class="input-med input-center" formControlName="meses_embarazo">
                     </div>
     
@@ -913,11 +985,11 @@
                 </div>
 
                 <div class="input-container flex-start-center">
-                    <input type="text" name="" id="" class="input-lg input-center" formControlName="peso">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="peso" onkeypress=" return event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 46" (focusout)="outPeso()">
                 </div>
 
                 <div class="input-container flex-start-center">
-                    <input type="text" name="" id="" class="input-lg input-center" formControlName="estatura">
+                    <input type="text" name="" id="" class="input-lg input-center" formControlName="estatura" onkeypress=" return event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 46" (focusout)="calcularIMC()">
                 </div>
                 <div class="input-container flex-start-center">
                     <input type="text" name="" id="" class="input-lg input-center" formControlName="imc">

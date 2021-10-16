@@ -36,8 +36,8 @@ export class FormPacienteComponent implements OnInit {
       'migrante':new FormControl("",Validators.required),
       'nombre_responsable':new FormControl("",Validators.required),
       'telefono_responsable':new FormControl("",Validators.required),
-      'id_usuario': new FormControl('',Validators.required),
-      'id_expediente': new FormControl('',Validators.required)
+      'id_expediente': new FormControl('',Validators.required),
+      'fecha_creacion_expediente': new FormControl('',Validators.required),
     })
   }
 
@@ -48,13 +48,13 @@ export class FormPacienteComponent implements OnInit {
   form_data_paciente:FormGroup
 
 
-  usuario:any;
+  // usuario:any;
   ngOnInit(): void {
     this.Location=this._loc.path();
     this.path_service.setPath(this.Location);
     this.token=localStorage.getItem('token')
     
-    this.usuario= JSON.parse(localStorage.getItem('user'))
+    // this.usuario= JSON.parse(localStorage.getItem('user'))
     // console.log(this.usuario)
   }
 
@@ -81,21 +81,20 @@ export class FormPacienteComponent implements OnInit {
 
 
 
+  cargando=false
   sub_guardar_paciente: Subscription
   guardar(){
-    this.form_data_paciente.get('id_usuario').setValue(this.usuario.id_usuario)
+    // this.form_data_paciente.get('id_usuario').setValue(this.usuario.id_usuario)
     // console.log(this.form_data_paciente.getRawValue())
     if(this.form_data_paciente.valid){
 
 
       // this.form_data_paciente.addControl({},)
+
+      this.cargando=true
       this.sub_guardar_paciente= this.apiServices.agregarPaciente(this.token,this.form_data_paciente.getRawValue()).subscribe(data=>{
         if(data.status=='Success'){
-
-
           let id_paciente= data.data['id_paciente']
-
-
           this.form_data_paciente.reset()
           this.migrante['SI'] = false
           this.migrante['NO'] = false
@@ -106,12 +105,16 @@ export class FormPacienteComponent implements OnInit {
           this.openSnackBar(data.detail,"red-snackbar")
         }
 
+        this.cargando=false
+
       },err=>{
         if(err.detail){
           this.openSnackBar(err.detail,"red-snackbar")
         }else{
           this.openSnackBar(err,"red-snackbar")
         }
+
+        this.cargando=false
       })
     }else{
       this.openSnackBar('Debe completar los campos requeridos',"red-snackbar")

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="basic_exit_Background_Mask_" data-name="basic / exit (Background/Mask)" width="24" height="24" fill="#6f778a"/>
+    </clipPath>
+  </defs>
+  <g id="basic_exit" data-name="basic / exit" clip-path="url(#clip-path)">
+    <path id="coolicon" d="M16,18H2a2,2,0,0,1-2-2V12H2v4H16V2H2V6H0V2A2,2,0,0,1,2,0H16a2,2,0,0,1,2,2V16A2,2,0,0,1,16,18ZM8,13V10H0V8H8V5l5,4L8,13Z" transform="translate(3 3)" fill="#6f778a"/>
+  </g>
+</svg>

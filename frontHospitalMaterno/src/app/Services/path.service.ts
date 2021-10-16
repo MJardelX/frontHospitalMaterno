@@ -14,9 +14,15 @@ export class PathService {
 
   setPath(path:string){
     if(path.indexOf('/login')!=-1 || path.indexOf('/home')!=-1){
-      this.mostrarSide.emit(false)
+      this.mostrarSide.emit({
+        show:false,
+        'path':path
+      })
     }else{
-      this.mostrarSide.emit(true)
+      this.mostrarSide.emit({
+        show:true,
+        'path':path
+      })
     }
   }
 }

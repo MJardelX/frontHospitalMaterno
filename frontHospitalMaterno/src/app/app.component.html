@@ -6,7 +6,34 @@
     </div>
 
 
-    <img src="assets/image/settings.svg" alt="" class="settings-icon">
+    <!-- <img src="assets/image/settings.svg" alt="" class="settings-icon"> -->
+    
+    <button mat-icon-button [matMenuTriggerFor]="menu" (click)="actualizar()" aria-label="Example icon-button with a menu" *ngIf="!token_expired">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item  (click)="toMiPerfil()" class="btn-container" > 
+            <!-- <mat-icon>face</mat-icon> -->
+            <img src="assets/image/profile.svg" class="img-item">
+          <span>{{usuario?.nombres}}</span>
+        </button>
+
+        <button mat-menu-item *ngIf="show_usuario_module" class="btn-container" (click)="navigateTo('usuarios')">
+          <img src="assets/image/personas.svg" class="img-item">
+          <span>Usuarios</span>
+        </button>
+
+
+        <button mat-menu-item  class="btn-container" (click)="navigateTo('pacientes')">
+          <img src="assets/image/personas.svg" class="img-item" >
+          <span>Pacientes</span>
+        </button>
+
+        <button mat-menu-item (click)="logout()" class="btn-container">
+          <img src="assets/image/exit.svg" class="img-item">
+            <span>Cerrar sesión</span>
+          </button>
+      </mat-menu>
 </div>
 
 <router-outlet></router-outlet>

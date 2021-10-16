@@ -1,0 +1,92 @@
+.toolbar {
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #798197;
+    color: white;
+    font-weight: 600;
+    padding: 0 10px;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: 12px;
+}
+
+.settings-icon{
+    height: 15px;
+    cursor: pointer;
+}
+
+.container{
+    width: 250px;
+    margin: 20 auto;
+}
+
+.container-btns{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    width: 250px;
+    margin: 20 auto;
+
+    height: 5   0px;
+
+
+}
+
+.btn{
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 12px;
+    padding: 4px;
+}
+
+
+.text{
+    /* background: chartreuse; */
+    width: 100%;
+}
+
+
+.btn-cancel, .btn-aceptar{
+
+    font-size: 12px;
+    margin-left:10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+.btn-aceptar{
+    background-color: #9FDFEF;
+    color: white;
+    width: 80px;
+}
+
+
+.btn-cancel{
+    background: rgb(245, 74, 74);
+    color: white;
+}
+
+
+.main-container{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}

@@ -10,32 +10,87 @@
     
     
         <div class="col">
-            <input type="text" name=""  placeholder="Primer nombre" class="input" formControlName="primer_nombre">
-            <input type="text" name=""  placeholder="Segundo nombre" class="input" formControlName="segundo_nombre">
-            <input type="text" name=""  placeholder="Primer apellido" class="input" formControlName="primer_apellido">
-            <input type="text" name=""  placeholder="Segundo apellido" class="input" formControlName="segundo_apellido">
-            <input type="text" name=""  placeholder="Dpi" class="input" formControlName="dpi">
+            <mat-form-field class="mat-form" appearance="outline" >
+                <mat-label>Primer nombre</mat-label>
+                <input matInput  formControlName="primer_nombre">
+            </mat-form-field>
+
+            <mat-form-field class="mat-form" appearance="outline" >
+                <mat-label>Segundo nombre</mat-label>
+                <input matInput  formControlName="segundo_nombre">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Primer apellido</mat-label>
+                <input matInput  formControlName="primer_apellido">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Segundo apellido</mat-label>
+                <input matInput  formControlName="segundo_apellido">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Dpi</mat-label>
+                <input matInput  formControlName="dpi">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Usuario</mat-label>
+                <input matInput  formControlName="usuario">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Correo</mat-label>
+                <input matInput  formControlName="correo">
+            </mat-form-field>
+
+            <!-- <input type="text" name=""  placeholder="Dpi" class="input" formControlName="dpi">
             <input type="text" name=""  placeholder="Usuario" class="input" formControlName="usuario">
-            <input type="text" name=""  placeholder="Correo" class="input" formControlName="correo">
+            <input type="text" name=""  placeholder="Correo" class="input" formControlName="correo"> -->
             <!-- <input type="text" name=""  placeholder="Nacionalidad" class="input">
             <input type="text" name=""  placeholder="DPI" class="input"> -->
         </div>
     
         <div class="col">
-            <input type="text" name=""  placeholder="Teléfono" class="input" formControlName="telefono">
-            <input type="text" name=""  placeholder="Puesto" class="input" formControlName="puesto"> 
+
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Teléfono</mat-label>
+                <input matInput  formControlName="telefono">
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline" >
+                <mat-label>Puesto</mat-label>
+                <input matInput  formControlName="puesto">
+            </mat-form-field>
+
+            <!-- <input type="text" name=""  placeholder="Teléfono" class="input" formControlName="telefono">
+            <input type="text" name=""  placeholder="Puesto" class="input" formControlName="puesto">  -->
             <!-- <input type="text" name=""  placeholder="Rol" class="input"> -->
             <!-- <div class="flex-start-center"> -->
-                <select name="roles" id="roles" class="input" formControlName="rol">
+                <!-- <select name="roles" id="roles" class="input" formControlName="rol">
                     <option value="" disabled selected>Rol</option>
                     <ng-container *ngFor="let rol of data_roles; let i=index">
                         <option [ngValue]="i" >{{rol.nombre_rol}}</option>
                     </ng-container>
-                </select>
+                </select> -->
+
+                <mat-form-field appearance="outline" >
+                    <mat-label>roles</mat-label>
+                    <mat-select formControlName="rol">
+                      <mat-option *ngFor="let rol of data_roles; let i=index" [value]="i">
+                        {{rol.nombre_rol}}
+                      </mat-option>
+                    </mat-select>
+                    <!-- <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon> -->
+                </mat-form-field>
     
             <!-- </div> -->
             
-            <span class="guardar-text" (click)="agregarRol()">Agregar rol</span>
+            <div class="flex-start-center">
+                <span class="guardar-text" (click)="agregarRol()">Agregar rol</span>
+            </div>
     
     
             <div class="container-roles flex-start-center">
@@ -66,5 +121,13 @@
 
 <div class="btn-container">
 
-    <input type="button" value="Guardar" class="btn" (click)="guardar()">
+    <!-- <input type="button" value="Guardar" class="btn" > -->
+    <button mat-raised-button class="btn" type="submit"  *ngIf="cargando">
+        <mat-spinner class="mat-spiner" [diameter]="30" color="accent"></mat-spinner>
+    </button>
+
+    <button mat-raised-button class="btn" type="submit" (click)="guardar()" *ngIf="!cargando">
+        <!-- <mat-spinner class="mat-spiner" [diameter]="30"></mat-spinner> -->
+        Guardar
+    </button>
 </div>

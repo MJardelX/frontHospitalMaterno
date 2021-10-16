@@ -4,28 +4,33 @@
         <img src="assets/image/CAM_logo.svg" alt="" class="logo-CAM">
     </div>
 
-
-    <div class="card">
-
-        <p class="title">Iniciar Sesión</p>
-
-
-        <form [formGroup]="form_login">
-            <div class="input-container">
-                <img src="assets/image/usuario.svg" class="icon">
-                <input type="text" placeholder="Usuario" class="input" formControlName="username">
-            </div>
+    <div class="flex-column-center">
+        <div class="card">
     
-            <div class="input-container">
-                <img src="assets/image/candado.svg" class="icon">
-                <input type="password" placeholder="Contraseña" class="input" formControlName="password"> 
-            </div>
-
-        </form>
-
-
-        <!-- <input type="submit" class="btn" value="Ingresar" > -->
-
-        <button class="btn" (click)="ingresar()">Ingresar</button>
+            <p class="title">Iniciar Sesión</p>
+    
+    
+            <form [formGroup]="form_login">
+                <div class="input-container">
+                    <img src="assets/image/usuario.svg" class="icon">
+                    <input type="text" placeholder="Usuario" class="input" formControlName="username">
+                </div>
+        
+                <div class="input-container">
+                    <img src="assets/image/candado.svg" class="icon">
+                    <input type="password" placeholder="Contraseña" class="input" formControlName="password"> 
+                </div>
+    
+            </form>
+    
+    
+            <!-- <input type="submit" class="btn" value="Ingresar" > -->
+    
+            <button class="btn" (click)="ingresar()">Ingresar</button>
+        </div>
+        <div class="container-pass">
+            <p class="text-forgot" (click)="toForgot()">¿Olvidaste tu contraseña?</p>
+        </div>
     </div>
+
 </div>

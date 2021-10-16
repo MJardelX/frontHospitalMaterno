@@ -30,6 +30,7 @@
     "chartjs-plugin-colorschemes": "^0.4.0",
     "lodash-es": "^4.17.21",
     "ng2-charts": "^2.4.2",
+    "ngx-pagination": "^5.1.1",
     "rxjs": "~6.6.0",
     "sha.js": "^2.4.11",
     "ts-md5": "^1.2.9",

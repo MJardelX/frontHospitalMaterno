@@ -1,0 +1,33 @@
+<div class="toolbar">
+
+    <!-- <div class="logo">
+        <img src="assets/image/cam_icon.svg" alt="" class="toolbar-image">
+    </div> -->
+    <p style="margin: 0;">Agregar</p>
+    <img src="assets/image/close.svg" alt="" class="settings-icon" (click)="close()">
+</div>
+
+
+<div class="main-container">
+    <div class="container">
+        <p class="text">¿Desea agregar esta información al expediente?, los datos no podrán ser modificados posteriormente</p>
+    </div>
+    
+    <div class="container-btns">
+
+
+        <button mat-raised-button class="btn-cancel" type="submit" (click)="close()" >
+            <!-- <mat-spinner class="mat-spiner" [diameter]="30"></mat-spinner> -->
+            Cancelar
+        </button>
+
+        <button mat-raised-button class="btn-aceptar" type="submit" (click)="aceptar()" >
+            <!-- <mat-spinner class="mat-spiner" [diameter]="30"></mat-spinner> -->
+            Aceptar
+        </button>
+    
+    
+        
+    </div>
+</div>
+

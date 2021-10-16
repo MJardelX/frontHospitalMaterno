@@ -2,6 +2,9 @@
 
 
 
+<div class="container-progres-bar">
+    <mat-progress-bar mode="query"  *ngIf="cargando"></mat-progress-bar>
+</div>
 <div class="title-container">
     <img src="assets/image/pacientes.svg" alt="" class="title-icon" style="padding: 0;">
     <h1 class="title" style="margin: 0; padding: 0px;">Pacientes</h1>
@@ -20,31 +23,37 @@
     <div class="table">
         
         <div class="table-header">
-            <span>Expediente</span>    
+            <span   class="text-header">Expediente</span>   
+            <input type="text" class="input-table" placeholder="Escriba" (input)="searchExpediente($event)"> 
         </div>
 
         <div class="table-header">
-            <span >Nombre</span>
+            <span   class="text-header">Nombre</span>
+            <input type="text" class="input-table" placeholder="Escriba" (input)="searchNombre($event)"> 
 
         </div>
 
         <div class="table-header">
-            <span >DPI</span>
+            <span   class="text-header">DPI</span>
+            <input type="text" class="input-table" placeholder="Escriba" (input)="searchDPI($event)"> 
             
         </div>
         
         <div class="table-header">
-            <span>Edad</span>
+            <span   class="text-header">Edad</span>
+            <input type="text" class="input-table" placeholder="Escriba" (input)="searchEdad($event)"> 
 
         </div>
 
         <div class="table-header">
-            <span>Teléfono</span>
+            <span   >Teléfono</span>
+            <!-- <input type="text" class="input-table" placeholder="Escriba">  -->
 
         </div>
 
         <div class="table-header">
-            <span>Dirección</span>
+            <span   class="text-header">Dirección</span>
+            <input type="text" class="input-table" placeholder="Escriba" (input)="searchDireccion($event)"> 
 
         </div>
 
@@ -62,23 +71,25 @@
     </div>
 
 
-    <ng-container *ngFor="let paciente of data_pacientes; let i = index">
-        <div class="row" (click)="toPaciente(paciente.id_paciente)">
-            <span class="data">{{paciente.id_expediente}}</span>
-            <span class="data-start">{{paciente.primer_nombre}} {{paciente.segundo_nombre}} {{paciente.primer_apellido}} {{paciente.segundo_apellido}}</span>
-            <span class="data">{{paciente.dpi}}</span>
-            <span class="data">{{paciente.edad_actual}} años</span>
-            <span class="data">{{paciente.telefono}}</span>
-            <span class="data-start">{{paciente.calle_avenida}}  {{paciente.municipio}} {{paciente.departamento}}</span>
+    <ng-container *ngFor="let paciente of data_pacientes| paginate: {itemsPerPage: 15, currentPage: p}; let i = index">
+        <div class="row" >
+            <span (click)="toPaciente(paciente?.id_paciente)" class="data">{{paciente?.id_expediente}}</span>
+            <span (click)="toPaciente(paciente?.id_paciente)" class="data-start">{{paciente?.primer_nombre}} {{paciente?.segundo_nombre}} {{paciente?.primer_apellido}} {{paciente?.segundo_apellido}}</span>
+            <span (click)="toPaciente(paciente?.id_paciente)" class="data">{{paciente?.dpi}}</span>
+            <span (click)="toPaciente(paciente?.id_paciente)" class="data">{{paciente?.edad_actual}} años</span>
+            <span (click)="toPaciente(paciente?.id_paciente)" class="data">{{paciente?.telefono}}</span>
+            <span (click)="toPaciente(paciente?.id_paciente)" class="data-start">{{paciente?.calle_avenida}}  {{paciente?.municipio}} {{paciente?.departamento}}</span>
             
             <div class="data">
-                <img src="assets/image/edit.svg" class="icon">
-                <img src="assets/image/trash.svg" class="icon">
+                <img src="assets/image/edit.svg" class="icon" (click)="toPaciente(paciente?.id_paciente)">
+                <img src="assets/image/trash.svg" class="icon" (click)=" eliminarDialog(paciente?.id_paciente)">
             </div>
         </div>
 
     </ng-container>
+    <pagination-controls class="my-pagination" (pageChange)="p = $event" *ngIf="data_pacientes?.length>15"></pagination-controls>
 
+    
     
 <!-- 
     <div class="row" (click)="toPaciente()">

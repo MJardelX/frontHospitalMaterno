@@ -7,7 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
-
+import { SharedModule } from './shared/shared.module';
+import { registerLocaleData } from '@angular/common';
+import localeMX from '@angular/common/locales/es-MX';
+registerLocaleData(localeMX);
 
 @NgModule({
   declarations: [
@@ -19,9 +22,10 @@ import { ChartsModule } from 'ng2-charts';
     BrowserAnimationsModule,
     ComponentsModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    SharedModule
   ],
-  providers: [{provide:LOCALE_ID, useValue:"es-ES"}],
+  providers: [{provide:LOCALE_ID, useValue:"es-MX"}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

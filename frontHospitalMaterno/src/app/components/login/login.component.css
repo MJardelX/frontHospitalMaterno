@@ -6,6 +6,7 @@
 
     display: flex;
     flex-direction: column;
+
     /* justify-content: center;
     align-items: center; */
 }
@@ -92,3 +93,11 @@
         height: 100px;
     }
   }
+
+
+.text-forgot{
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+}

@@ -28,7 +28,12 @@ export class ApiService {
   // selectPacienteExp= new Subject<any>();
 
   
-  url_base = '/control-medico/';
+  url_base = environment.api;
+
+
+
+
+
   // obtener_pacientes_url = 'obtener-pacientes';
   agregar_paciente_url = 'agregar-paciente';
   agregar_bebe_url = 'agregar-bebe';
@@ -81,11 +86,17 @@ export class ApiService {
   agregarConsulta_url="agregar-consulta"
   obtener_consultas_paciente_url="obtener-consultas-paciente"
 
+  agregar_examen_fisico_url="agregar-examen-fisico"
+  obtener_examen_fisico_url="obtener-examen-fisico"
+  obtener_controles_url="obtener-controles-paciente"
+
   login_url = "login"
 
 
   token = ""
 
+
+  usuario:any;
 
 
 
@@ -103,6 +114,15 @@ export class ApiService {
       }
     ).pipe(
       catchError((err) => {
+
+
+        if (err.status == 401 && err.error.detail=='Token expirado') {
+          this.router.navigateByUrl('/token-expired')
+        }else if(err.status == 401 && err.error.detail=='Token inválido'){
+          this.router.navigateByUrl('/token-invalid')
+        }
+          //             // this.alertExpiration();
+          //           }
         return throwError(err.status);
       })
     );
@@ -123,6 +143,11 @@ export class ApiService {
       }
     ).pipe(
       catchError((err) => {
+        if (err.status == 401 && err.error.detail=='Token expirado') {
+          this.router.navigateByUrl('/token-expired')
+        }else if(err.status == 401 && err.error.detail=='Token inválido'){
+          this.router.navigateByUrl('/token-invalid')
+        }
         return throwError(err.error);
       })
     );
@@ -140,6 +165,11 @@ export class ApiService {
       .post(this.url_base + this.login_url, body)
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -165,6 +195,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -193,6 +228,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -218,6 +258,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -238,6 +283,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -261,6 +311,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -287,6 +342,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -308,6 +368,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -336,6 +401,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -362,6 +432,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -385,6 +460,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -405,6 +485,11 @@ export class ApiService {
       }
     ).pipe(
       catchError((err) => {
+        if (err.status == 401 && err.error.detail=='Token expirado') {
+          this.router.navigateByUrl('/token-expired')
+        }else if(err.status == 401 && err.error.detail=='Token inválido'){
+          this.router.navigateByUrl('/token-invalid')
+        }
         return throwError(err.error);
       })
     );
@@ -439,6 +524,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -463,12 +553,22 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
   }
 
 
+  // if (err.status == 401 && err.error.detail=='Token expirado') {
+  //   this.router.navigateByUrl('/token-expired')
+  // }else if(err.status == 401 && err.error.detail=='Token inválido'){
+  //   this.router.navigateByUrl('/token-invalid')
+  // }
 
 
   agregarControl(token, dataForm: any): Observable<any> {
@@ -485,6 +585,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -505,6 +610,11 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
@@ -519,7 +629,7 @@ export class ApiService {
 
     this.token = atob(token);
     return this.http
-      .post(this.url_base + this.actualizar_roles_usuario_url, body, {
+      .post(this.url_base + this.obtener_consultas_paciente_url, body, {
         headers: {
           // apikey: this.api_key,
           "x-access-token": this.token
@@ -527,10 +637,371 @@ export class ApiService {
       })
       .pipe(
         catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            console.log('Hola')
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
           return throwError(err.error);
         })
       );
   }
+
+
+
+  agregarExamenFisico(token, dataForm: any): Observable<any> {
+    let body: any;
+    body = dataForm
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.agregar_examen_fisico_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+  obtenerExamenFísico(token, id_control): Observable<any> {
+    let body: any;
+    body = {
+      "id_control": id_control
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.obtener_examen_fisico_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+
+  obtenerControles(token, id_paciente): Observable<any> {
+    let body: any;
+    body = {
+      "id_paciente": id_paciente
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.obtener_controles_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+
+  filtrarNombre_url="filtrar-pacientes-nombre"
+  filtrarDPI_url="filtrar-pacientes-dpi"
+  filtrarExpediente_url="filtrar-pacientes-expediente"
+  filtrarEdad_url="filtrar-pacientes-edad"
+  filtrarDireccion_url="filtrar-pacientes-direccion"
+
+  filtrarNombre(token, valor): Observable<any> {
+    let body: any;
+    body = {
+      "valor": valor
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.filtrarNombre_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  filtrarDPI(token, valor): Observable<any> {
+    let body: any;
+    body = {
+      "valor": valor
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.filtrarDPI_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  filtrarExpediente(token, valor): Observable<any> {
+    let body: any;
+    body = {
+      "valor": valor
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.filtrarExpediente_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  filtrarEdad(token, valor): Observable<any> {
+    let body: any;
+    body = {
+      "valor": valor
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.filtrarEdad_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  filtrarDireccion(token, valor): Observable<any> {
+    let body: any;
+    body = {
+      "valor": valor
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.filtrarDireccion_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+
+  obtener_control_url="obtener-control"
+
+  obtenerControlById(token, id_control): Observable<any> {
+    let body: any;
+    body = {
+      "id_control": id_control
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.obtener_control_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+
+
+  eliminarpaciente_url="eliminar-paciente"
+  eliminarPaciente(token, id_paciente): Observable<any> {
+    let body: any;
+    body = {
+      "id_paciente": id_paciente
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.eliminarpaciente_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            console.log('Hola')
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  eliminarusuario_url="eliminar-usuario"
+  eliminarUsurio(token, id_usuario): Observable<any> {
+    let body: any;
+    body = {
+      "id_usuario": id_usuario
+    };
+
+    this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.eliminarusuario_url, body, {
+        headers: {
+          // apikey: this.api_key,
+          "x-access-token": this.token
+        },
+      })
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            console.log('Hola')
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+  cambiarPass_url="recuperar-cuenta"
+  cambiarCPass(correo): Observable<any> {
+    let body: any;
+    body = {
+      "correo": correo
+    };
+
+    // this.token = atob(token);
+    return this.http
+      .post(this.url_base + this.cambiarPass_url, body)
+      .pipe(
+        catchError((err) => {
+          if (err.status == 401 && err.error.detail=='Token expirado') {
+            // console.log('Hola')
+            this.router.navigateByUrl('/token-expired')
+          }else if(err.status == 401 && err.error.detail=='Token inválido'){
+            this.router.navigateByUrl('/token-invalid')
+          }
+          return throwError(err.error);
+        })
+      );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

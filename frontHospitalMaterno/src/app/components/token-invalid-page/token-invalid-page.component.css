@@ -1,0 +1,42 @@
+
+.image{
+    width: 15%;
+    /* margin: 0 auto; */
+}
+
+.container-token{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 400px;
+}
+
+
+.text-token{
+    margin-top: 20px;
+    font-size: 20px;
+    color: #798197;
+
+    text-align: center;
+}
+
+
+.btn{
+    /* font-size: 12px; */
+    /* height: 35px; */
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+@media only screen and (max-width: 400px) {
+    .image{
+        width: 40%;
+        /* margin: 0 auto; */
+    }
+}

@@ -1,12 +1,15 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/Services/api.service';
 import { PathService } from 'src/app/Services/path.service';
+import { InformationDialogComponent } from '../dialogs/information-dialog/information-dialog.component';
+import { FormPacientesComponent } from '../form-pacientes/form-pacientes.component';
 
 @Component({
   selector: 'app-control-prenatal-form',
@@ -20,9 +23,20 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
     private _loc: Location,
     private route: ActivatedRoute,
     private apiServices: ApiService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router,
+    private dialog: MatDialog
+    // public dialogRef: MatDialogRef<FormPacientesComponent>,
+    // @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.iniciarForm();
+
+
+    // if(data!=null){
+    //   console.log(data);
+    // }else{
+    //   console.log('normal')
+    // }
   }
 
   Location: any;
@@ -34,7 +48,7 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
   id_paciente;
   id_expediente
 
-  usuario;
+  // usuario;
   token: any
   ngOnInit(): void {
     this.Location = this._loc.path();
@@ -51,7 +65,9 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
     // this.id_expediente = this.route.snapshot.params['id_expediente']
 
 
-    this.usuario = JSON.parse(localStorage.getItem('user'))
+    // this.usuario = JSON.parse(localStorage.getItem('user'))
+
+    // this.usuario = this.apiServices.usuario
     this.token = localStorage.getItem('token')
 
     this.obtenerDataPaciente()
@@ -679,7 +695,7 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
   guardo=false;
   guardar() {
 
-    console.log(this.id_expediente)
+    // console.log(this.id_expediente)
     this.guardo=true
 
     this.form_identificacion_establecimiento.get('id_expediente').setValue(this.id_expediente)
@@ -754,23 +770,45 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
       this.openSnackBar('Complete el apartado de antecedentes', 'red-snackbar')
       
     } else {
-      let data = Object.assign(this.form_antecedentes.getRawValue(), this.form_identificacion_establecimiento.getRawValue());
-      data = Object.assign(data, this.form_signos_de_peligro.getRawValue())
-      data = Object.assign(data, this.form_referencia.getRawValue())
-      data = Object.assign(data, this.form_motivo_consulta.getRawValue())
-      data = Object.assign(data, this.form_enfermedad_actual.getRawValue())
+
+      const dialogRef = this.dialog.open(InformationDialogComponent,
+        {
+          width: '300px',
+          height: "425x",
+          // data: { id_paciente: id_paciente },
+          panelClass: 'custom-modalbox',
+          autoFocus: false
+        });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if(result=='aceptar'){
+          let data = Object.assign(this.form_antecedentes.getRawValue(), this.form_identificacion_establecimiento.getRawValue());
+          data = Object.assign(data, this.form_signos_de_peligro.getRawValue())
+          data = Object.assign(data, this.form_referencia.getRawValue())
+          data = Object.assign(data, this.form_motivo_consulta.getRawValue())
+          data = Object.assign(data, this.form_enfermedad_actual.getRawValue())
+    
+    
+          this.cargando=true
+          this.sub_guardar_control = this.apiServices.agregarControl(this.token, data).subscribe(d => {
+            if (d.status == 'Success') {
 
 
-      this.cargando=true
-      this.sub_guardar_control = this.apiServices.agregarControl(this.token, data).subscribe(d => {
-        if (d.status == 'Success') {
-          this.openSnackBar('Control agregado exitosamente', "green-snackbar")
+
+              // TODO: cambiar a d.data.id_control
+    
+              let id_control = d.id_control
+              this.router.navigateByUrl('/control-prenatal/'+this.id_paciente+'/'+id_control)
+              this.openSnackBar('Control agregado exitosamente', "green-snackbar")
+            }
+            this.cargando=false
+          },err=>{
+            this.cargando=false
+            this.openSnackBar('Error al guardar control', 'red-snackbar')
+          })
         }
-        this.cargando=false
-      },err=>{
-        this.cargando=false
-        this.openSnackBar('Error al guardar control', 'red-snackbar')
-      })
+      });
+
       // console.log(data)
   
       // var keys = Object.keys(data);

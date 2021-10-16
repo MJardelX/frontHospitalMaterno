@@ -14,6 +14,8 @@ import { PathService } from 'src/app/Services/path.service';
 })
 export class ConfPerfilComponent implements OnInit, OnDestroy{
 
+
+  usuario:any;
   constructor(
     private path_service: PathService,
     private _loc: Location,
@@ -28,13 +30,16 @@ export class ConfPerfilComponent implements OnInit, OnDestroy{
 
     this.form_data_user= new FormGroup({})
 
-    this.id_usuario= this.router.snapshot.params['id_usuario']
+    // this.id_usuario= this.router.snapshot.params['id_usuario']
+   
+
     
 
-    if(this.Location.indexOf('/configuracion-de-perfil/')!=-1){
+    if(this.Location.indexOf('/configuracion-de-perfil')!=-1){
       // this.mostrarSide.emit(false)
       this.isConfigProfile=true
-      this.id_usuario= this.router.snapshot.params['id_usuario']
+      this.usuario = JSON.parse(atob(localStorage.getItem('user')))
+      this.id_usuario = this.usuario.id_usuario
     }else{
       this.isConfigProfile=false
       this.id_usuario= this.router.snapshot.params['id']
@@ -74,8 +79,13 @@ export class ConfPerfilComponent implements OnInit, OnDestroy{
 
   data_usuario
   sub_data_user: Subscription
+
+  cargando=false;
   obtenerDataUsuario(){
+    this.cargando=true;
     this.sub_data_user = this.apiServices.obtener_usuario(this.token, this.id_usuario).subscribe(data=>{
+
+      this.cargando=false
       this.data_usuario=data.data[0]
       console.log(this.data_usuario)
       this.form_data_user= new FormGroup({
@@ -84,12 +94,13 @@ export class ConfPerfilComponent implements OnInit, OnDestroy{
         'primer_apellido':new FormControl(this.data_usuario.primer_apellido,Validators.required),
         'segundo_apellido': new FormControl(this.data_usuario.segundo_apellido),
         'dpi':new FormControl(this.data_usuario.dpi,Validators.required),
-        'correo':new FormControl(this.data_usuario.correo,Validators.required),
+        'correo':new FormControl(this.data_usuario.correo,[Validators.required]),
+        // 'correo':new FormControl(this.data_usuario.correo,[Validators.required, Validators.email]),
         'telefono':new FormControl(this.data_usuario.telefono,Validators.required),
         'puesto':new FormControl(this.data_usuario.puesto,Validators.required),
         'nombre_usuario':new FormControl(this.data_usuario.nombre_usuario,Validators.required),
         'contraseña_actual':new FormControl("",Validators.required),
-        'nueva_contraseña':new FormControl("",[Validators.required]),
+        'nueva_contraseña':new FormControl("",[Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]),
 
         // 'nueva_contraseña':new FormControl("",[Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]),
         'repetir_contraseña':new FormControl("",Validators.required),
@@ -97,6 +108,13 @@ export class ConfPerfilComponent implements OnInit, OnDestroy{
 
       })
 
+    },err=>{
+      this.cargando=false;
+      if(err.detail){
+        this.openSnackBar(err.detail,'red-snackbar')
+      }else{
+        this.openSnackBar('Error al obtener los datos del usuario','red-snackbar')
+      }
     })
   }
 
@@ -194,7 +212,15 @@ export class ConfPerfilComponent implements OnInit, OnDestroy{
         this.obtenerDataUsuario()
         this.openSnackBar('Actualizado correctamente', 'green-snackbar')
       },err=>{
-        this.openSnackBar('Error al gurdar dato', 'red-snackbar')
+
+        // conso
+        console.log(err.detail.indexOf('1062')!=-1)
+        if(err.detail.indexOf('1062')!=-1){
+          this.openSnackBar('El correo se encuentra registrado', 'red-snackbar')
+        }else{
+          this.openSnackBar('Error al gurdar dato', 'red-snackbar')
+        }
+
       })
 
 
@@ -213,7 +239,10 @@ export class ConfPerfilComponent implements OnInit, OnDestroy{
     let repita_contraseña= this.form_data_user.get('repetir_contraseña').value
 
 
-    if(this.form_data_user.get('contraseña_actual').valid &&  
+
+    if(this.form_data_user.get('nueva_contraseña').hasError('pattern')){
+      this.openSnackBar('La contraseña no cumple con el patron establecido', 'red-snackbar')
+    }else if(this.form_data_user.get('contraseña_actual').valid &&  
        this.form_data_user.get('nueva_contraseña').valid &&
        this.form_data_user.get('repetir_contraseña').valid){
 
@@ -402,7 +431,10 @@ export class ConfPerfilComponent implements OnInit, OnDestroy{
       this.sub_update_roles.unsubscribe()
     }
 
-    this.sub_get_roles.unsubscribe()
+
+    if(this.sub_get_roles){
+      this.sub_get_roles.unsubscribe()
+    }
 
   }
 }

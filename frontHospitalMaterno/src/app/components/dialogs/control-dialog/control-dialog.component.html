@@ -1,0 +1,1184 @@
+<div class="toolbar">
+
+    <!-- <div class="logo">
+        <img src="assets/image/cam_icon.svg" alt="" class="toolbar-image">
+    </div> -->
+    <p style="margin: 0;">Control</p>
+    <img src="assets/image/close.svg" alt="" class="settings-icon" (click)="close()">
+</div>
+
+<div class="dialog-content">
+
+
+    <div class="container-progres-bar">
+        <mat-progress-bar mode="query" *ngIf="cargando_paciente"></mat-progress-bar>
+    </div>
+
+    <div class="title-container">
+        <img src="assets/image/pacientes.svg" alt="" class="title-icon" style="padding: 0;">
+        <h1 class="title" style="margin: 0; padding: 0px;">Nuevo Control Prenatal</h1>
+    </div>
+
+
+    <div class="main-container">
+        <form [formGroup]="form_identificacion_establecimiento">
+
+            <div class="container-data-exp">
+                <span class="data-exp">Expediente No. {{id_expediente}}</span>
+
+                <div class="flex-center">
+                    <span class="data-exp">Fecha creación del control:</span>
+                    <div class="input input-date flex-center">
+                        <input matInput [matDatepicker]="pickerFC" class="datepiker-input" placeholder="dd/mm/aaaa"
+                            formControlName="fecha_creacion">
+                        <mat-datepicker-toggle class="dp" matSuffix [for]="pickerFC"></mat-datepicker-toggle>
+                    </div>
+                    <mat-datepicker #pickerFC></mat-datepicker>
+                </div>
+            </div>
+
+
+
+            <!-- !ESTABLECIMIENTO -->
+            <div class="container">
+                <span class="data-card-header-text">IDENTIFICACIÓN DEL ESTABLECIMIENTO DE SALUD</span>
+                <div class="data-card-content"
+                    [ngClass]="{'incompleto': form_identificacion_establecimiento.invalid && guardo }">
+                    <div class="data-establecimiento-1">
+
+
+                        <ng-container *ngFor=" let item of checks_establecimiento; let i=index">
+                            <div class="container-check">
+
+                                <span class="data-text">{{item.name}}</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="item.value">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                        </ng-container>
+
+                    </div>
+
+
+                    <div class="data-establecimiento-2">
+
+                        <div class=" flex-start-center">
+                            <span class="data-text">Distrito:</span>
+                            <input type="text" class="input" formControlName="distrito">
+                        </div>
+
+                        <div class=" flex-start-center">
+                            <span class="data-text" style="width: 120px;">Área de salud:</span>
+                            <input type="text" class="input" formControlName="area_salud">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+        <!-- !DATOS GENERALES -->
+        <div class="container">
+            <span class="data-card-header-text">Datos generales de la paciente</span>
+            <div class="data-card-content">
+                <div class="data">
+                    <p class="data-text">Nombre: <span class="value"> {{data_paciente?.primer_nombre}}
+                            {{data_paciente?.segundo_nombre}} {{data_paciente?.primer_apellido}}
+                            {{data_paciente?.segundo_apellido}}</span></p>
+                    <p class="data-text">Edad: <span class="value">{{data_paciente?.edad_actual}} años</span> </p>
+                    <p class="data-text">Fecha de Nacimiento:<span
+                            class="value">{{data_paciente?.fecha_nacimiento}}</span></p>
+                </div>
+
+                <div class="data">
+                    <p class="data-text">Nombre del otro/a responsable: <span class="value">
+                            {{data_paciente?.nombre_responsable}}</span></p>
+                    <p class="data-text">Teléfono: <span class="value">{{data_paciente?.telefono_responsable}}</span>
+                    </p>
+                    <!-- <p class="data-text">Fecha de Nacimientos:<span class="value">DD/MM/AAAA</span></p> -->
+                </div>
+
+
+                <div class="data">
+                    <p class="data-text">Dirección: <span class="value">{{data_paciente?.calle_avenida}}
+                            {{data_paciente?.municipio}} {{data_paciente?.departamento}}
+                        </span></p>
+                    <p class="data-text">Teléfono: <span class="value">{{data_paciente?.telefono}}</span> </p>
+                    <!-- <p class="data-text">Fecha de Nacimientos:<span class="value">DD/MM/AAAA</span></p> -->
+                </div>
+
+                <div class="data">
+                    <div style="display: flex; justify-content: flex-start; align-items: center;">
+                        <span class="data-text">Migrante:</span>
+                        <div class="container-check" style="margin-left: 10px;">
+                            <span class="data-text">SI</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="migrante?.SI">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+
+                        <div class="container-check" style="margin-left: 10px;">
+                            <span class="data-text">NO</span>
+                            <div class="radio">
+                                <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="migrante.NO">
+                            </div>
+                            <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                        </div>
+
+                    </div>
+
+
+                    <p class="data-text">Ocupación: <span class="value">{{data_paciente?.ocupacion}}</span> </p>
+                    <!-- <p class="data-text">Fecha de Nacimientos:<span class="value">DD/MM/AAAA</span></p> -->
+                </div>
+            </div>
+        </div>
+
+        <form [formGroup]="form_signos_de_peligro">
+            <!-- !SIGNOS Y SINTOMAS -->
+            <div class="container">
+                <span class="data-card-header-text">Signos y síntomas de peligro</span>
+                <div class="data-card-content" [ngClass]="{'incompleto': form_signos_de_peligro.invalid && guardo }">
+                    <p class="data-text">Marque en los cuadros correspondientes de SI o NO lo encontrado en la
+                        evaluación.
+                        (De
+                        acuedo al nivel de resolución trate o refiera)</p>
+
+
+
+                    <div class="data-signos">
+
+                        <!-- !PRIMERA COLUMNA -->
+                        <div class="col-signos">
+                            <div class="opciones-signos">
+                                <span class="data-text" style="text-align: center; width: 20px;">
+                                    SI
+                                </span>
+                                <span class="data-text" style="text-align: center; width: 20px;">
+                                    NO
+                                </span>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Hemorragia vaginal</span>
+                            <div class="opciones-signos">
+                                <div class="radio"
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.hemorragia_vaginal.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.hemorragia_vaginal.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Dolor de cabeza severo</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.dolor_de_cabeza.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.dolor_de_cabeza.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Visión borrosa</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.vision_borrosa.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.vision_borrosa.no">
+                                </div>
+                            </div>
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Convulsión</span>
+                            <div class="opciones-signos">
+                                <div class="radio"  style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.convulsion.si">
+                                </div>
+                                <div class="radio"  style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.convulsion.no">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- !SEGUNDA COLUMNA -->
+                        <div class="col-signos">
+                            <div class="opciones-signos borrar">
+                                <span class="data-text" style="text-align: center; width: 20px;">
+                                    SI
+                                </span>
+                                <span class="data-text" style="text-align: center; width: 20px;">
+                                    NO
+                                </span>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Dolor abdominal severo (epigastralgia)</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.dolor_abdominal.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.dolor_abdominal.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Presión arterial alta</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.presion_arterial.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.presion_arterial.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">fiebre</span>
+                            <div class="opciones-signos">
+                                <div class="radio" style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="signos.fiebre.si">
+                                </div>
+                                <div class="radio"  style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="signos.fiebre.no">
+                                </div>
+                            </div>
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Presentaciones fetales anormales</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.presentaciones_fetales.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos.presentaciones_fetales.no">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </form>
+
+
+        <form [formGroup]="form_referencia">
+            <!-- !SI REFIRIO -->
+            <div class="container">
+                <span class="data-card-header-text">Si refirió a la paciente registre manejo y estabilización</span>
+                <div class="data-card-content" [ngClass]="{'incompleto': form_referencia.invalid && guardo }">
+                    <textarea class="text-area" placeholder="Escriba" formControlName="referencia"></textarea>
+                </div>
+
+
+            </div>
+        </form>
+
+
+        <form [formGroup]="form_motivo_consulta">
+            <!-- !MOTIVO DE LA CONSULTA-->
+            <div class="container">
+                <span class="data-card-header-text">Motivo de la consulta</span>
+                <div class="data-card-content" [ngClass]="{'incompleto': form_motivo_consulta.invalid && guardo }">
+                    <div class="data-consulta">
+
+
+                        <ng-container *ngFor=" let item of m_consulta; let i=index">
+                            <div class="container-check">
+
+                                <span class="data-text">{{item.name}}</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="item.value">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                        </ng-container>
+
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+
+
+        <form [formGroup]="form_enfermedad_actual">
+            <!-- !HISTORIA DE LA ENFERMEDAD ACTUAL-->
+
+            <div class="container">
+                <span class="data-card-header-text">Historia de la enfermedad actual</span>
+                <div class="data-card-content" [ngClass]="{'incompleto': form_enfermedad_actual.invalid && guardo }">
+                    <textarea class="text-area" placeholder="Escriba" formControlName="historia_enfermedad"></textarea>
+                </div>
+
+
+            </div>
+        </form>
+
+
+
+        <form [formGroup]="form_antecedentes">
+
+
+
+
+            <!-- !ANTECEDENTES -->
+            <div class="container">
+                <span class="data-card-header-text">ANTECEDENTES</span>
+                <div class="data-card-content" [ngClass]="{'incompleto': form_antecedentes.invalid && guardo }">
+
+                    <span class="data-exp"
+                        style="display: block; margin: 0 auto; text-align: center;">GINECO/OSBTÉTRICOS</span>
+
+                    <div class="data-6" style="margin-top: 15px;">
+
+                        <div class=" flex-start-center">
+                            <span class="data-text">FUR:</span>
+                            <input type="text" class="input" formControlName="fur_an">
+                        </div>
+
+                        <div class=" flex-start-center">
+                            <span class="data-text"># Gestas:</span>
+                            <input type="text" class="input input-number" formControlName="no_gestas">
+                        </div>
+                        <div class=" flex-start-center">
+                            <span class="data-text" style="width: 60px;">Partos:</span>
+                            <input type="text" class="input" formControlName="partos">
+                        </div>
+
+                        <div class=" flex-start-center">
+                            <span class="data-text">AB:</span>
+                            <input type="text" class="input" formControlName="ab">
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">AB consecutivos:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="AB_consecutivos.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="AB_consecutivos.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                        </div>
+
+
+
+                        <div class=" flex-start-center">
+                            <span class="data-text"># LIU:</span>
+                            <input type="text" class="input input-number" formControlName="no_liu">
+                        </div>
+                    </div>
+
+
+                    <div class="data-5">
+
+                        <div class=" flex-start-center">
+                            <span class="data-text"># Nacidos Vivos:</span>
+                            <input type="text" class="input input-number" formControlName="nacidos_vivos">
+                        </div>
+
+                        <div class=" flex-start-center">
+                            <span class="data-text"># Nacidos Muertos:</span>
+                            <input type="text" class="input input-number" formControlName="nacidos_muertos">
+                        </div>
+                        <div class=" flex-start-center">
+                            <span class="data-text"># Hijos Vivos:</span>
+                            <input type="text" class="input input-number" formControlName="hijos_vivos">
+                        </div>
+
+                        <div class=" flex-start-center">
+                            <span class="data-text"># Hijos Muertos:</span>
+                            <input type="text" class="input input-number" formControlName="hijos_muertos">
+                        </div>
+
+
+
+                        <div class=" flex-start-center">
+                            <span class="data-text"># de Cesáreas:</span>
+                            <input type="text" class="input input-number" formControlName="no_cesarea">
+                        </div>
+                    </div>
+
+
+                    <div class="data-3">
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Embarazos múltiples:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="embarazos_multiples.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="embarazos_multiples.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+                        <div class=" flex-start-center">
+                            <span class="data-text">Fecha último parto:</span>
+
+
+
+                            <!-- <input type="datetime-local" class="input input-date"  data-date-format="DD/MMMM/YYYY"> -->
+
+                            <!-- <input [matDatepicker]="picker">
+                    <mat-datepicker #picker></mat-datepicker> -->
+
+
+
+                            <!-- <mat-form-field appearance="fill"> -->
+                            <!-- <mat-label>Elija una fecha</mat-label> -->
+                            <div class="input input-date flex-center">
+                                <input matInput [matDatepicker]="pickerUP" class="datepiker-input"
+                                    placeholder="dd/mm/aaaa" formControlName="fecha_ultimo_parto">
+                                <mat-datepicker-toggle class="dp" matSuffix [for]="pickerUP"></mat-datepicker-toggle>
+                            </div>
+                            <mat-datepicker #pickerUP></mat-datepicker>
+                            <!-- </mat-form-field> -->
+
+                            <!-- <input matInput [matDatepicker]="picker" class="input">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker> -->
+
+                        </div>
+                        <div class=" flex-start-center">
+                            <span class="data-text"># Niños(as) nacidos antes de los 8 meses:</span>
+                            <input type="text" class="input input-number" formControlName="nacidos_8_meses">
+                        </div>
+
+
+                    </div>
+
+                    <div class="data-3-mod">
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Preeclampsia:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="preeclampsia.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="preeclampsia.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Último RN pesó menos de 5 lbs. y media:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="rn_5.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="rn_5.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Último RN pesó más de 7 lbs. 12 onz:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="rn_7.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="rn_7.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+                    <div class="data-4">
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Detección de cáncer cérvix:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">Papanicolaou:</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="papanicolaou.value">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <!-- <span class="data-text">Detección de cáncer cérvix:</span> -->
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">IVAA:</span>
+                                <div class="radio">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="ivaa.value">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+
+                        </div>
+
+
+                        <div class=" flex-start-center">
+                            <span class="data-text">Fecha:</span>
+                            <div class="input input-date flex-center">
+                                <input matInput [matDatepicker]="picker" class="datepiker-input"
+                                    placeholder="dd/mm/aaaa" formControlName="fecha">
+                                <mat-datepicker-toggle class="dp" matSuffix [for]="picker"></mat-datepicker-toggle>
+                            </div>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text" style="width: 120px;">Resultado Normal:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="resultado_normal.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="resultado_normal.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+                    <div class="data-2">
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Utilizó algún método de Planificación Familiar:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="planificacion_f.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="planificacion_f.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+                        <!-- <div class=" flex-start-center">
+                <span class="data-text" >Fecha último parto:</span>
+                <input type="date" class="input input-date">
+            </div> -->
+                        <div class=" flex-start-center">
+                            <span class="data-text">Cúal:</span>
+                            <input type="text" class="input" style="width: 200px;"
+                                formControlName="metodo_planificacion">
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- !SECCION DE DATOA MÉDICOS -->
+                    <span class="data-exp"
+                        style="display: block; margin: 15px auto; text-align: center; border-top: 1px solid #9FDFEF ; padding-top: 10px;">MÉDICOS</span>
+
+                    <div class="data-signos">
+
+                        <!-- !PRIMERA COLUMNA -->
+                        <div class="col-signos">
+                            <div class="opciones-signos">
+                                <span class="data-text" style="text-align: center; width: 20px;">
+                                    SI
+                                </span>
+                                <span class="data-text" style="text-align: center; width: 20px;">
+                                    NO
+                                </span>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Asma bronquial:</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.asma_branquial.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.asma_branquial.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Hipertensión arterial:</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.hipertension_arterial.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.hipertension_arterial.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Cáncer:</span>
+                            <div class="opciones-signos">
+                                <div class="radio"  style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.cancer.si">
+                                </div>
+                                <div class="radio"  style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.cancer.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">ITS:</span>
+                            <div class="opciones-signos">
+                                <div class="radio"  style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.its.si">
+                                </div>
+                                <div class="radio"  style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.its.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Chagas:</span>
+                            <div class="opciones-signos">
+                                <div class="radio" style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.chagas.si">
+                                </div>
+                                <div class="radio"  style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.chagas.no">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- ! SEGUNDA COLUMNA -->
+                        <div class="col-signos">
+                            <div class="opciones-signos borrar">
+                                <span class="data-text" style="text-align: center; width: 20px;">
+                                    SI
+                                </span>
+                                <span class="data-text" style="text-align: center; width: 20px;">
+                                    NO
+                                </span>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Diabetes:</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.diabetes.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.diabetes.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Cardiopatía:</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.cardiopatia.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.cardiopatia.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Tuberculosis:</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.tuberculosis.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.tuberculosis.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Neuropatía:</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.neuropatia.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.neuropatia.no">
+                                </div>
+                            </div>
+
+
+                            <!-- !OPCION -->
+                            <span class="data-text">Infecciones Urinarias:</span>
+                            <div class="opciones-signos">
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.infecciones_urinarias.si">
+                                </div>
+                                <div class="radio" 
+                                    style="margin: 0;">
+                                    <img src="assets/image/x.svg" alt="" class="radio-check"
+                                        *ngIf="signos_medicos.infecciones_urinarias.no">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="data-3-mod-2">
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Toma medicamentos::</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="toma_m.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="toma_m.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+                        <div class=" flex-start-center">
+                            <span class="data-text">Cual:</span>
+                            <input type="text" class="input input-date" formControlName="medicamento">
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <div class=" flex-start-center">
+                                <span class="data-text">Tipo de sangre: Grupo:</span>
+                                <input type="text" class="input input-number" formControlName="tipo_sangre_grupo">
+                            </div>
+
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">RH(+)</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="tipo_sangre['rh+']">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">RH(-)</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="tipo_sangre['rh-']">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="data-3">
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Transtorno Psico social:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="trastorno_ps.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="trastorno_ps.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Violencia Familiar:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="violencia_f.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="violencia_f.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Violencia basada en género:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="violencia_g.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="violencia_g.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+
+                    <div class="data-1">
+
+                        <div class=" flex-start-center">
+                            <span class="data-text" style="font-weight: bold;">Quirúrgicos:</span>
+                            <input type="text" class="input" formControlName="quirurgicos">
+                        </div>
+
+                        <!-- <div class=" flex-start-center">
+                <span class="data-text" style="width: 120px;">Área de salud:</span>
+                <input type="text" class="input">
+            </div> -->
+                    </div>
+
+
+                    <div class="data-3">
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text" style="font-weight: bold;">Hábitos:</span> <span class="data-text"
+                                style="margin-left: 15px;"> Fuma</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="fuma.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="fuma.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Ingiere bebidas alcohólicas:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="bebidas.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="bebidas.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">Consumo de drogas:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="drogas.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="drogas.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="data-4-normal">
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text" style="font-weight: bold;">Antecedente de vacuna Td:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="vacuna_td.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="vacuna_td.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+
+                        <div class=" flex-start-center">
+                            <span class="data-text"># Dosis:</span>
+                            <input type="text" class="input input-number" formControlName="dosis">
+                        </div>
+
+
+
+
+                        <div class=" flex-start-center">
+                            <span class="data-text">Fecha de última dosis:</span>
+                            <div class="input input-date flex-center">
+                                <input matInput [matDatepicker]="pickerUD" class="datepiker-input"
+                                    placeholder="dd/mm/aaaa" formControlName="fecha_ultima_dosis">
+                                <mat-datepicker-toggle class="dp" matSuffix [for]="pickerUD"></mat-datepicker-toggle>
+                            </div>
+                            <mat-datepicker #pickerUD></mat-datepicker>
+                        </div>
+
+
+
+
+
+
+
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <span class="data-text">SR:</span>
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">SI</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="sr.si">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+
+                            <div class="container-check" style="margin-left: 10px;">
+                                <span class="data-text">NO</span>
+                                <div class="radio" >
+                                    <img src="assets/image/x.svg" alt="" class="radio-check" *ngIf="sr.no">
+                                </div>
+                                <!-- <input type="radio" name="establecimiento" id="PS" class="radio-btn"> -->
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="data-1">
+
+                        <div class=" flex-start-center">
+                            <span class="data-text" style="font-weight: bold; width: 150px;">Otros antecedentes:</span>
+                            <input type="text" class="input" formControlName="otros_antecedentes">
+                        </div>
+
+                        <!-- <div class=" flex-start-center">
+                <span class="data-text" style="width: 120px;">Área de salud:</span>
+                <input type="text" class="input">
+            </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="flex-end-center container">
+                <button mat-raised-button class="btn" type="submit" (click)="guardar()" *ngIf="cargando">
+                    <mat-spinner class="mat-spiner" [diameter]="30"></mat-spinner>
+                </button>
+
+                <button mat-raised-button class="btn" type="submit" (click)="guardar()" *ngIf="!cargando">
+                    Guardar
+                </button>
+            </div> -->
+
+        </form>
+
+    </div>
+
+
+    <div class="footer">
+    </div>
+
+</div>

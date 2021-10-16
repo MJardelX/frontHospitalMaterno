@@ -4,6 +4,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/Services/api.service';
 import { PathService } from 'src/app/Services/path.service';
@@ -15,6 +16,7 @@ import { PathService } from 'src/app/Services/path.service';
 })
 export class DataPacienteComponent implements OnInit,OnDestroy {
 
+  show_expedientes=false;
   constructor(
     private path_service: PathService,
     private _loc: Location,
@@ -26,6 +28,21 @@ export class DataPacienteComponent implements OnInit,OnDestroy {
   ) { 
 
     this.form_data_paciente=new FormGroup({})
+
+
+    let user_base64=localStorage.getItem('user')
+    if(user_base64){
+      let usuario = JSON.parse(atob(user_base64))
+      usuario.roles.forEach(element => {
+        if(element=='Empleado Salud'){
+          console.log(element)
+          this.show_expedientes = true
+        }  
+      });
+    }else{
+      router.navigateByUrl('/pacientes')
+    }
+
   }
 
   Location:any;
@@ -37,7 +54,7 @@ export class DataPacienteComponent implements OnInit,OnDestroy {
 
   form_data_paciente: FormGroup
 
-
+  cargando=false;
   data_paciente:any;
   ngOnInit(): void {
     this.Location = this._loc.path();
@@ -46,6 +63,26 @@ export class DataPacienteComponent implements OnInit,OnDestroy {
     this.token=localStorage.getItem('token')
 
     this.obtenerDataPaciente()
+
+    if(this.show_expedientes){
+      this.obtenerControles()
+    }
+  }
+
+
+  sub_obtener_controles: Subscription
+  controles:any;
+  obtenerControles(){
+    this.cargando=true
+    this.sub_obtener_controles = this.apiServices.obtenerControles(this.token,this.id_paciente).subscribe(data=>{
+      this.controles= data.data
+      // console.log(this.controles)
+
+      this.cargando=false;
+    },err=>{
+      this.openSnackBar('Error al obtener controles',"red-snackbar")
+      this.cargando=false
+    })
   }
 
 
@@ -67,8 +104,8 @@ export class DataPacienteComponent implements OnInit,OnDestroy {
   }
 
 
-  toControl(){
-    this.router.navigateByUrl('/control-prenatal')
+  toControl(id_control){
+    this.router.navigateByUrl('/control-prenatal/'+this.id_paciente+'/'+id_control)
   }
 
   toNewControl(){
@@ -281,7 +318,8 @@ export class DataPacienteComponent implements OnInit,OnDestroy {
     this.sub_obtener_paciente=this.apiServices.obtener_paciente(this.token,this.id_paciente).subscribe(data=>{
       this.data_paciente=data.data[0]
       
-      console.log(this.data_paciente)
+      // console.log(this.data_paciente)
+      localStorage.setItem('pacient', JSON.stringify(this.data_paciente))
       this.form_data_paciente=new FormGroup({
         'primer_nombre':new FormControl(this.data_paciente.primer_nombre,Validators.required),
         'segundo_nombre': new FormControl(this.data_paciente.segundo_nombre),
@@ -298,6 +336,10 @@ export class DataPacienteComponent implements OnInit,OnDestroy {
         'nombre_responsable':new FormControl(this.data_paciente.nombre_responsable,Validators.required),
         'telefono_responsable':new FormControl(this.data_paciente.telefono_responsable,Validators.required),
       })
+
+      let momentVariable = moment(this.data_paciente?.fecha_nacimiento, 'DD/MM/YYYY');
+      this.form_data_paciente.get('fecha_nacimiento').setValue(momentVariable.toDate())
+      // console.log(momentVariable)  
 
       this.migrante[this.data_paciente.migrante]=true
       // console.log(this.data_paciente)

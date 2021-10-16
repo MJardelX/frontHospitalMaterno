@@ -1,3 +1,6 @@
+<div class="container-progres-bar">
+    <mat-progress-bar mode="query"  *ngIf="cargando"></mat-progress-bar>
+</div>
 <div class="title-container">
     <!-- <img src="assets/image/user_circle.svg" alt="" class="title-icon" style="padding: 0;"> -->
     <h1 class="title" style="margin: 0; padding: 0px;">Paciente</h1>
@@ -25,10 +28,25 @@
     
             <div class="form" *ngIf="drops.nombre">
                 <div class="form-grid grid-nombre">
-                    <input type="text" name=""  placeholder="Primer nombre" class="input" formControlName="primer_nombre">
-                    <input type="text" name=""  placeholder="Segundo nombre" class="input" formControlName="segundo_nombre">
-                    <input type="text" name=""  placeholder="Primer apellido" class="input" formControlName="primer_apellido">
-                    <input type="text" name=""  placeholder="Segundo apellido" class="input" formControlName="segundo_apellido">
+                    <mat-form-field class="mat-form" appearance="outline" >
+                        <mat-label>Primer nombre</mat-label>
+                        <input matInput  formControlName="primer_nombre">
+                    </mat-form-field>
+        
+                    <mat-form-field class="mat-form" appearance="outline" >
+                        <mat-label>Segundo nombre</mat-label>
+                        <input matInput  formControlName="segundo_nombre">
+                    </mat-form-field>
+        
+                    <mat-form-field  appearance="outline" >
+                        <mat-label>Primer apellido</mat-label>
+                        <input matInput  formControlName="primer_apellido">
+                    </mat-form-field>
+        
+                    <mat-form-field  appearance="outline" >
+                        <mat-label>Segundo apellido</mat-label>
+                        <input matInput  formControlName="segundo_apellido">
+                    </mat-form-field>
     
                     <div class="container-btn">
                         <span class="guardar-text" (click)=" actualizarNombre()">Guardar</span>
@@ -52,19 +70,19 @@
             </div>
     
             <div class="form" *ngIf="drops.dpi">
+
                 <div class="form-grid grid-usuario">
-                    <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
-                    <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
-                    <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
-                    <div style="display: flex; justify-content: space-around; align-items: center;">
-                        <input type="text" name=""  placeholder="DPI" class="input" style="margin-right: 5px;" formControlName="dpi">
-                        <span class="guardar-text" (click)="actualizarDpi()">Guardar</span>
+                    <mat-form-field class="mat-form" appearance="outline" >
+                        <mat-label>Dpi</mat-label>
+                        <input matInput  formControlName="dpi">
+                    </mat-form-field>
+                    <div class="container-btn">
+                        <span class="guardar-text" (click)=" actualizarDpi()">Guardar</span>
                     </div>
     
-                    <!-- <div class="container-btn">
-                    </div> -->
-    
                 </div>
+
+
             </div>
         </div>
     
@@ -81,19 +99,22 @@
                 </div>
             </div>
             <div class="form" *ngIf="drops.nacimiento">
+
                 <div class="form-grid grid-usuario">
-                    <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
-                    <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
-                    <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
-                    <div style="display: flex; justify-content: space-around; align-items: center;">
-                        <input type="date" name=""  placeholder="DPI" class="input" style="margin-right: 5px;" formControlName="fecha_nacimiento">
-                        <span class="guardar-text" (click)="actualizarFechaNacimiento()">Guardar</span>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de nacimiento</mat-label>
+                        <input matInput [matDatepicker]="pickerFN" formControlName="fecha_nacimiento">
+                        <mat-datepicker-toggle matSuffix [for]="pickerFN"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerFN></mat-datepicker>
+                      </mat-form-field>
+        
+    
+                    <div class="container-btn">
+                        <span class="guardar-text" (click)=" actualizarFechaNacimiento()">Guardar</span>
                     </div>
     
-                    <!-- <div class="container-btn">
-                    </div> -->
-    
                 </div>
+
             </div>
         </div>
     
@@ -112,16 +133,26 @@
     
             <div class="form" *ngIf="drops.direccion">
                 <div class="form-grid grid-nombre">
-                    <input type="text" name=""  placeholder="Departamento" class="input" formControlName="departamento">
-                    <!-- <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
-                    <input type="text" name=""  placeholder="Municipio" class="input " formControlName="municipio">
-                    <input type="text" name=""  placeholder="Calle / Avenida" class="input " formControlName="calle_avenida">
+                    <mat-form-field  appearance="outline" >
+                        <mat-label>Departamento</mat-label>
+                        <input matInput  formControlName="departamento">
+                    </mat-form-field>
+        
+                    <mat-form-field  appearance="outline" >
+                        <mat-label>Municipio</mat-label>
+                        <input matInput  formControlName="municipio">
+                    </mat-form-field>
+        
+                    <mat-form-field  appearance="outline" class="nombre-encargado">
+                        <mat-label>Dirección</mat-label>
+                        <input matInput  formControlName="calle_avenida">
+                    </mat-form-field>
     
                     <div class="container-btn down-1">
                         <span class="guardar-text" (click)="actualizarDireccion()">Guardar</span>
                     </div>
     
-                </div>
+                </div>            
             </div>
         </div>
     
@@ -140,17 +171,15 @@
             </div>
     
             <div class="form" *ngIf="drops.telefono">
+
                 <div class="form-grid grid-usuario">
-                    <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
-                    <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
-                    <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
-                    <div style="display: flex; justify-content: space-around; align-items: center;">
-                        <input type="text" name=""  placeholder="Teléfono" class="input" style="margin-right: 5px;" formControlName="telefono">
+                    <mat-form-field class="mat-form" appearance="outline" >
+                        <mat-label>Teléfono</mat-label>
+                        <input matInput  formControlName="telefono">
+                    </mat-form-field>
+                    <div class="container-btn">
                         <span class="guardar-text" (click)="actualizarDatoPaciente('telefono')">Guardar</span>
                     </div>
-    
-                    <!-- <div class="container-btn">
-                    </div> -->
     
                 </div>
             </div>
@@ -169,19 +198,18 @@
             </div>
     
             <div class="form" *ngIf="drops.ocupacion">
+
                 <div class="form-grid grid-usuario">
-                    <!-- <input type="text" name=""  placeholder="Primer nombre" class="input">
-                    <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
-                    <!-- <input type="text" name=""  placeholder="Primer apellido" class="input"> -->
-                    <div style="display: flex; justify-content: space-around; align-items: center;">
-                        <input type="text" name=""  placeholder="Ocupacion" class="input" style="margin-right: 5px;" formControlName="ocupacion">
+                    <mat-form-field  appearance="outline" style="margin-bottom: -1.25em">
+                        <mat-label>Ocupación</mat-label>
+                        <input matInput  formControlName="ocupacion">
+                    </mat-form-field>
+                    <div class="container-btn">
                         <span class="guardar-text" (click)="actualizarDatoPaciente('ocupacion')">Guardar</span>
                     </div>
     
-                    <!-- <div class="container-btn">
-                    </div> -->
-    
                 </div>
+
             </div>
         </div>
     
@@ -259,13 +287,19 @@
             </div>
     
             <div class="form" *ngIf="drops.responsable">
+
                 <div class="form-grid grid-nombre">
-                    <input type="text" name=""  placeholder="Nombre" class="input " formControlName="nombre_responsable">
-                    <!-- <input type="text" name=""  placeholder="Segundo nombre" class="input"> -->
-                    <input type="text" name=""  placeholder="Teléfono" class="input " formControlName="telefono_responsable">
-                    <!-- <input type="password" name=""  placeholder="Calle / Avenida" class="input "> -->
+                    <mat-form-field  appearance="outline" >
+                        <mat-label>Nombre Responsable</mat-label>
+                        <input matInput  formControlName="nombre_responsable">
+                    </mat-form-field>
+        
+                    <mat-form-field  appearance="outline" >
+                        <mat-label>Teléfono Responsable</mat-label>
+                        <input matInput  formControlName="telefono_responsable">
+                    </mat-form-field>
     
-                    <div class="container-btn down-1">
+                    <div class="container-btn">
                         <span class="guardar-text" (click)="actualizarResponsable()">Guardar</span>
                     </div>
     
@@ -310,143 +344,92 @@
 
 <!-- !Expediente -->
 
-<div class="title-container" style="margin-top: 20px;">
-    <!-- <img src="assets/image/pacientes.svg" alt="" class="title-icon" style="padding: 0;"> -->
-    <h1 class="title" style="margin: 0; padding: 0px;">Expediente</h1>
-</div>
-
-
-
-<div style="width: 70%; display: flex; justify-content: flex-end; margin: 0 auto; " >
-    <div class="add-pacient" (click)="toNewControl()">
-        <img src="assets/image/add.svg" alt="" class="add-icon" style="padding: 0;">
-        <span>Agregar Control</span>
+<ng-container *ngIf="show_expedientes">
+    <div class="title-container" style="margin-top: 20px;">
+        <!-- <img src="assets/image/pacientes.svg" alt="" class="title-icon" style="padding: 0;"> -->
+        <h1 class="title" style="margin: 0; padding: 0px;">Expediente</h1>
     </div>
-</div>
-
-<div class="container-table" >
     
-    <div class="table">
+    
+    
+    <div style="width: 70%; display: flex; justify-content: flex-end; margin: 0 auto; " >
+        <div class="add-pacient" (click)="toNewControl()">
+            <img src="assets/image/add.svg" alt="" class="add-icon" style="padding: 0;">
+            <span>Agregar Control</span>
+        </div>
+    </div>
+    
+    <div class="container-table" >
         
-        <div class="table-header">
-            <span >No.</span>
-        </div>
-
-        <div class="table-header">
-            <span >Tipo</span>
-
-        </div>
-
-        <div class="table-header">
-            <span >Consultas</span>
+        <div class="table">
             
+            <div class="table-header">
+                <span >No.</span>
+            </div>
+    
+            <div class="table-header">
+                <span >Tipo</span>
+    
+            </div>
+    
+            <div class="table-header">
+                <span >Consultas</span>
+                
+            </div>
+            
+            <div class="table-header">
+                <span>Fecha creación</span>
+    
+            </div>
+    
+            <div class="table-header">
+                <span>Última modificacion</span>
+    
+            </div>
+    
+            <div class="table-header">
+                <span>Encargado</span>
+    
+            </div>
+    
+            <!-- <div class="table-header">
+                <span>Expediente</span>    
+            </div> -->
+            <!-- <div class="table-header">
+                <span class="">
+                    No
+                </span>
+                <span class="">
+                    Expediente
+                </span>
+                
+            </div> -->
+    
         </div>
+    
         
-        <div class="table-header">
-            <span>Fecha creación</span>
-
-        </div>
-
-        <div class="table-header">
-            <span>Última modificacion</span>
-
-        </div>
-
-        <div class="table-header">
-            <span>Encargado</span>
-
-        </div>
-
-        <!-- <div class="table-header">
-            <span>Expediente</span>    
-        </div> -->
-        <!-- <div class="table-header">
-            <span class="">
-                No
-            </span>
-            <span class="">
-                Expediente
-            </span>
-            
-        </div> -->
-
-    </div>
-
     
-    <div class="row">
-        <span class="data" (click)="toControl()">1</span>
-        <span class="data" (click)="toControl()">Control Prenatal</span>
-        <span class="data" (click)="toControl()">2</span>
-        <span class="data" (click)="toControl()">08/04/2021</span>
-        <span class="data" (click)="toControl()">12/09/2021</span>
-        <span class="data" (click)="toControl()">Marvin Xiquitá</span>
-        <!-- <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div> -->
-    </div>
-
-    <div class="row">
-        <span class="data">2</span>
-        <span class="data">Control Prenatal</span>
-        <span class="data">2</span>
-        <span class="data">08/04/2021</span>
-        <span class="data">12/09/2021</span>
-        <span class="data">Marvin Xiquitá</span>
-        <!-- <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div> -->
-    </div>
-
-    <div class="row">
-        <span class="data">3</span>
-        <span class="data">Control Prenatal</span>
-        <span class="data">2</span>
-        <span class="data">08/04/2021</span>
-        <span class="data">12/09/2021</span>
-        <span class="data">Marvin Xiquitá</span>
-        <!-- <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div> -->
-    </div>
-
-
-    <div class="row">
-        <span class="data">4</span>
-        <span class="data">Control Prenatal</span>
-        <span class="data">2</span>
-        <span class="data">08/04/2021</span>
-        <span class="data">12/09/2021</span>
-        <span class="data">Marvin Xiquitá</span>
-        <!-- <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div> -->
-    </div>
-   
-
+        <ng-container *ngFor="let control of controles; let i = index" >
+            <div class="row">
+                <span class="data" (click)="toControl(control.id_control)">{{i+1}}</span>
+                <span class="data" (click)="toControl(control.id_control)">Control Prenatal</span>
+                <span class="data" (click)="toControl(control.id_control)">{{control?.cantidad_consultas}}</span>
+                <span class="data" (click)="toControl(control.id_control)">{{control?.fecha_creacion}}</span>
+                <span class="data" (click)="toControl(control.id_control)">{{control?.ultima_visita}}</span>
+                <span class="data" (click)="toControl(control.id_control)">{{control?.usuario_primer_nombre}} {{control?.usuario_primer_apellido}}</span>
+                <!-- <span class="data">331</span>
+                <div class="data">
+                    <img src="assets/image/edit.svg" class="icon">
+                    <img src="assets/image/trash.svg" class="icon">
+                </div> -->
+            </div>
+        </ng-container>
     
     
-    <!-- <div class="row">
-        <span class="data">2</span>
-        <span class="data">Grisel Victoria Xiquitá Xajpot</span>
-        <span class="data">3111 06021 0407</span>
-        <span class="data">22 años</span>
-        <span class="data">40110840</span>
-        <span class="data">Patzún Chimaltenango</span>
-        <span class="data">331</span>
-        <div class="data">
-            <img src="assets/image/edit.svg" class="icon">
-            <img src="assets/image/trash.svg" class="icon">
-        </div>
-    </div> -->
+    </div>
+</ng-container>
 
-</div>
+
+
 <div style="height: 20px;">
 </div>
