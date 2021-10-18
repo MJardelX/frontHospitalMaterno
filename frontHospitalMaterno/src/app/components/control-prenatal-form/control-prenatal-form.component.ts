@@ -635,7 +635,7 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
       "no_gestas": new FormControl('', Validators.required),
       "partos": new FormControl('', Validators.required),
       "ab": new FormControl('', Validators.required),
-      "ab_consecutivos": new FormControl('', Validators.required),
+      "ab_consecutivos": new FormControl(' '),
       "no_liu": new FormControl('', Validators.required),
       "nacidos_vivos": new FormControl('', Validators.required),
       "nacidos_muertos": new FormControl('', Validators.required),
@@ -643,17 +643,17 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
       "hijos_muertos": new FormControl('', Validators.required),
       "no_cesarea": new FormControl('', Validators.required),
       "embarazos_multiples": new FormControl('', Validators.required),
-      "fecha_ultimo_parto": new FormControl('', Validators.required),
+      "fecha_ultimo_parto": new FormControl(null ),
       "nacidos_8_meses": new FormControl('', Validators.required),
       "preeclampsia": new FormControl('', Validators.required),
       "rm_menos_cinco": new FormControl('', Validators.required),
       "rm_mas_siete": new FormControl('', Validators.required),
-      "papanicolaou": new FormControl('', Validators.required),
+      "papanicolaou": new FormControl('no'),
       "ivvaa": new FormControl('no', Validators.required),
-      "fecha": new FormControl('no', Validators.required),
+      "fecha": new FormControl(null),
       "resultado_normal": new FormControl('', Validators.required),
       "utilizo_metodo_pf": new FormControl('', Validators.required),
-      "metodo_planificacion": new FormControl('', []),
+      "metodo_planificacion": new FormControl(' ', []),
       "asma_branquial": new FormControl('', Validators.required),
       "hipertension_arterial": new FormControl('', Validators.required),
       "cancer": new FormControl('', Validators.required),
@@ -665,9 +665,9 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
       "neuropatia": new FormControl('', Validators.required),
       "infecciones_urinarias": new FormControl('', Validators.required),
       "toma_medicamentos": new FormControl('', Validators.required),
-      "medicamento": new FormControl('', []),
+      "medicamento": new FormControl(' ', []),
       "tipo_sangre_grupo": new FormControl('', Validators.required),
-      "tipo_sangre": new FormControl('', Validators.required),
+      "tipo_sangre": new FormControl(' '),
       "trastorno_psicosocial": new FormControl('', Validators.required),
       "violencia_familiar": new FormControl('', Validators.required),
       "violencia_genero": new FormControl('', Validators.required),
@@ -676,8 +676,8 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
       "bebidas_alcoholicas": new FormControl('', Validators.required),
       "drogas": new FormControl('', Validators.required),
       "vacuna_td": new FormControl('', Validators.required),
-      "dosis": new FormControl('', []),
-      "fecha_ultima_dosis": new FormControl('', Validators.required),
+      "dosis": new FormControl(' '),
+      "fecha_ultima_dosis": new FormControl(null),
       "sr": new FormControl('', Validators.required),
       "otros_antecedentes": new FormControl('', Validators.required),
     })
@@ -695,7 +695,7 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
   guardo=false;
   guardar() {
 
-    // console.log(this.id_expediente)
+    console.log(this.form_antecedentes.getRawValue())
     this.guardo=true
 
     this.form_identificacion_establecimiento.get('id_expediente').setValue(this.id_expediente)
@@ -736,12 +736,12 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
     //   this.form_antecedentes.get('papanicolaou').setValue('no')
     // }
 
-    this.ivaa.value = !this.ivaa.value
-    if (this.ivaa.value) {
-      this.form_antecedentes.get('ivvaa').setValue('si')
-    } else {
-      this.form_antecedentes.get('ivvaa').setValue('no')
-    }
+    // this.ivaa.value = !this.ivaa.value
+    // if (this.ivaa.value) {
+    //   this.form_antecedentes.get('ivvaa').setValue('si')
+    // } else {
+    //   this.form_antecedentes.get('ivvaa').setValue('no')
+    // }
 
     if (this.form_identificacion_establecimiento.invalid &&
       this.form_signos_de_peligro.invalid &&
@@ -788,6 +788,30 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
           data = Object.assign(data, this.form_motivo_consulta.getRawValue())
           data = Object.assign(data, this.form_enfermedad_actual.getRawValue())
     
+
+
+          if(data['fecha_creacion']!=null){
+            let fecha_creacion = moment(data['fecha_creacion'], 'MM/DD/YYYY').format('YYYY-MM-DD')
+            data['fecha_creacion'] = fecha_creacion
+          }
+
+          if(data['fecha_ultimo_parto']!=null){
+            let  fecha_ultimo_parto = moment(data['fecha_ultimo_parto'], 'MM/DD/YYYY').format('YYYY-MM-DD')
+            data['fecha_ultimo_parto']= fecha_ultimo_parto
+          }
+
+          if(data['fecha']!=null){
+            let  fecha = moment(data['fecha'], 'MM/DD/YYYY').format('YYYY-MM-DD')
+            data['fecha']= fecha
+          }
+
+          if(data['fecha_ultima_dosis']!=null){
+            let  fecha_ultima_dosis = moment(data['fecha_ultima_dosis'], 'MM/DD/YYYY').format('YYYY-MM-DD')
+            data['fecha_ultima_dosis']= fecha_ultima_dosis
+          }
+
+
+
     
           this.cargando=true
           this.sub_guardar_control = this.apiServices.agregarControl(this.token, data).subscribe(d => {
@@ -797,14 +821,20 @@ export class ControlPrenatalFormComponent implements OnInit, OnDestroy {
 
               // TODO: cambiar a d.data.id_control
     
-              let id_control = d.id_control
+              let id_control = d.data.id_control
               this.router.navigateByUrl('/control-prenatal/'+this.id_paciente+'/'+id_control)
               this.openSnackBar('Control agregado exitosamente', "green-snackbar")
             }
             this.cargando=false
           },err=>{
             this.cargando=false
-            this.openSnackBar('Error al guardar control', 'red-snackbar')
+
+            if(err.detail){
+              this.openSnackBar(err.detail, 'red-snackbar')
+            }else{
+              this.openSnackBar('Error al guardar control', 'red-snackbar')
+            }
+           
           })
         }
       });

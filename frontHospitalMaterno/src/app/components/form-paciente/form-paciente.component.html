@@ -190,7 +190,7 @@
     <!-- <input type="button" value="Guardar" class="btn" (click)="guardar()"> -->
 
     <button mat-raised-button class="btn" type="submit" *ngIf="cargando">
-        <mat-spinner class="mat-spiner" [diameter]="30" ></mat-spinner>
+        <mat-spinner class="mat-spiner" [diameter]="30" color="accent"></mat-spinner>
     </button>
 
     <button mat-raised-button class="btn" type="submit" (click)="guardar()" *ngIf="!cargando">

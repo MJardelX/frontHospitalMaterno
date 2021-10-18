@@ -411,12 +411,12 @@
     
         <ng-container *ngFor="let control of controles; let i = index" >
             <div class="row">
-                <span class="data" (click)="toControl(control.id_control)">{{i+1}}</span>
-                <span class="data" (click)="toControl(control.id_control)">Control Prenatal</span>
-                <span class="data" (click)="toControl(control.id_control)">{{control?.cantidad_consultas}}</span>
-                <span class="data" (click)="toControl(control.id_control)">{{control?.fecha_creacion}}</span>
-                <span class="data" (click)="toControl(control.id_control)">{{control?.ultima_visita}}</span>
-                <span class="data" (click)="toControl(control.id_control)">{{control?.usuario_primer_nombre}} {{control?.usuario_primer_apellido}}</span>
+                <span class="data" (click)="toControl(control.id_control, control?.fecha_creacion)">{{i+1}}</span>
+                <span class="data" (click)="toControl(control.id_control, control?.fecha_creacion)">Control Prenatal</span>
+                <span class="data" (click)="toControl(control.id_control, control?.fecha_creacion)">{{control?.cantidad_consultas}}</span>
+                <span class="data" (click)="toControl(control.id_control, control?.fecha_creacion)">{{control?.fecha_creacion}}</span>
+                <span class="data" (click)="toControl(control.id_control, control?.fecha_creacion)">{{control?.ultima_visita}}</span>
+                <span class="data" (click)="toControl(control.id_control, control?.fecha_creacion)">{{control?.usuario_primer_nombre}} {{control?.usuario_primer_apellido}}</span>
                 <!-- <span class="data">331</span>
                 <div class="data">
                     <img src="assets/image/edit.svg" class="icon">

@@ -189,6 +189,7 @@
 
 .incompleto{
     border: 0.5px solid red;
+    /* background: rgba(77, 75, 75, 0.225); */
 }
 
 /* .mat-datepicker-toggle-active{color:red !important} */
@@ -213,4 +214,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+.error{
+    color: red;
 }

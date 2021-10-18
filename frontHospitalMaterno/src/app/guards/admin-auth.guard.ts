@@ -21,13 +21,13 @@ export class AdminAuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
       let usuario = JSON.parse(atob(localStorage.getItem('user')))
-      console.log(usuario)
+      // console.log(usuario)
 
 
       let allow=false
       usuario.roles.forEach(element => {
         if(element=='Admin'){
-          console.log(element)
+          // console.log(element)
           allow = true
         }  
       });

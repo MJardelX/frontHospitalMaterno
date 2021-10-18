@@ -22,7 +22,7 @@ export class EliminarUsuarioDialogComponent implements OnInit {
   cargando=false;
   token:any;
   ngOnInit(): void {
-    console.log(this.data)
+    // console.log(this.data)
     this.token=localStorage.getItem('token')
   }
 
@@ -44,7 +44,7 @@ export class EliminarUsuarioDialogComponent implements OnInit {
       }else{
         this.openSnackBar('Error al eliminar usuario', 'red-snackbar')
       }
-      console.log(err)
+      // console.log(err)
     })
   }
 

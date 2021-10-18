@@ -21,7 +21,7 @@ import { SaludAuthGuard } from './guards/salud-auth.guard';
 
 const routes: Routes = [
   
-    { path: '', component: HomeComponent, pathMatch:'full' },
+    { path: '', redirectTo:'/login', pathMatch:'full' },
     // { path: 'control-pacientes', component: ControlPacietesComponent, pathMatch:'full' },
     // { path: 'graficas', component: GraficasComponent, pathMatch:'full' },
     { path: 'login', component: LoginComponent, pathMatch:'full' },
@@ -37,6 +37,7 @@ const routes: Routes = [
     { path: 'token-expired', component: TokenExpiredPageComponent, pathMatch:'full' },
     { path: 'token-invalid', component: TokenInvalidPageComponent, pathMatch:'full' },
     { path: 'forgot-password', component: ForgotPasswordPageComponent, pathMatch:'full' },
+    { path: '**', redirectTo: '/pacientes'}
   ];
 
 

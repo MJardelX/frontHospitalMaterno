@@ -30,6 +30,27 @@ export class ApiService {
   
   url_base = environment.api;
 
+  no_expediente: any;
+  fecha_creacion_control: any;
+
+  setNoExpediente(no){
+    this.no_expediente= no
+  }
+
+  getNoExpediente(){
+    return this.no_expediente
+  }
+
+  setFechaCreacionControl(fecha){
+    this.fecha_creacion_control = fecha
+  }
+
+  getFechaCreacionControl(){
+    return this.fecha_creacion_control
+  }
+
+
+
 
 
 
@@ -638,7 +659,7 @@ export class ApiService {
       .pipe(
         catchError((err) => {
           if (err.status == 401 && err.error.detail=='Token expirado') {
-            console.log('Hola')
+            // console.log('Hola')
             this.router.navigateByUrl('/token-expired')
           }else if(err.status == 401 && err.error.detail=='Token inválido'){
             this.router.navigateByUrl('/token-invalid')
@@ -921,7 +942,7 @@ export class ApiService {
       .pipe(
         catchError((err) => {
           if (err.status == 401 && err.error.detail=='Token expirado') {
-            console.log('Hola')
+            // console.log('Hola')
             this.router.navigateByUrl('/token-expired')
           }else if(err.status == 401 && err.error.detail=='Token inválido'){
             this.router.navigateByUrl('/token-invalid')
@@ -950,7 +971,7 @@ export class ApiService {
       .pipe(
         catchError((err) => {
           if (err.status == 401 && err.error.detail=='Token expirado') {
-            console.log('Hola')
+            // console.log('Hola')
             this.router.navigateByUrl('/token-expired')
           }else if(err.status == 401 && err.error.detail=='Token inválido'){
             this.router.navigateByUrl('/token-invalid')

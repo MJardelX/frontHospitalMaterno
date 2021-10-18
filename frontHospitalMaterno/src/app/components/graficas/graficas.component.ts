@@ -155,7 +155,7 @@ export class GraficasComponent implements OnInit {
                 item[0]['_chart'].chart.config.data.datasets[0].backgroundColor[
                   i
                 ];
-              console.log(muni);
+              // console.log(muni);
 
               //console.log(depto)
               this.filtroMuniActive = true;

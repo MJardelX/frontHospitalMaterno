@@ -3,19 +3,49 @@
     height: 100%;
     background-image: url('../../../assets/huipil.svg');
     background-size: cover;
-
+/* 
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    /* space */
+    /* flex-direction: column; */
 
     /* justify-content: center;
     align-items: center; */
+}
+
+.card-container{
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    /* background: chocolate; */
+}
+
+
+.container-img{
+
+    padding: 30px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    align-items: center;
+    /* background: chartreuse; */
+
 }
 
 .card{
     /* width: 25%; */
     /* height: 50%; */
 
-    align-self: center;
+    /* align-self: center; */
     width: 300px;
     height: 300px;
 
@@ -67,18 +97,27 @@
     color: white;
     background: #9FDFEF;
     border: none;
-    margin-top: 30px;
+    margin-top: 10px;
     height: 35px;
     font-size: 18px;
     border-radius: 5px;
     cursor: pointer;
+    width: 120px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* margin-top: 15px; */
 }
 
 
 .logo-CAM{
-    justify-self: flex-start
-    
+    /* justify-self: flex-start  */
+    height: 220px;
+}
+
+.logo-Min{
+    height: 260px;
 }
 
 
@@ -100,4 +139,13 @@
     text-decoration: underline;
     cursor: pointer;
     font-weight: bold;
+}
+
+
+form{
+    /* background: blue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }

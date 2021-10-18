@@ -42,7 +42,7 @@ export class VisualizacionUsuariosComponent implements OnInit, OnDestroy {
     this.cargando = true
     this.sub_usuarios = this.apiServices.obtener_usuarios(this.token).subscribe(data => {
       this.data_usuarios = data.data
-      console.log(data)
+      // console.log(data)
       this.cargando = false
     }, err => {
       if (err.detail) {

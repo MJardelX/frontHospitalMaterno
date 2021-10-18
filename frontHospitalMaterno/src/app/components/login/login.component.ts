@@ -54,6 +54,8 @@ export class LoginComponent implements OnInit {
   }
 
 
+
+  cargando=false;
   ingresar(){
     // this.router.navigateByUrl('/pacientes')
     let data_login=this.form_login.getRawValue()
@@ -68,8 +70,9 @@ export class LoginComponent implements OnInit {
     // console.log(pass)
 
     if(this.form_login.valid){
+      this.cargando=true
       this.apiServices.login(this.token, data_login.username, data_login.password).subscribe(data=>{
-        console.log(data)
+        // console.log(data)
   
         this.token=data.token
         localStorage.setItem('token', btoa(this.token));
@@ -79,6 +82,7 @@ export class LoginComponent implements OnInit {
         this.openSnackBar('Bienvenido','green-snackbar');
 
 
+        this.cargando=false
         this.router.navigateByUrl('/pacientes')
       },err=>{
 
@@ -87,9 +91,10 @@ export class LoginComponent implements OnInit {
         }else{
           this.openSnackBar("Error al consumir el servicio",'red-snackbar');
         }
+        this.cargando=false
         // console.log(err)
         // console.log(err.detail)
-        console.log(err)
+        // console.log(err)
       })
 
     }else{

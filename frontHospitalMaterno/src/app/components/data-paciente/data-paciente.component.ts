@@ -104,7 +104,11 @@ export class DataPacienteComponent implements OnInit,OnDestroy {
   }
 
 
-  toControl(id_control){
+  toControl(id_control, fecha){
+    
+    this.apiServices.setNoExpediente(this.data_paciente?.id_expediente)
+    this.apiServices.setFechaCreacionControl(fecha);
+
     this.router.navigateByUrl('/control-prenatal/'+this.id_paciente+'/'+id_control)
   }
 
@@ -221,7 +225,12 @@ export class DataPacienteComponent implements OnInit,OnDestroy {
   sub_update_fecha:Subscription
   actualizarFechaNacimiento(){
     if(this.form_data_paciente.get('fecha_nacimiento').valid){
-      let fecha_nacimiento= this.form_data_paciente.get('fecha_nacimiento').value
+      let fecha_nacimiento= moment(this.form_data_paciente.get('fecha_nacimiento').value, 'MM/DD/YYYY').format('YYYY-MM-DD')
+
+      // let data_paciente = this.form_data_paciente.getRawValue()
+      // let fecha_nacimiento = moment(data_paciente.fecha_nacimiento, 'MM/DD/YYYY').format('YYYY-MM-DD')
+      // let fecha_creacion_expediente = moment(data_paciente.fecha_creacion_expediente, 'MM/DD/YYYY').format('YYYY-MM-DD')
+
       this.sub_update_dpi = this.apiServices.actualizar_dato_paciente(this.token,this.id_paciente,'fecha_nacimiento',fecha_nacimiento).subscribe(data=>{
         // this.data_paciente.dpi=dpi
         this.obtenerDataPaciente()

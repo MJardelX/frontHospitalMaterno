@@ -357,7 +357,7 @@
 
 
             <!-- !ANTECEDENTES -->
-            <div class="container">
+            <div class="container"  >
                 <span class="data-card-header-text">ANTECEDENTES</span>
                 <div class="data-card-content" [ngClass]="{'incompleto': form_antecedentes.invalid && guardo }">
 
@@ -367,26 +367,26 @@
                     <div class="data-6" style="margin-top: 15px;">
 
                         <div class=" flex-start-center">
-                            <span class="data-text">FUR:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('fur_an').hasError('required')}">FUR:</span>
                             <input type="text" class="input" formControlName="fur_an">
                         </div>
 
                         <div class=" flex-start-center">
-                            <span class="data-text"># Gestas:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('no_gestas').hasError('required')}"># Gestas:</span>
                             <input type="text" class="input input-number" formControlName="no_gestas">
                         </div>
                         <div class=" flex-start-center">
-                            <span class="data-text" style="width: 60px;">Partos:</span>
+                            <span class="data-text" style="width: 60px;" [ngClass]="{'error': guardo && form_antecedentes.get('partos').hasError('required')}">Partos:</span>
                             <input type="text" class="input" formControlName="partos">
                         </div>
 
                         <div class=" flex-start-center">
-                            <span class="data-text">AB:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('ab').hasError('required')}">AB:</span>
                             <input type="text" class="input" formControlName="ab">
                         </div>
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">AB consecutivos:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('ab_consecutivos').hasError('required')}">AB consecutivos:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_ab_consecutivos('si')">
@@ -408,7 +408,7 @@
 
 
                         <div class=" flex-start-center">
-                            <span class="data-text"># LIU:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('no_liu').hasError('required')}"># LIU:</span>
                             <input type="text" class="input input-number" formControlName="no_liu">
                         </div>
                     </div>
@@ -417,28 +417,28 @@
                     <div class="data-5">
 
                         <div class=" flex-start-center">
-                            <span class="data-text"># Nacidos Vivos:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('nacidos_vivos').hasError('required')}"># Nacidos Vivos:</span>
                             <input type="text" class="input input-number" formControlName="nacidos_vivos">
                         </div>
 
                         <div class=" flex-start-center">
-                            <span class="data-text"># Nacidos Muertos:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('nacidos_muertos').hasError('required')}"># Nacidos Muertos:</span>
                             <input type="text" class="input input-number" formControlName="nacidos_muertos">
                         </div>
                         <div class=" flex-start-center">
-                            <span class="data-text"># Hijos Vivos:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('hijos_vivos').hasError('required')}"># Hijos Vivos:</span>
                             <input type="text" class="input input-number" formControlName="hijos_vivos">
                         </div>
 
                         <div class=" flex-start-center">
-                            <span class="data-text"># Hijos Muertos:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('hijos_muertos').hasError('required')}"># Hijos Muertos:</span>
                             <input type="text" class="input input-number" formControlName="hijos_muertos">
                         </div>
 
 
 
                         <div class=" flex-start-center">
-                            <span class="data-text"># de Cesáreas:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('no_cesarea').hasError('required')}"># de Cesáreas:</span>
                             <input type="text" class="input input-number" formControlName="no_cesarea">
                         </div>
                     </div>
@@ -447,7 +447,7 @@
                     <div class="data-3">
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">Embarazos múltiples:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('embarazos_multiples').hasError('required')}">Embarazos múltiples:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_embarazos_multiples('si')">
@@ -495,7 +495,7 @@
 
                         </div>
                         <div class=" flex-start-center">
-                            <span class="data-text"># Niños(as) nacidos antes de los 8 meses:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('nacidos_8_meses').hasError('required')}"># Niños(as) nacidos antes de los 8 meses:</span>
                             <input type="text" class="input input-number" formControlName="nacidos_8_meses">
                         </div>
 
@@ -505,7 +505,7 @@
                     <div class="data-3-mod">
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">Preeclampsia:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('preeclampsia').hasError('required')}">Preeclampsia:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_preeclampsia('si')">
@@ -526,7 +526,7 @@
 
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">Último RN pesó menos de 5 lbs. y media:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('rm_menos_cinco').hasError('required')}">Último RN pesó menos de 5 lbs. y media:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_rn5('si')">
@@ -546,7 +546,7 @@
 
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">Último RN pesó más de 7 lbs. 12 onz:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('rm_mas_siete').hasError('required')}">Último RN pesó más de 7 lbs. 12 onz:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_rn7('si')">
@@ -610,7 +610,7 @@
                         </div>
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text" style="width: 120px;">Resultado Normal:</span>
+                            <span class="data-text" style="width: 120px;" [ngClass]="{'error': guardo && form_antecedentes.get('resultado_normal').hasError('required')}">Resultado Normal:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_resultado_normal('si')">
@@ -641,7 +641,7 @@
                     <div class="data-2">
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">Utilizó algún método de Planificación Familiar:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('utilizo_metodo_pf').hasError('required')}">Utilizó algún método de Planificación Familiar:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_planificacion_f('si')">
@@ -692,7 +692,7 @@
 
 
                             <!-- !OPCION -->
-                            <span class="data-text">Asma bronquial:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('asma_branquial').hasError('required')}">Asma bronquial:</span>
                             <div class="opciones-signos">
                                 <div class="radio" (click)="seleccionar_signo_medico('asma_branquial','si')"
                                     style="margin: 0;">
@@ -708,7 +708,7 @@
 
 
                             <!-- !OPCION -->
-                            <span class="data-text">Hipertensión arterial:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('hipertension_arterial').hasError('required')}">Hipertensión arterial:</span>
                             <div class="opciones-signos">
                                 <div class="radio" (click)="seleccionar_signo_medico('hipertension_arterial','si')"
                                     style="margin: 0;">
@@ -724,7 +724,7 @@
 
 
                             <!-- !OPCION -->
-                            <span class="data-text">Cáncer:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('cancer').hasError('required')}">Cáncer:</span>
                             <div class="opciones-signos">
                                 <div class="radio" (click)="seleccionar_signo_medico('cancer','si')" style="margin: 0;">
                                     <img src="assets/image/x.svg" alt="" class="radio-check"
@@ -738,7 +738,7 @@
 
 
                             <!-- !OPCION -->
-                            <span class="data-text">ITS:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('its').hasError('required')}">ITS:</span>
                             <div class="opciones-signos">
                                 <div class="radio" (click)="seleccionar_signo_medico('its','si')" style="margin: 0;">
                                     <img src="assets/image/x.svg" alt="" class="radio-check"
@@ -752,7 +752,7 @@
 
 
                             <!-- !OPCION -->
-                            <span class="data-text">Chagas:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('chagas').hasError('required')}">Chagas:</span>
                             <div class="opciones-signos">
                                 <div class="radio" (click)="seleccionar_signo_medico('chagas','si')" style="margin: 0;">
                                     <img src="assets/image/x.svg" alt="" class="radio-check"
@@ -780,7 +780,7 @@
 
 
                             <!-- !OPCION -->
-                            <span class="data-text">Diabetes:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('diabetes').hasError('required')}">Diabetes:</span>
                             <div class="opciones-signos">
                                 <div class="radio" (click)="seleccionar_signo_medico('diabetes','si')"
                                     style="margin: 0;">
@@ -796,7 +796,7 @@
 
 
                             <!-- !OPCION -->
-                            <span class="data-text">Cardiopatía:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('cardiopatia').hasError('required')}">Cardiopatía:</span>
                             <div class="opciones-signos">
                                 <div class="radio" (click)="seleccionar_signo_medico('cardiopatia','si')"
                                     style="margin: 0;">
@@ -812,7 +812,7 @@
 
 
                             <!-- !OPCION -->
-                            <span class="data-text">Tuberculosis:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('tuberculosis').hasError('required')}">Tuberculosis:</span>
                             <div class="opciones-signos">
                                 <div class="radio" (click)="seleccionar_signo_medico('tuberculosis','si')"
                                     style="margin: 0;">
@@ -828,7 +828,7 @@
 
 
                             <!-- !OPCION -->
-                            <span class="data-text">Neuropatía:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('neuropatia').hasError('required')}">Neuropatía:</span>
                             <div class="opciones-signos">
                                 <div class="radio" (click)="seleccionar_signo_medico('neuropatia','si')"
                                     style="margin: 0;">
@@ -844,7 +844,7 @@
 
 
                             <!-- !OPCION -->
-                            <span class="data-text">Infecciones Urinarias:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('infecciones_urinarias').hasError('required')}">Infecciones Urinarias:</span>
                             <div class="opciones-signos">
                                 <div class="radio" (click)="seleccionar_signo_medico('infecciones_urinarias','si')"
                                     style="margin: 0;">
@@ -864,7 +864,7 @@
                     <div class="data-3-mod-2">
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">Toma medicamentos::</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('toma_medicamentos').hasError('required')}">Toma medicamentos::</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_toma_m('si')">
@@ -889,7 +889,7 @@
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                             <div class=" flex-start-center">
-                                <span class="data-text">Tipo de sangre: Grupo:</span>
+                                <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('tipo_sangre_grupo').hasError('required')}">Tipo de sangre: Grupo:</span>
                                 <input type="text" class="input input-number" formControlName="tipo_sangre_grupo">
                             </div>
 
@@ -918,7 +918,7 @@
                     <div class="data-3">
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">Transtorno Psico social:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('trastorno_psicosocial').hasError('required')}">Transtorno Psico social:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_trastorno_ps('si')">
@@ -938,7 +938,7 @@
 
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">Violencia Familiar:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('violencia_familiar').hasError('required')}">Violencia Familiar:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_violencia_f('si')">
@@ -958,7 +958,7 @@
 
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">Violencia basada en género:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('violencia_genero').hasError('required')}">Violencia basada en género:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_violencia_g('si')">
@@ -987,7 +987,7 @@
                     <div class="data-1">
 
                         <div class=" flex-start-center">
-                            <span class="data-text" style="font-weight: bold;">Quirúrgicos:</span>
+                            <span class="data-text" style="font-weight: bold;" [ngClass]="{'error': guardo && form_antecedentes.get('quirurgicos').hasError('required')}">Quirúrgicos:</span>
                             <input type="text" class="input" formControlName="quirurgicos">
                         </div>
 
@@ -1002,7 +1002,7 @@
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                             <span class="data-text" style="font-weight: bold;">Hábitos:</span> <span class="data-text"
-                                style="margin-left: 15px;"> Fuma</span>
+                                style="margin-left: 15px;" [ngClass]="{'error': guardo && form_antecedentes.get('fuma').hasError('required')}"> Fuma</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_fuma('si')">
@@ -1022,7 +1022,7 @@
 
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">Ingiere bebidas alcohólicas:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('bebidas_alcoholicas').hasError('required')}">Ingiere bebidas alcohólicas:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_bebidas('si')">
@@ -1042,7 +1042,7 @@
 
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">Consumo de drogas:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('drogas').hasError('required')}">Consumo de drogas:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_drogas('si')">
@@ -1068,7 +1068,7 @@
                     <div class="data-4-normal">
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text" style="font-weight: bold;">Antecedente de vacuna Td:</span>
+                            <span class="data-text" style="font-weight: bold;" [ngClass]="{'error': guardo && form_antecedentes.get('vacuna_td').hasError('required')}">Antecedente de vacuna Td:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_vacuna_td('si')">
@@ -1112,7 +1112,7 @@
 
 
                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                            <span class="data-text">SR:</span>
+                            <span class="data-text" [ngClass]="{'error': guardo && form_antecedentes.get('sr').hasError('required')}">SR:</span>
                             <div class="container-check" style="margin-left: 10px;">
                                 <span class="data-text">SI</span>
                                 <div class="radio" (click)="seleccionar_sr('si')">
@@ -1142,7 +1142,7 @@
                     <div class="data-1">
 
                         <div class=" flex-start-center">
-                            <span class="data-text" style="font-weight: bold; width: 150px;">Otros antecedentes:</span>
+                            <span class="data-text" style="font-weight: bold; width: 150px;" [ngClass]="{'error': guardo && form_antecedentes.get('otros_antecedentes').hasError('required')}">Otros antecedentes:</span>
                             <input type="text" class="input" formControlName="otros_antecedentes">
                         </div>
 
@@ -1157,7 +1157,7 @@
             <div class="flex-end-center container">
                 <!-- <input type="button" value="Guardar" class="btn" (click)="guardar()"> -->
                 <button mat-raised-button class="btn" type="submit" (click)="guardar()" *ngIf="cargando">
-                    <mat-spinner class="mat-spiner" [diameter]="30"></mat-spinner>
+                    <mat-spinner class="mat-spiner" [diameter]="30" color="accent"></mat-spinner>
                 </button>
 
                 <button mat-raised-button class="btn" type="submit" (click)="guardar()" *ngIf="!cargando">

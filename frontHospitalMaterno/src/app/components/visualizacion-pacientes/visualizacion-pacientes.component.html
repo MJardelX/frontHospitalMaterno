@@ -78,7 +78,9 @@
             <span (click)="toPaciente(paciente?.id_paciente)" class="data">{{paciente?.dpi}}</span>
             <span (click)="toPaciente(paciente?.id_paciente)" class="data">{{paciente?.edad_actual}} años</span>
             <span (click)="toPaciente(paciente?.id_paciente)" class="data">{{paciente?.telefono}}</span>
-            <span (click)="toPaciente(paciente?.id_paciente)" class="data-start">{{paciente?.calle_avenida}}  {{paciente?.municipio}} {{paciente?.departamento}}</span>
+            <span (click)="toPaciente(paciente?.id_paciente)" class="data-start">
+                {{ (paciente?.direccion.length>35)? (paciente?.direccion | slice:0:35)+'...':(paciente?.direccion) }}
+            </span>
             
             <div class="data">
                 <img src="assets/image/edit.svg" class="icon" (click)="toPaciente(paciente?.id_paciente)">

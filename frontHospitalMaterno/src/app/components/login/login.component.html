@@ -1,35 +1,61 @@
 
 <div class="fondo">
-    <div>
+    <div class="container-img">
         <img src="assets/image/CAM_logo.svg" alt="" class="logo-CAM">
+        <img src="assets/image/ministerio.png" alt="" class="logo-Min">
+       
     </div>
 
-    <div class="flex-column-center">
-        <div class="card">
-    
-            <p class="title">Iniciar Sesión</p>
-    
-    
-            <form [formGroup]="form_login">
-                <div class="input-container">
-                    <img src="assets/image/usuario.svg" class="icon">
-                    <input type="text" placeholder="Usuario" class="input" formControlName="username">
-                </div>
+    <div class="card-container">
+
+        <div class="flex-column-center">
+            <div class="card">
         
-                <div class="input-container">
-                    <img src="assets/image/candado.svg" class="icon">
-                    <input type="password" placeholder="Contraseña" class="input" formControlName="password"> 
-                </div>
+                <p class="title">Iniciar Sesión</p>
+        
+        
+                <form [formGroup]="form_login">
+                    <!-- <div class="input-container">
+                        <img src="assets/image/usuario.svg" class="icon">
+                        <input type="text" placeholder="Usuario" class="input" formControlName="username">
+                    </div> -->
     
-            </form>
+                    <mat-form-field  appearance="outline" >
+                        <mat-label>Usuario</mat-label>
+                        <input matInput  formControlName="username">
+                    </mat-form-field>
     
     
-            <!-- <input type="submit" class="btn" value="Ingresar" > -->
+                    <mat-form-field  appearance="outline" >
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput type="password" formControlName="password">
+                    </mat-form-field>
     
-            <button class="btn" (click)="ingresar()">Ingresar</button>
-        </div>
-        <div class="container-pass">
-            <p class="text-forgot" (click)="toForgot()">¿Olvidaste tu contraseña?</p>
+            
+                    <!-- <div class="input-container">
+                        <img src="assets/image/candado.svg" class="icon">
+                        <input type="password" placeholder="Contraseña" class="input" formControlName="password"> 
+                    </div> -->
+        
+                </form>
+        
+        
+                <!-- <input type="submit" class="btn" value="Ingresar" > -->
+        
+                <!-- <button class="btn" (click)="ingresar()">Ingresar</button> -->
+    
+                <button mat-raised-button class="btn" type="submit" *ngIf="cargando">
+                    <mat-spinner class="mat-spiner" [diameter]="30" color="accent"></mat-spinner>
+                </button>
+    
+                <button mat-raised-button class="btn" type="submit" (click)="ingresar()" *ngIf="!cargando">
+                    <!-- <mat-spinner class="mat-spiner" [diameter]="30"></mat-spinner> -->
+                    Ingresar
+                </button>
+            </div>
+            <div class="container-pass">
+                <p class="text-forgot" (click)="toForgot()">¿Olvidaste tu contraseña?</p>
+            </div>
         </div>
     </div>
 

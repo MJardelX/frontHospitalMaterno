@@ -4,8 +4,8 @@
 </div>
 
 <div class="container-data-exp">
-    <span class="data-exp">Expediente No. XXXXX</span>
-    <span class="data-exp">Fecha creación del control: DD/MM/AAAA</span>
+    <span class="data-exp">Expediente No. {{no_expediente}}</span>
+    <span class="data-exp">Fecha creación del control: {{fecha_creacion_control}}</span>
 </div>
 
 
@@ -107,31 +107,51 @@
     
     <div class="titles-consultas flex-column-start-center">
 
+        
         <div class="title-section flex-center">
             <span class="title-text">Examen físico de la embarazada</span>
         </div>
 
-
-
         <!-- !EXAMEN FISICO -->
         <form [formGroup]="form_ex_fisico" *ngIf="!data_ex_fisico" [ngClass]="{'error': guardo_fisico && form_ex_fisico.invalid}">
             <div class="container-examen-fisico">
-    
-                <div class="flex-space-around-center">
-                    <div class="flex-center">
-                        <span class="description-text">FUR:</span>
-                        <input type="text" name="" id="" class="input-small" formControlName="fur">
+                <div class="flex-space-around-center" style="width: 100%;">
+                    <div class="flex-start-center" >
+                        <span class="text-fur-fpp">FUR:</span>
+                        <div class="input-container flex-start-center" style="padding: 0;">
+                            <!-- <div class=""> -->
+            
+                            <!-- <input type="text" name="" id="" class="input-lg input-center"> -->
+            
+                            <input [matDatepicker]="pickerFUR" class="input-fur-fpp input-center datepiker-input" placeholder="dd/mm/aaaa"
+                                formControlName="fur">
+                            <mat-datepicker-toggle class="dp-small" matSuffix [for]="pickerFUR"></mat-datepicker-toggle>
+                            <!-- </div> -->
+                            <mat-datepicker #pickerFUR></mat-datepicker>
+                        </div>
+                        
                     </div>
     
-                    <div class="flex-center">
-                        <span class="description-text">FPP:</span>
-                        <input type="text" name="" id="" class="input-small" formControlName="fpp">
+                    <div class="flex-center" >
+                        <span class="text-fur-fpp">FPP:</span>
+                        
+                        <div class="input-container flex-start-center" style="padding: 0; ">
+                            <!-- <div class=""> -->
+            
+                            <!-- <input type="text" name="" id="" class="input-lg input-center"> -->
+            
+                            <input [matDatepicker]="pickerFPP" class="input-fur-fpp input-center datepiker-input" placeholder="dd/mm/aaaa"
+                                formControlName="fpp">
+                            <mat-datepicker-toggle class="dp-small" matSuffix [for]="pickerFPP"></mat-datepicker-toggle>
+                            <!-- </div> -->
+                            <mat-datepicker #pickerFPP></mat-datepicker>
+                        </div>
                     </div>
                 </div>
     
                 <div class="flex-space-around-center">
                     <div class="flex-center">
-                        <span class="description-text">Circunferencia del embarazo (cms):</span>
+                        <span class="description-text">Circunferencia del brazo (cms):</span>
                         <input type="text" name="" id="" class="input-small" formControlName="circunferencia">
                     </div>
                 </div>
@@ -162,7 +182,7 @@
             <div class="flex-space-around-center">
                 <div class="flex-center">
                     <span class="description-text">FUR:</span>
-                    <input type="text" name="" id="" class="input-small" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.frecuencia_cardiaca_materna" [value]="data_ex_fisico.fpp">
+                    <input type="text" name="" id="" class="input-small" onkeypress="return event.charCode == 13 || event.charCode == 9" [value]="consulta?.frecuencia_cardiaca_materna" [value]="data_ex_fisico.fur">
                 </div>
 
                 <div class="flex-center">
@@ -887,7 +907,7 @@
 
                 <div class="container-btn flex-center">
                    
-                    <p class="tipo-consulta-text flex-center"> Encargado: {{consulta?.primer_nombre}} {{consulta?.primer_apellido}}</p>
+                    <p class="tipo-consulta-text flex-center"> Médico : {{consulta?.primer_nombre}} {{consulta?.primer_apellido}}</p>
         
                     
                 </div>
@@ -1433,7 +1453,7 @@
 
             <div class="container-btn flex-center">
                 <button mat-raised-button class="btn" type="submit" *ngIf="cargando">
-                    <mat-spinner class="mat-spiner" [diameter]="30" ></mat-spinner>
+                    <mat-spinner class="mat-spiner" [diameter]="30" color="accent"></mat-spinner>
                 </button>
     
                 <button mat-raised-button class="btn" type="submit" (click)="guardarConsulta()" *ngIf="!cargando">
@@ -1456,10 +1476,10 @@
 
 <div style="width: 90%; display: flex; justify-content: flex-end; align-items: center; margin:15px auto;">
     <!-- <span class="data-exp">Expediente No. XXXXX</span> -->
-    <div style="display: flex; justify-content: flex-end; ">
+    <!-- <div style="display: flex; justify-content: flex-end; ">
         <div class="add-pacient" style="cursor: pointer;">
             <img src="assets/image/add.svg" alt="" class="add-icon" style="padding: 0;">
             <span style="color: #2C3D7F; text-decoration: underline;">Agregar consulta</span>
         </div>
-    </div>
+    </div> -->
 </div>

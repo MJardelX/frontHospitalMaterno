@@ -22,7 +22,7 @@ export class EliminarPacienteDialogComponent implements OnInit, OnDestroy {
   cargando=false;
   token:any;
   ngOnInit(): void {
-    console.log(this.data)
+    // console.log(this.data)
     this.token=localStorage.getItem('token')
   }
 
@@ -44,7 +44,7 @@ export class EliminarPacienteDialogComponent implements OnInit, OnDestroy {
       }else{
         this.openSnackBar('Error al eliminar paciente', 'red-snackbar')
       }
-      console.log(err)
+      // console.log(err)
     })
   }
 

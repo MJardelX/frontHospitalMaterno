@@ -112,7 +112,7 @@ export class FormPacientesComponent implements OnInit {
       this.openSnackBar('Complete los campos requeridos', 'red-snackbar');
     } else {
       let fecha = formatDate(data.fecha_nacimiento, 'yyyy-MM-dd', 'en-GB');
-      console.log(fecha);
+      // console.log(fecha);
 
       /* let fecha= dateFor */
       /* si no hay data */
@@ -144,7 +144,7 @@ export class FormPacientesComponent implements OnInit {
               }
             },
             (err) => {
-              console.log(err);
+              // console.log(err);
             }
           );
 
@@ -175,7 +175,7 @@ export class FormPacientesComponent implements OnInit {
               
             },
             (err) => {
-              console.log(err);
+              // console.log(err);
             }
           );
       }

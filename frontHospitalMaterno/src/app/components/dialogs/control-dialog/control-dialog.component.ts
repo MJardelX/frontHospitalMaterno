@@ -760,7 +760,7 @@ export class ControlDialogComponent implements OnInit {
       
 
       // TODO: cambiar a nacidos_antes_8_meses
-      this.form_antecedentes.get('nacidos_8_meses').setValue(this.data_control.niños_nacidos_antes_8_meses)
+      this.form_antecedentes.get('nacidos_8_meses').setValue(this.data_control.nacidos_antes_8_meses)
 
       this.preeclampsia[this.data_control.preeclampsia]=true
       this.rn_5[this.data_control.rm_menos_cinco_lbs]=true

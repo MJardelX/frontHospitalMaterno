@@ -24,7 +24,7 @@ export class SaludAuthGuard implements CanActivate {
       let allow=false
       usuario.roles.forEach(element => {
         if(element=='Empleado Salud'){
-          console.log(element)
+          // console.log(element)
           allow = true
         }  
       });

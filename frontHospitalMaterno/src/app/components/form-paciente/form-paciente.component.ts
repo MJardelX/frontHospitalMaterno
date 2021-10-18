@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/Services/api.service';
 import { PathService } from 'src/app/Services/path.service';
@@ -31,11 +32,11 @@ export class FormPacienteComponent implements OnInit {
       'calle_avenida':new FormControl("",Validators.required),
       'municipio':new FormControl("",Validators.required),
       'departamento':new FormControl("Chimaltenango",Validators.required),
-      'telefono':new FormControl("",Validators.required),
+      'telefono':new FormControl(" "),
       'ocupacion':new FormControl("",Validators.required),
       'migrante':new FormControl("",Validators.required),
-      'nombre_responsable':new FormControl("",Validators.required),
-      'telefono_responsable':new FormControl("",Validators.required),
+      'nombre_responsable':new FormControl(" "),
+      'telefono_responsable':new FormControl(" "),
       'id_expediente': new FormControl('',Validators.required),
       'fecha_creacion_expediente': new FormControl('',Validators.required),
     })
@@ -86,13 +87,39 @@ export class FormPacienteComponent implements OnInit {
   guardar(){
     // this.form_data_paciente.get('id_usuario').setValue(this.usuario.id_usuario)
     // console.log(this.form_data_paciente.getRawValue())
+
+    
+
+    // console.log(data_paciente)
+
+    let data = this.form_data_paciente.getRawValue()
+    if (data['telefono']==null){
+        data['telefono']=" "
+    }
+
+    if (data['telefono_responsable']==null){
+      data['telefono_responsable']=" "
+    }
+
+    if (data['nombre_responsable']==null){
+      data['nombre_responsable']=" "
+    }
+
+
     if(this.form_data_paciente.valid){
 
 
       // this.form_data_paciente.addControl({},)
 
       this.cargando=true
-      this.sub_guardar_paciente= this.apiServices.agregarPaciente(this.token,this.form_data_paciente.getRawValue()).subscribe(data=>{
+
+      let data_paciente = this.form_data_paciente.getRawValue()
+      let fecha_nacimiento = moment(data_paciente.fecha_nacimiento, 'MM/DD/YYYY').format('YYYY-MM-DD')
+      let fecha_creacion_expediente = moment(data_paciente.fecha_creacion_expediente, 'MM/DD/YYYY').format('YYYY-MM-DD')
+      data_paciente.fecha_nacimiento = fecha_nacimiento;
+      data_paciente.fecha_creacion_expediente  = fecha_creacion_expediente;
+
+      this.sub_guardar_paciente= this.apiServices.agregarPaciente(this.token, data_paciente).subscribe(data=>{
         if(data.status=='Success'){
           let id_paciente= data.data['id_paciente']
           this.form_data_paciente.reset()

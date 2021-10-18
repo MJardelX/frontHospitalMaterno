@@ -38,6 +38,11 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
   token: any;
 
   data_paciente:any
+
+
+  no_expediente:any;
+  fecha_creacion_control:any;
+
   ngOnInit(): void {
     this.Location = this._loc.path();
     this.path_service.setPath(this.Location);
@@ -59,6 +64,10 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
     this.obtenerExamenFisico()
     this.obtenerDataPaciente()
 
+
+    
+    this.fecha_creacion_control= this.apiServices.getFechaCreacionControl();
+
     // this.paciente= JSON.parse(localStorage.getItem('pacient'))
     // console.log(this.paciente)
   }
@@ -68,6 +77,7 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
   obtenerDataPaciente(){
     this.sub_obtener_paciente=this.apiServices.obtener_paciente(this.token,this.id_paciente).subscribe(data=>{
       this.data_paciente=data.data[0]
+      this.no_expediente = this.data_paciente?.id_expediente
       
       // console.log(this.data_paciente)
       // localStorage.setItem('pacient', JSON.stringify(this.data_paciente))
@@ -447,6 +457,8 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
       data = Object.assign(data, this.form_conducta.getRawValue())
       data = Object.assign(data, this.form_consejeria.getRawValue())
 
+      let fecha_visita = moment(data['fecha_visita'], 'MM/DD/YYYY').format('YYYY-MM-DD')
+      data['fecha_visita']= fecha_visita
 
 
       const dialogRef = this.dialog.open(InformationDialogComponent,
@@ -463,6 +475,7 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
           this.cargando = true;
           this.sub_guardar_consulta = this.apiServices.agregarConsulta(this.token, data).subscribe(d => {
     
+            this.guardo=false;
             if (d.status = 'Success') {
               this.sintomas_peligro = {
                 si: false,
@@ -629,6 +642,14 @@ export class ControlPrenatalComponent implements OnInit, OnDestroy {
           let data=this.form_ex_fisico.getRawValue()
           // console.log(data)
           this.cargando_fisico=true
+
+
+          let fur = moment(data.fur, 'MM/DD/YYYY').format('YYYY-MM-DD')
+          let fpp = moment(data.fpp, 'MM/DD/YYYY').format('YYYY-MM-DD')
+          data.fur = fur;
+          data.fpp  = fpp;
+          // console.log(data)
+
           this.sub_guardar_ex_fisico = this.apiServices.agregarExamenFisico(this.token,data).subscribe(d=>{
             if(d.status=='Success'){
               this.obtenerExamenFisico()
